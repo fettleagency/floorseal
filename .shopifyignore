@@ -1,0 +1,8 @@
+# Files the Shopify CLI should never push/pull
+README.md
+.gitignore
+.shopifyignore
+shopify.theme.toml
+.theme-check.yml
+.github/**
+.vscode/**

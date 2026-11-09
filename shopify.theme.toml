@@ -1,0 +1,3 @@
+# Shopify CLI environments: `shopify theme dev -e development`
+[environments.development]
+store = "floorseal.myshopify.com"
