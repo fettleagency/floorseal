@@ -1,0 +1,85 @@
+body {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #2e2e2e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  color: #2e2e2e;
+  text-shadow: none;
+  background-color: #FFF;
+}
+
+.container-fluid {
+  padding-left: 24px;
+  padding-right: 24px;
+
+  @include media-breakpoint-up(sm) {
+
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-left: 40px;
+    padding-right: 40px;
+    max-width: 1380px; //1440px
+  }
+
+  @include media-breakpoint-up(xl) {
+
+  }
+}
+
+:root {
+  --xxxs-space: 8px;
+  --xxs-space: 16px;
+  --xs-space: 24px;
+  --sm-space: 24px;
+  --md-space: 32px;
+  --lg-space: 40px;
+  --xl-space: 40px;
+  --xxl-space: 48px;
+  --xxxl-space: 56px;
+}
+
+@include media-breakpoint-up(md) {
+  :root {
+    --xxxs-space: 12px;
+    --xxs-space: 16px;
+    --xs-space: 24px;
+    --sm-space: 32px;
+    --md-space: 40px;
+    --lg-space: 48px;
+    --xl-space: 56px;
+    --xxl-space: 72px;
+    --xxxl-space: 80px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  :root {
+    --xxxs-space: 16px;
+    --xxs-space: 24px;
+    --xs-space: 32px;
+    --sm-space: 40px;
+    --md-space: 48px;
+    --lg-space: 56px;
+    --xl-space: 80px;
+    --xxl-space: 112px;
+    --xxxl-space: 120px;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+
+  :root {
+
+  }
+}
