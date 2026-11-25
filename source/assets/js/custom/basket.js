@@ -4,6 +4,9 @@
 // 2. "Remove" takes the line out. With no lines left the empty state shows instead.
 // 3. basket.html?empty opens the basket page on its empty state.
 // 4. Sending a product form ("Add to basket") opens the drawer instead of leaving the page.
+// 5. The header's basket button shows the number of items inside the bag, and nothing when
+//    the basket is empty. On the basket page that is the page's own count; on the product page
+//    it appears once something has been added (the drawer's items).
 (function () {
     'use strict';
 
@@ -15,6 +18,21 @@
         if (element) {
             element.textContent = text;
         }
+    }
+
+    // 5. The count in the header's basket button (99 at most, so it fits inside the bag)
+    function setBadge(quantity) {
+        var button = document.querySelector('[data-basket-button]');
+
+        if (!button) {
+            return;
+        }
+
+        var badge = button.querySelector('[data-basket-badge]');
+
+        badge.textContent = Math.min(quantity, 99);
+        badge.hidden = quantity === 0;
+        button.setAttribute('aria-label', quantity ? 'Basket, ' + quantity + (quantity === 1 ? ' item' : ' items') : 'Basket');
     }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -40,6 +58,11 @@
                 setText(scope.querySelector('[data-basket-count]'), quantity + (quantity === 1 ? ' item' : ' items'));
                 setText(scope.querySelector('[data-basket-subtotal]'), money(sum));
                 setText(scope.querySelector('[data-basket-total]'), money(sum));
+
+                // The page's basket always shows in the header; the drawer's once something is added
+                if (scope === document || basket.dataset.added) {
+                    setBadge(quantity);
+                }
 
                 // Nothing left: swap every "filled" part for the empty state
                 scope.querySelectorAll('[data-basket-filled]').forEach(function (part) {
@@ -79,7 +102,11 @@
         if (drawer) {
             document.querySelectorAll('form[action="/cart/add"]').forEach(function (form) {
                 form.addEventListener('submit', function (event) {
+                    var basket = drawer.querySelector('[data-basket]');
+
                     event.preventDefault();
+                    basket.dataset.added = 'true';
+                    basket.dispatchEvent(new Event('change'));
                     bootstrap.Offcanvas.getOrCreateInstance(drawer).show();
                 });
             });

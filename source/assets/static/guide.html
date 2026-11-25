@@ -60,8 +60,11 @@
                         <a class="site-header__logo" href="/">
                             <img src="/dist/images/floorseal-logo.svg" width="208" height="36" alt="Floorseal">
                         </a>
-                        <a class="basket-button" href="basket.html" aria-label="Basket">
+                        <!-- The count sits inside the bag and only shows when there is something in the basket
+                             (Shopify: cart.item_count; the label becomes "Basket, 3 items"). -->
+                        <a class="basket-button" href="basket.html" aria-label="Basket" data-basket-button>
                             <svg class="icon" aria-hidden="true"><use href="#icon-basket"></use></svg>
+                            <span class="basket-button__count" aria-hidden="true" data-basket-badge hidden></span>
                         </a>
                     </div>
                     <div class="collapse navbar-collapse" id="mainMenu">

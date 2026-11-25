@@ -282,6 +282,7 @@ $header-rule: #E2E2E2;
 }
 
 .basket-button {
+  position: relative;
   display: block;
   width: 40px;
   height: 40px;
@@ -309,6 +310,19 @@ $header-rule: #E2E2E2;
     margin-left: -24px;
   }
 
+  // The number of items, inside the bag: SemiBold, centred on the bag's body (just below the
+  // middle of the button). Only there when the basket has something in it. It takes the
+  // icon's colour, so it goes white with it on hover.
+  &__count {
+    position: absolute;
+    top: 57%;
+    left: 50.5%;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    transform: translate(-50%, -50%);
+  }
+
   // 48px with the desktop logo; below xl it stays at 40px alongside the smaller logo
   @include media-breakpoint-up(xl) {
     width: 48px;
@@ -317,6 +331,10 @@ $header-rule: #E2E2E2;
     .icon {
       width: 48px;
       height: 48px;
+    }
+
+    &__count {
+      font-size: 12px;
     }
   }
 
