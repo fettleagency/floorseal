@@ -12,10 +12,24 @@ a {
   transition: color $hover-duration ease-in-out;
 }
 
+// Selected text: navy on yellow
 ::selection {
-  color: #2e2e2e;
+  color: $brand-navy;
   text-shadow: none;
-  background-color: #FFF;
+  background-color: $brand-yellow;
+}
+
+// Where the text already sits on yellow the colours flip to white on navy, or the selection
+// would not show: the guides band's heading, link and category buttons (not its cards, which
+// are navy), the yellow hero on the guides page and the yellow guide card in the selector results.
+.guides .section-header,
+.guides__categories,
+.collection-hero--yellow,
+.guide-card--stacked .guide-card__body {
+  ::selection {
+    color: #FFF;
+    background-color: $brand-navy;
+  }
 }
 
 // Page container and grid.

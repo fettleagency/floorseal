@@ -5,6 +5,9 @@
 //
 // The link is Text/Dark with a yellow arrow. A section on a coloured background changes them
 // with --section-header-link and --section-header-arrow.
+//
+// A heading can have a line of text under it (.section-header__text), Body S in Text/Dark
+// (--section-header-text changes its colour): 8px under the heading on mobile, 16px on desktop.
 
 .section-header {
   --bs-gutter-y: 8px;
@@ -19,6 +22,17 @@
     margin: 0;
     color: $brand-navy;
     text-transform: uppercase;
+  }
+
+  &__text {
+    margin: 8px 0 0;
+    color: var(--section-header-text, #{$text-dark});
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 16px;
+    }
   }
 
   // Label S (Medium 14/20) in capitals, with an arrow

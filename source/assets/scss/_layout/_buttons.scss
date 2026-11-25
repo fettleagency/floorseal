@@ -6,11 +6,19 @@
 //   .btn-yellow           yellow with navy text ("Show 27 products")
 //   .btn-white            white with navy text, for dark backgrounds ("Upload a photo")
 //   .btn-outline-yellow   2px yellow outline with navy text ("Show more products")
+//   .btn-outline-navy     2px navy outline with navy text, for the yellow band ("Product guides");
+//                         navy with white text on hover
 //
-// Hover and active colours are Bootstrap's (derived from the colour) unless a button says
-// otherwise with the btn-hover mixin below: "Add to basket" goes navy, "Expand to show all"
-// goes yellow, "Read full user guide" goes white on its navy band. Anything that turns yellow
-// has navy text. Every colour change takes 0.2s ($btn-transition in _configs/_variables.scss).
+// Hover (and focus and pressed) colours, set here for every button of that kind:
+//   yellow buttons go navy with white text;
+//   navy buttons go yellow with navy text;
+//   white buttons (on dark bands) go yellow with navy text;
+//   outline buttons fill with their outline colour (yellow with navy text, navy with white text).
+// On a navy or dark band a yellow button can't go navy, so it goes white with navy text; the
+// section says so with the btn-hover mixin below (help choosing, "How to use" from md). The
+// product selector's "Show products" is the exception: it has no hover change, because it sits
+// beside white selects. Anything that turns yellow has navy text.
+// Every colour change takes 0.2s ($btn-transition in _configs/_variables.scss).
 
 // Sets a button's hover, focus and pressed colours
 @mixin btn-hover($background, $color) {
@@ -45,6 +53,7 @@
 
 .btn-navy {
   @include button-variant($brand-navy, $brand-navy);
+  @include btn-hover($brand-yellow, $brand-navy);
 }
 
 .btn-yellow {
@@ -56,6 +65,7 @@
     $active-color: $brand-navy,
     $disabled-color: $brand-navy
   );
+  @include btn-hover($brand-navy, #FFF);
 }
 
 .btn-white {
@@ -67,10 +77,16 @@
     $active-color: $brand-navy,
     $disabled-color: $brand-navy
   );
+  @include btn-hover($brand-yellow, $brand-navy);
 }
 
 .btn-outline-yellow {
   @include button-outline-variant($brand-yellow, $brand-navy);
   --bs-btn-color: #{$brand-navy};
+  --bs-btn-border-width: 2px;
+}
+
+.btn-outline-navy {
+  @include button-outline-variant($brand-navy);
   --bs-btn-border-width: 2px;
 }

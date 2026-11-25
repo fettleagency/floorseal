@@ -665,6 +665,14 @@ $nav-link-desktop: #1A1F29;
     line-height: 20px;
     text-decoration: none;
     text-transform: uppercase;
+    transition: color $hover-duration ease-in-out, background-color $hover-duration ease-in-out;
+
+    // On the navy card the yellow button goes white on hover
+    &:hover,
+    &:focus-visible {
+      background-color: #FFF;
+      color: $brand-navy;
+    }
 
     // Desktop: label and arrow centred, arrow in a 20px box. The button is 294px wide as
     // designed, or the width of the card where the column is narrower than that.

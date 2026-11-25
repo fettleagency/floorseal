@@ -27,9 +27,7 @@
 
   // "Expand to show all": full width, 24px under the list on mobile and 56px from md.
   // The label is at the left with the arrow at the far end on mobile, centred from md.
-  // Hover: yellow with navy text.
   &__more {
-    @include btn-hover($brand-yellow, $brand-navy);
     justify-content: space-between;
     width: 100%;
     margin-top: 24px;

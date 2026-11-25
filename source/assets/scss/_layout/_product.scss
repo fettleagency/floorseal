@@ -370,12 +370,10 @@ $product-border-desktop: #C2C2C2;
 
   // Add to basket: Button (SemiBold 16/24), filling the rest of the row.
   // 56px tall on mobile and 80px on desktop.
-  // Hover: navy with white text
   &__add {
     --bs-btn-font-size: 16px;
     --bs-btn-font-weight: 600;
     --bs-btn-line-height: 24px;
-    @include btn-hover($brand-navy, #FFF);
     flex: 1 1 auto;
 
     @include media-breakpoint-up(lg) {

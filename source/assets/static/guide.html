@@ -300,8 +300,6 @@
                                                                 <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
                                                             </a>
                                                             <ul class="mobile-menu__sublist d-none d-lg-block">
-                                                                <li><a class="mobile-menu__sublink" href="#">Product guides</a></li>
-                                                                <li><a class="mobile-menu__sublink" href="#">Surface guides</a></li>
                                                                 <li><a class="mobile-menu__sublink" href="#">Cleaning guides</a></li>
                                                                 <li><a class="mobile-menu__sublink" href="#">Sealing guides</a></li>
                                                                 <li>
@@ -471,15 +469,16 @@
             <!--
                 Guide article: header (category tag, title, date and reading time), main image, then the body.
                 On the grid from lg: the header is nine columns, the image ten and the body eight, the last
-                two centred.
+                two centred. Between lg and xl the body is ten columns too, where eight is too narrow (as on
+                the default text page).
                 Shopify: the article template. The tag is the guide's category (an article tag), the title is
                 article.title, the date is article.published_at and the reading time is worked out from the
                 word count of article.content. The image is article.image.
                 The body is article.content, the rich text from the Shopify editor, so it is plain HTML with no
-                classes: h2, h3, p, a, ul, ol, hr and images. Everything inside .guide-article__body is styled
-                from those tags alone (_guide-article.scss): an ordered list becomes the numbered steps, an
-                unordered list the chevron points, an hr the yellow rule, and the first paragraph is the
-                larger navy intro.
+                classes: h2, h3, p, a, ul, ol, hr and images. It is styled from those tags alone, by the
+                shared rich-text styles (.rte, _rte.scss: an unordered list becomes the chevron points, an hr
+                the yellow rule) plus two things of the guide's own (_guide-article.scss): an ordered list
+                becomes the numbered steps, and the first paragraph is the larger navy intro.
             -->
             <article class="guide-article">
                 <div class="container-fluid">
@@ -496,8 +495,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="guide-article__body">
+                        <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+                            <div class="guide-article__body rte">
                                 <h2>What’s the best way to get rid of stubborn black spot?</h2>
                                 <p>We would recommend using Black Spot Remover Plus to remove black spot from sandstone patios. It is a concentrated cleaning solution specifically developed for the removal of black spot lichen.</p>
                                 <p>This product has many 5 star reviews on Trustpilot &amp; Amazon and has been warmly received by our customers.</p>

@@ -1,0 +1,503 @@
+// Help & advice page (Figma "Help & advice page – desktop 1440" and "– mobile 390").
+// The page hero, "Solve a problem", the product selector and "Get help". The breadcrumb row
+// is the product page's, the guides band is the shared guides slider (_guides.scss) and the
+// reviews are the shared reviews section.
+
+// ----- Page hero (Figma "section/hero") -----
+// Title, intro and one or more buttons on white. XLG padding top and bottom (40, 56, 80).
+// Used by the Help & advice page and, on its own, by the 404 page.
+
+.page-hero {
+  padding: var(--xl-space) 0;
+  background-color: #FFF;
+
+  // An h1 at the H1 sizes, navy, in capitals
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    text-transform: uppercase;
+  }
+
+  // Body on mobile, Body L from lg
+  &__text {
+    margin: 12px 0 0;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 16px;
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+
+  // Buttons: full width and stacked 12px apart on mobile, side by side 16px apart from md
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+
+    @include media-breakpoint-up(md) {
+      flex-flow: row wrap;
+      gap: 16px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 32px;
+    }
+  }
+}
+
+// ----- Solve a problem (Figma "section/solve a problem") -----
+// Heading, eight problem tiles (one across on mobile, two from md) and a row of smaller links.
+// On white, straight under the hero: no padding on top, XXXLG underneath.
+// Below md only the first four tiles show; "Show more" opens the rest and the smaller links.
+
+.problems {
+  padding-bottom: var(--xxxl-space);
+  background-color: #FFF;
+
+  // A Bootstrap .row: 16px between tiles on mobile, 32px on desktop
+  &__grid {
+    --bs-gutter-y: 16px;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+
+    @include media-breakpoint-up(lg) {
+      --bs-gutter-y: #{$grid-gutter-width};
+    }
+  }
+
+  // The second four tiles and the smaller links: a Bootstrap collapse on mobile, always open from md
+  &__more {
+    padding-top: 16px;
+
+    @include media-breakpoint-up(md) {
+      &.collapse:not(.show) {
+        display: block;
+      }
+
+      &.collapsing {
+        height: auto !important; // stylelint-disable-line declaration-no-important
+        transition: none;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-top: $grid-gutter-width;
+    }
+  }
+
+  // "Also:" and its links wrap as one line of items, 12px apart
+  &__also {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 32px;
+    }
+  }
+
+  // "Also:" in Text/Muted, at the links' size
+  &__also-label {
+    margin: 0;
+    color: $text-muted;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &__chips {
+    display: contents;
+    list-style: none;
+  }
+
+  // "Show more" / "Show less", centred under the tiles (mobile only: .d-md-none in the markup)
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    margin-top: 24px;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    .icon {
+      transform: rotate(90deg);
+    }
+
+    &[aria-expanded="true"] .icon {
+      transform: rotate(-90deg);
+    }
+
+    &[aria-expanded="false"] .problems__toggle-close,
+    &[aria-expanded="true"] .problems__toggle-open {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentcolor;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// A smaller problem link, the size of the guide card's category tag: SemiBold 12/16 with
+// 6px by 12px padding and 4px corners, 28px tall. Unlike the tag it is in sentence case with
+// no letter spacing, and navy on Neutral/Grey (the frame draws it Medium 14, 33px tall).
+// Navy with white text on hover.
+.problem-chip {
+  display: block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: $neutral-grey;
+  color: $brand-navy;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  text-decoration: none;
+  transition: color $hover-duration ease-in-out, background-color $hover-duration ease-in-out;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $brand-navy;
+    color: #FFF;
+  }
+}
+
+// Problem tile: one link, with the photo on the left and the name, a line of description
+// and "How to fix it" on the right, inside a Neutral/Line border.
+// The photo is 120px wide up to xl and 46% of the tile (295 of 640) from xl, where the tiles
+// are wide enough for it; it is cropped to the tile's height, which the text sets.
+.problem-tile {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid $neutral-line;
+  border-radius: 4px;
+  background-color: #FFF;
+  color: $text-dark;
+  text-decoration: none;
+  transition: border-color $hover-duration ease-in-out;
+
+  // Every tile is at least the 152px drawn on desktop, however short its text
+  @include media-breakpoint-up(lg) {
+    min-height: 152px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: $brand-navy;
+    color: $text-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+
+  &__image {
+    position: relative;
+    flex: 0 0 120px;
+
+    @include media-breakpoint-up(xl) {
+      flex-basis: 46%;
+    }
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+
+    @include media-breakpoint-up(lg) {
+      padding: 24px;
+    }
+  }
+
+  // H5 (16/24) on mobile, H4 (18/24) from lg, navy, in capitals
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+    }
+  }
+
+  // Body S
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  // "How to fix it" with an arrow: Label S (Medium 14/20) in navy. Always at the bottom of
+  // the tile, so the links in a row line up whatever the length of the text.
+  &__more {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: auto 0 0;
+    color: $brand-navy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+}
+
+// ----- Product selector (Figma "section/product selector" and "Product selector – result state") -----
+// Navy band, XXXLG padding: heading, a line of text, the form (two selects and a button, a
+// third of the width each from lg, stacked 12px apart below), then a link.
+// Once answered, the link is replaced by a note and the results appear underneath, XLG down.
+
+.product-selector {
+  padding: var(--xxxl-space) 0;
+  background-color: $brand-navy;
+  color: #FFF;
+
+  // Links are white with a yellow arrow; text under a heading is white
+  --section-header-link: #FFF;
+  --section-header-text: #FFF;
+
+  // An h2 at the H2 sizes, white, in capitals
+  &__title,
+  .section-header__title {
+    margin: 0;
+    color: #FFF;
+    text-transform: uppercase;
+  }
+
+  // Body S on mobile, Body from lg
+  &__text {
+    margin: 16px 0 0;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 24px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+
+  // 16px under the text on mobile and 24px on desktop (the row's own top margin takes its
+  // gutter back off)
+  &__form {
+    --bs-gutter-y: 12px;
+    margin-top: calc(16px - var(--bs-gutter-y));
+
+    @include media-breakpoint-up(lg) {
+      --bs-gutter-y: 0px; // stylelint-disable-line length-zero-no-unit
+      margin-top: 24px;
+    }
+  }
+
+  // Bootstrap's .form-select, 56px tall: white with a Neutral/Line border, Body in Text/Muted
+  // and a navy chevron 16px from the right
+  &__select {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 8'%3E%3Cpath fill='%23002856' d='M0 1.28 1.28 0 7 5.44 12.72 0 14 1.28 7 8 0 1.28Z'/%3E%3C/svg%3E");
+    height: 56px;
+    padding: 0 48px 0 16px;
+    border: 1px solid $neutral-line;
+    border-radius: 4px;
+    background-color: #FFF;
+    background-position: right 16px center;
+    background-size: 14px 8px;
+    color: $text-muted;
+    font-size: 16px;
+    line-height: 24px;
+
+    // No focus style when it is clicked or open (Bootstrap adds a blue border and glow).
+    // Reached with the Tab key it gets the white outline other controls have on navy. A clicked
+    // select counts as :focus-visible in Chrome, so the script marks keyboard use with
+    // .is-keyboard on the section (js/custom/product-selector.js).
+    &:focus {
+      border-color: $neutral-line;
+      outline: 0;
+      box-shadow: none;
+    }
+
+    .is-keyboard &:focus-visible {
+      outline: 2px solid #FFF;
+      outline-offset: 2px;
+    }
+
+    option,
+    optgroup {
+      color: $text-dark;
+    }
+  }
+
+  // No hover change: beside the white selects, a button that turned white read as another field
+  &__submit {
+    @include btn-hover($brand-yellow, $brand-navy);
+    width: 100%;
+  }
+
+  // The link under the form or the results, and the note that replaces it once answered:
+  // Label S in capitals, 16px down on mobile and 24px on desktop
+  &__link,
+  &__note {
+    margin: 16px 0 0;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 24px;
+    }
+  }
+
+  &__note {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+
+  // Results: heading with a link to the full list, three product cards and a guide card
+  // (the product grid, four across from lg and two below), then a link. Links are yellow here.
+  &__results {
+    margin-top: var(--xl-space);
+
+    --section-header-link: #{$brand-yellow};
+
+    .section-header__link .icon {
+      color: $brand-yellow;
+    }
+
+    .product-selector__link {
+      margin-top: 24px;
+
+      @include media-breakpoint-up(lg) {
+        margin-top: 32px;
+      }
+    }
+  }
+}
+
+// ----- Get help (Figma "section/get help") -----
+// Heading, a line of text and four cards (one across on mobile, two from md, four from lg).
+// Neutral/Grey band, XXXLG padding.
+
+.get-help {
+  padding: var(--xxxl-space) 0;
+  background-color: $neutral-grey;
+
+  &__grid {
+    --bs-gutter-y: 16px;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+
+    @include media-breakpoint-up(lg) {
+      --bs-gutter-y: #{$grid-gutter-width};
+    }
+  }
+}
+
+// Help card: one link. A 56px icon square, the heading, a line of text and the link label
+// at the bottom, on white. 24px padding on mobile, 32px from lg.
+.help-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+  border-radius: 4px;
+  background-color: #FFF;
+  color: $text-dark;
+  text-decoration: none;
+
+  @include media-breakpoint-up(lg) {
+    padding: 32px;
+  }
+
+  &:hover,
+  &:focus {
+    color: $text-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+
+  // Navy at 8% with a 28px navy icon
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 32px;
+    border-radius: 4px;
+    background-color: rgba($brand-navy, .08);
+    color: $brand-navy;
+
+    .icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  // H4 (18/24), navy, in capitals
+  &__title {
+    margin: 0 0 12px;
+    color: $brand-navy;
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+
+  // Body S
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  // Label S (Medium 14/20) in navy capitals with a yellow arrow, at the bottom of the card
+  // and never less than 24px under the text
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: auto 0 0;
+    padding-top: 24px;
+    color: $brand-navy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    .icon {
+      color: $brand-yellow;
+    }
+  }
+
+  // The whole card is the link, so hovering anywhere underlines its label
+  &:hover &__link,
+  &:focus-visible &__link {
+    text-decoration: underline;
+  }
+}

@@ -1,6 +1,7 @@
 // How-to guide (Figma "How-to guide page – desktop 1440" and "– mobile 390").
 // The back link row, the article (header, main image, body), then "Products used in this
-// guide". The related guides under it are the shared guides slider (_guides.scss).
+// guide". The related guides under it are the shared guides slider (_guides.scss), and the body's
+// rich text is mostly the shared .rte styles (_rte.scss).
 
 // ----- Back link row (Figma "section/back link") -----
 // "‹ Back to how-to guides" on the left; from lg the reviews.io badge on the right.
@@ -127,75 +128,11 @@
     }
   }
 
-  // ----- Body: rich text -----
-  // Plain HTML from the Shopify editor, styled by tag. Body (16/24) on mobile and Body L
-  // (18/28) from lg, in Text/Dark.
-  // Spacing: paragraphs are 12px apart on mobile and 16px on desktop; a heading, image or
-  // list is 16px / 24px from its neighbours; each h2 section starts 40px / 56px down.
-  // (These are margins on both sides of each block; neighbouring margins collapse to the larger.)
+  // ----- Body -----
+  // The article's rich text. The shared rich-text styles do most of it (.rte, _rte.scss: type,
+  // spacing, headings, links, images, the yellow rule and chevron points). Two things are the
+  // guide's own: the intro paragraph and the numbered steps.
   &__body {
-    --body-gap: 12px;  // between paragraphs
-    --block-gap: 16px; // around headings, images and lists
-    --section-gap: 40px;
-    color: $text-dark;
-    font-size: 16px;
-    line-height: 24px;
-
-    @include media-breakpoint-up(lg) {
-      --body-gap: 16px;
-      --block-gap: 24px;
-      --section-gap: 56px;
-      font-size: 18px;
-      line-height: 28px;
-    }
-
-    > * {
-      margin-top: 0;
-      margin-bottom: var(--body-gap);
-    }
-
-    > :first-child {
-      margin-top: 0;
-    }
-
-    > :last-child {
-      margin-bottom: 0;
-    }
-
-    // Section heading: navy, in capitals, at the H3 sizes (24/32, 28/32, 32/40)
-    > h2 {
-      margin-top: var(--section-gap);
-      margin-bottom: var(--block-gap);
-      color: $brand-navy;
-      font-size: 24px;
-      line-height: 32px;
-      text-transform: uppercase;
-
-      @include media-breakpoint-up(md) {
-        font-size: 28px;
-      }
-
-      @include media-breakpoint-up(lg) {
-        font-size: 32px;
-        line-height: 40px;
-      }
-    }
-
-    // Sub-heading: navy, in capitals, H5 (16/24) on mobile and H4 (18/24) from lg
-    > h3,
-    > h4 {
-      margin-top: var(--block-gap);
-      margin-bottom: var(--block-gap);
-      color: $brand-navy;
-      font-size: 16px;
-      line-height: 24px;
-      text-transform: uppercase;
-
-      @include media-breakpoint-up(lg) {
-        font-size: 18px;
-      }
-    }
-
     // Intro: the first paragraph is Body L in navy at every size
     > p:first-of-type {
       margin-bottom: var(--block-gap);
@@ -204,88 +141,17 @@
       line-height: 28px;
     }
 
-    a {
-      color: $brand-navy;
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
-
-    // Images fill the column. The editor wraps an image in a paragraph, which gets the
-    // block spacing.
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-
-    > p:has(> img),
-    > figure,
-    > img {
-      margin-top: var(--block-gap);
-      margin-bottom: var(--block-gap);
-    }
-
-    // Yellow rule between the intro and the first section
-    > hr {
-      height: 2px;
-      margin: var(--section-gap) 0;
-      border: 0;
-      background-color: $brand-yellow;
-      opacity: 1;
-    }
-
-    > ul,
-    > ol {
-      margin-top: var(--block-gap);
-      margin-bottom: var(--block-gap);
-      padding: 0;
-      list-style: none;
-    }
-
-    // Unordered list: points with a yellow chevron, 12px apart on mobile and 16px on desktop.
-    // The chevron is the 8 x 14 arrow in its 21px wide box, centred on the first line; the
-    // text starts 12px after it on mobile and 16px on desktop.
-    > ul {
-      display: flex;
-      flex-direction: column;
-      gap: var(--body-gap);
-
-      > li {
-        position: relative;
-        padding-left: 33px;
-
-        @include media-breakpoint-up(lg) {
-          padding-left: 37px;
-        }
-
-        &::before {
-          position: absolute;
-          top: 5px;
-          left: 6px;
-          width: 8px;
-          height: 14px;
-          background-color: $brand-yellow;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath d='M1.28 14 0 12.72 5.44 7 0 1.28 1.28 0 8 7 1.28 14Z'/%3E%3C/svg%3E") center / contain no-repeat;
-          content: "";
-
-          @include media-breakpoint-up(lg) {
-            top: 7px;
-          }
-        }
-      }
-    }
-
     // Ordered list: numbered steps ("01", "02"), each with a Neutral/Line rule above it.
     // The number is navy SemiBold; the text starts 40px in on mobile and 56px on desktop.
     > ol {
+      gap: 0; // the rules separate the steps, not the shared list gap
+      padding: 0;
+      list-style: none;
       counter-reset: step;
 
       > li {
         position: relative;
+        margin: 0;
         padding: 12px 0 12px 40px;
         border-top: 1px solid $neutral-line;
         counter-increment: step;

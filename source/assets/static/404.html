@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" href="/dist/styles/main.css">
+        <title>Page not found – Floorseal</title>
+    </head>
+    <body>
+        <!-- Icon sprite: referenced with <svg class="icon"><use href="#icon-name"></use></svg> -->
+        <svg xmlns="http://www.w3.org/2000/svg" hidden>
+            <symbol id="icon-chevron" viewBox="0 0 16 16"><path fill="currentColor" d="M5.49 15 4 13.51 9.51 8 4 2.49 5.49 1l7 7-7 7Z"/></symbol>
+            <symbol id="icon-back" viewBox="0 0 16 16"><path fill="currentColor" d="m10.77 14.99 1.48-1.49L6.77 8.02l5.48-5.49-1.48-1.48L3.8 8.02l6.97 6.97Z"/></symbol>
+            <symbol id="icon-plus" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M8 3.33v9.34M3.33 8h9.34"/></symbol>
+            <symbol id="icon-minus" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M3.33 8h9.34"/></symbol>
+            <symbol id="icon-arrow" viewBox="0 0 14 14"><path fill="currentColor" d="M10.15 7.5H0V5.83h10.15L5.48 1.17 6.67 0l6.66 6.67-6.66 6.66-1.19-1.16L10.15 7.5Z"/></symbol>
+            <symbol id="icon-search" viewBox="0 0 24 24"><path fill="currentColor" d="m18.23 20-6.1-6.11a5.6 5.6 0 0 1-1.63.83c-.62.2-1.28.3-1.99.3-1.81 0-3.35-.63-4.61-1.89A6.28 6.28 0 0 1 2 8.51c0-1.81.63-3.35 1.9-4.61A6.28 6.28 0 0 1 8.51 2c1.82 0 3.36.63 4.62 1.9a6.28 6.28 0 0 1 1.9 4.61c0 .72-.1 1.38-.31 1.99-.2.6-.48 1.14-.83 1.6l6.12 6.13L18.23 20ZM8.51 12.5c1.11 0 2.06-.39 2.83-1.16a3.84 3.84 0 0 0 1.16-2.83c0-1.11-.39-2.05-1.16-2.82a3.85 3.85 0 0 0-2.83-1.16c-1.11 0-2.05.39-2.82 1.16a3.84 3.84 0 0 0-1.16 2.82c0 1.11.39 2.06 1.16 2.83.77.77 1.71 1.16 2.82 1.16Z"/></symbol>
+            <symbol id="icon-basket" viewBox="0 0 40 40"><path fill="currentColor" d="M12.19 32c-.6 0-1.12-.22-1.55-.65A2.17 2.17 0 0 1 10 29.78V15.76c0-.61.21-1.14.64-1.57.43-.43.94-.65 1.55-.65h2.65c0-1.54.53-2.85 1.59-3.92A5.2 5.2 0 0 1 20.29 8c1.51 0 2.79.54 3.85 1.62a5.36 5.36 0 0 1 1.59 3.92h2.65c.6 0 1.12.22 1.55.65.43.43.64.96.64 1.57v14.02c0 .61-.21 1.14-.64 1.57-.43.43-.94.65-1.55.65H12.19Zm0-1.85h16.19c.1 0 .18-.04.26-.11a.37.37 0 0 0 .12-.26V15.76a.37.37 0 0 0-.12-.26.36.36 0 0 0-.26-.12H12.19a.36.36 0 0 0-.26.12.37.37 0 0 0-.11.26v14.02c0 .09.03.18.11.26.08.07.17.11.26.11Zm4.47-16.61h7.26c0-1.03-.35-1.9-1.06-2.62a3.48 3.48 0 0 0-2.57-1.07c-1.01 0-1.87.36-2.58 1.07a3.57 3.57 0 0 0-1.05 2.62Z"/></symbol>
+            <symbol id="icon-account" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-6.4 9.6h12.8a.8.8 0 0 0 .8-.8v-3.2a4 4 0 0 0-4-4H8.8a4 4 0 0 0-4 4V20a.8.8 0 0 0 .8.8Z"/></symbol>
+            <symbol id="icon-photo" viewBox="0 0 29 29"><path fill="currentColor" d="M3.6 25.2c-.66 0-1.23-.24-1.7-.7a2.31 2.31 0 0 1-.7-1.7V8.4c0-.66.23-1.23.7-1.7.47-.47 1.04-.7 1.7-.7h3.78L9.6 3.6h7.2V6h-6.15L8.46 8.4H3.6v14.4h19.2V12h2.4v10.8c0 .66-.24 1.23-.7 1.7-.48.46-1.04.7-1.7.7H3.6ZM22.8 8.4V6h-2.4V3.6h2.4V1.2h2.4v2.4h2.4V6h-2.4v2.4h-2.4ZM13.2 21c1.5 0 2.77-.53 3.83-1.58A5.2 5.2 0 0 0 18.6 15.6c0-1.5-.53-2.78-1.57-3.83A5.21 5.21 0 0 0 13.2 10.2c-1.5 0-2.78.52-3.83 1.57A5.21 5.21 0 0 0 7.8 15.6c0 1.5.52 2.77 1.57 3.82A5.21 5.21 0 0 0 13.2 21Zm0-2.4c-.84 0-1.55-.29-2.13-.87a2.9 2.9 0 0 1-.87-2.13c0-.84.29-1.55.87-2.13a2.9 2.9 0 0 1 2.13-.87c.84 0 1.55.29 2.13.87.58.58.87 1.29.87 2.13 0 .84-.29 1.55-.87 2.13a2.9 2.9 0 0 1-2.13.87Z"/></symbol>
+            <symbol id="icon-arrow-20" viewBox="0 0 20 20"><path fill="currentColor" d="M15.22 11.25H0v-2.5h15.22l-7-7L10 0l10 10-10 10-1.78-1.75 7-7Z"/></symbol>
+            <symbol id="icon-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M13.84 24V13.36h3.55L17.93 9h-4.09V6.27c0-1.22.41-2.18 2.18-2.18h2.32V.14C17.93.14 16.57 0 14.93 0c-3.27 0-5.59 2.05-5.59 5.73V9H5.66v4.36h3.68V24h4.5Z"/></symbol>
+            <symbol id="icon-instagram" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M6.67 0h10.66A6.67 6.67 0 0 1 24 6.67v10.66A6.67 6.67 0 0 1 17.33 24H6.67A6.67 6.67 0 0 1 0 17.33V6.67A6.67 6.67 0 0 1 6.67 0Zm0 2.4h10.66a4.27 4.27 0 0 1 4.27 4.27v10.66a4.27 4.27 0 0 1-4.27 4.27H6.67a4.27 4.27 0 0 1-4.27-4.27V6.67A4.27 4.27 0 0 1 6.67 2.4ZM12 5.87a6.13 6.13 0 1 1 0 12.26 6.13 6.13 0 0 1 0-12.26Zm0 2.4a3.73 3.73 0 1 0 0 7.46 3.73 3.73 0 0 0 0-7.46Zm6.93-4.67a1.47 1.47 0 1 1 0 2.93 1.47 1.47 0 0 1 0-2.93Z"/></symbol>
+            <symbol id="icon-youtube" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M4.8 3.6h14.4A4.8 4.8 0 0 1 24 8.4v7.2a4.8 4.8 0 0 1-4.8 4.8H4.8A4.8 4.8 0 0 1 0 15.6V8.4a4.8 4.8 0 0 1 4.8-4.8Zm4.8 4.8L15.84 12 9.6 15.6V8.4Z"/></symbol>
+            <symbol id="icon-trade" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M9 8V5h6v3M3 13h18M3 8h18v12H3V8Z"/></symbol>
+            <symbol id="icon-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></symbol>
+            <symbol id="icon-close-small" viewBox="0 0 12 12"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m3 3 6 6M9 3 3 9"/></symbol>
+        </svg>
+
+        <!--
+            Header and main menu
+            - A regular Bootstrap navbar: the menu button toggles #mainMenu (Collapse), which opens inline
+              on mobile and sits in the header row from lg up.
+            - Surfaces and Help & advice are Bootstrap dropdowns inside it (see the note above them).
+        -->
+        <header class="site-header">
+            <!-- Utility bar: the message on its own on mobile; account and trade sign-in join it from lg up
+                 (on mobile those two are in the menu, under "Your account") -->
+            <div class="site-header__utility">
+                <div class="container-fluid">
+                    <p class="site-header__utility-message">Free UK mainland delivery</p>
+                    <div class="site-header__utility-links d-none d-lg-flex">
+                        <a class="site-header__account" href="#">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-account"></use></svg>
+                            Account
+                        </a>
+                        <a class="site-header__trade" href="#">Trade sign-in</a>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-expand-lg site-header__nav" aria-label="Main">
+                <div class="container-fluid">
+                    <div class="site-header__bar">
+                        <button class="menu-toggle d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Menu">
+                            <span class="menu-toggle__bar"></span>
+                            <span class="menu-toggle__bar"></span>
+                            <span class="menu-toggle__bar"></span>
+                        </button>
+                        <a class="site-header__logo" href="/">
+                            <img src="/dist/images/floorseal-logo.svg" width="208" height="36" alt="Floorseal">
+                        </a>
+                        <a class="basket-button" href="#" aria-label="Basket">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-basket"></use></svg>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="mainMenu">
+                        <div class="mobile-menu">
+                            <ul class="navbar-nav mobile-menu__list mobile-menu__list--main">
+                                <li class="nav-item">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Cleaners
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Sealers
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <!-- Accessories is in the mobile menu only -->
+                                <li class="nav-item d-lg-none">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Accessories
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <!--
+                                    Surfaces and Help & advice: one Bootstrap dropdown each, shared by mobile and desktop.
+                                    - Mobile: the .dropdown-menu is the panel that slides in over the main menu, with a back row
+                                      and plus/minus groups (Bootstrap Collapse; data-bs-parent keeps one group open at a time).
+                                    - Desktop: the same .dropdown-menu is the full-width panel under the header. The groups are
+                                      always open, in a Bootstrap .row: each li.nav-submenu__col is a .col-lg-* holding the groups
+                                      stacked in it. On mobile the columns disappear (display: contents) and the groups form
+                                      one list; order-1 puts Roofs and Wood & decking at the end of it.
+                                    - data-bs-auto-close="outside" stops a tap on a group closing the whole panel.
+                                    - Each group title is written twice: a link for desktop, a button for mobile.
+                                -->
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        Surfaces
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                    <div class="dropdown-menu nav-submenu">
+                                        <div class="nav-submenu__back-row d-lg-none">
+                                            <button class="nav-submenu__back" type="button" data-submenu-back>
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+                                                Menu
+                                            </button>
+                                            <p class="nav-submenu__title">Surfaces</p>
+                                        </div>
+                                        <div class="nav-submenu__body container-fluid">
+                                            <ul class="row mobile-menu__list nav-submenu__groups" id="menuSurfacesGroups">
+                                                <li class="d-lg-none">
+                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                        All surfaces
+                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                    </a>
+                                                </li>
+                                                <li class="col-lg-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Patio &amp; paving</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesPatio" aria-controls="surfacesPatio" aria-expanded="false">
+                                                                Patio &amp; paving
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesPatio" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All patio &amp; paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Indian sandstone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Limestone paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Black limestone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Slate paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Yorkstone &amp; flagstone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Granite pavers</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Outdoor porcelain</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-2 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Driveways</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesDriveways" aria-controls="surfacesDriveways" aria-expanded="false">
+                                                                Driveways
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesDriveways" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All driveways</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Block paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Tarmac</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Resin bound</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Concrete</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-submenu__group order-1">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                Roofs
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-4 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Interior floors &amp; tiles</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesInterior" aria-controls="surfacesInterior" aria-expanded="false">
+                                                                Interior floors &amp; tiles
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesInterior" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist mobile-menu__sublist--two-col">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All interior floors &amp; tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Natural stone floors</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Travertine tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Limestone tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Slate tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Victorian tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Quarry tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Terracotta</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Ceramic</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Marble</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Terrazzo</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Vinyl</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Indoor porcelain</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Brick, render &amp; masonry</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesBrick" aria-controls="surfacesBrick" aria-expanded="false">
+                                                                Brick, render &amp; masonry
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesBrick" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All brick, render &amp; masonry</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Exterior brick</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Interior exposed brick</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Render &amp; masonry</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-submenu__group order-1">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                Wood &amp; decking
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Desktop only: footer strip -->
+                                        <div class="nav-submenu__footer d-none d-lg-flex">
+                                            <a class="nav-submenu__footer-link" href="#">
+                                                All surfaces
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                            <a class="nav-submenu__footer-link nav-submenu__footer-link--dark" href="#">
+                                                <svg class="icon icon--28" aria-hidden="true"><use href="#icon-photo"></use></svg>
+                                                Not sure what surface you have? Upload a photo
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        Help &amp; advice
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                    <div class="dropdown-menu nav-submenu">
+                                        <div class="nav-submenu__back-row d-lg-none">
+                                            <button class="nav-submenu__back" type="button" data-submenu-back>
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+                                                Menu
+                                            </button>
+                                            <p class="nav-submenu__title">Help &amp; advice</p>
+                                        </div>
+                                        <div class="nav-submenu__body container-fluid">
+                                            <ul class="row mobile-menu__list nav-submenu__groups" id="menuHelpGroups">
+                                                <li class="order-first d-lg-none">
+                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                        All help &amp; advice
+                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 col-xl-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Solve a problem</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#helpProblems" aria-controls="helpProblems" aria-expanded="false">
+                                                                Solve a problem
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="helpProblems" data-bs-parent="#menuHelpGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li><a class="mobile-menu__sublink" href="#">Black spot</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Green growth, moss &amp; algae</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Rust marks</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Cement &amp; grout haze</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Efflorescence</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Tyre marks &amp; oil</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Faded colour</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Dusty concrete floors</a></li>
+                                                                    <li>
+                                                                        <a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">
+                                                                            All problems
+                                                                            <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- How-to guides: a plain link on mobile; on desktop the same link is the column title, with its guides listed under it -->
+                                                <li class="col-lg-4 col-xl-2 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                How-to guides
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                            <ul class="mobile-menu__sublist d-none d-lg-block">
+                                                                <li><a class="mobile-menu__sublink" href="#">Cleaning guides</a></li>
+                                                                <li><a class="mobile-menu__sublink" href="#">Sealing guides</a></li>
+                                                                <li>
+                                                                    <a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">
+                                                                        All how-to guides
+                                                                        <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- Get help: a titled column of links on desktop, four plain rows on mobile -->
+                                                <li class="col-lg-4 col-xl-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <p class="mobile-menu__item d-none d-lg-flex">Get help</p>
+                                                            <ul class="mobile-menu__list mobile-menu__list--rows">
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Upload a photo
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Technical information
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Frequently asked questions
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Contact us
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- Product selector card: last column on desktop, straight after the first link on mobile (order-first) -->
+                                                <li class="col-lg-12 col-xl-4 nav-submenu__col nav-submenu__col--fill">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group mobile-menu__promo-wrap order-first">
+                                                            <div class="mobile-menu__promo">
+                                                                <div class="mobile-menu__promo-content">
+                                                                    <!-- Icon placeholder in the design -->
+                                                                    <div class="mobile-menu__promo-icon"></div>
+                                                                    <div class="mobile-menu__promo-copy">
+                                                                        <p class="mobile-menu__promo-title">Find the right product</p>
+                                                                        <p class="mobile-menu__promo-text">Answer a few questions about your surface and the result you want.</p>
+                                                                    </div>
+                                                                </div>
+                                                                <a class="mobile-menu__button" href="#">
+                                                                    Start the product selector
+                                                                    <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Desktop only: footer strip -->
+                                        <div class="nav-submenu__footer d-none d-lg-flex">
+                                            <a class="nav-submenu__footer-link" href="#">
+                                                All help &amp; advice
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                            <a class="nav-submenu__footer-link nav-submenu__footer-link--dark" href="#">
+                                                <svg class="icon icon--28" aria-hidden="true"><use href="#icon-photo"></use></svg>
+                                                Not sure what surface you have? Upload a photo
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <!--
+                                Site search. The form is used on mobile (moved to the top of the menu with order-first)
+                                and on wide desktops (xxl up, right of the links). Between lg and xxl there isn't room
+                                for the field, so a button links to the search page instead.
+                                Shopify: the form action and the link href both become {{ routes.search_url }}.
+                                name="q" and the hidden options[prefix]=last field are what Shopify search expects,
+                                as in Horizon's own form. The outer .site-search is only layout, so it can become
+                                Horizon's <predictive-search-component> (with the results panel inside it) without restyling.
+                            -->
+                            <div class="site-search order-first order-lg-0">
+                                <form class="site-search__form d-lg-none d-xxl-flex" action="/search" method="get" role="search">
+                                    <label class="visually-hidden" for="siteSearchInput">Search products and guides</label>
+                                    <input class="site-search__input" id="siteSearchInput" type="search" name="q" placeholder="Search products &amp; guides" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                                    <input type="hidden" name="options[prefix]" value="last">
+                                    <button class="site-search__submit" type="submit" aria-label="Search">
+                                        <svg class="icon icon--24" aria-hidden="true"><use href="#icon-search"></use></svg>
+                                    </button>
+                                </form>
+                                <a class="site-search__link d-none d-lg-flex d-xxl-none" href="/search" aria-label="Search">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-search"></use></svg>
+                                </a>
+                            </div>
+
+                            <div class="mobile-menu__account d-lg-none">
+                                <p class="mobile-menu__label">Your account</p>
+                                <a class="mobile-menu__card" href="#">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-account"></use></svg>
+                                    <span class="mobile-menu__card-text">
+                                        <span class="mobile-menu__card-title">Account</span>
+                                        <span class="mobile-menu__card-desc">Sign in, orders and reorder</span>
+                                    </span>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                </a>
+                                <a class="mobile-menu__card mobile-menu__card--trade" href="#">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-trade"></use></svg>
+                                    <span class="mobile-menu__card-text">
+                                        <span class="mobile-menu__card-title">Trade account</span>
+                                        <span class="mobile-menu__card-desc">Trade sign-in and applications</span>
+                                    </span>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                </a>
+                            </div>
+
+                            <div class="mobile-menu__more d-lg-none">
+                                <p class="mobile-menu__label">More</p>
+                                <ul class="mobile-menu__more-links">
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">About Floorseal</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main id="MainContent">
+            <!--
+                Breadcrumb row (from md), as on the Help & advice and product pages.
+                Shopify: the breadcrumb is built by the theme. The badge is the reviews.io app's widget,
+                which replaces the temporary space below.
+            -->
+            <div class="product-breadcrumb d-none d-md-block">
+                <div class="container-fluid">
+                    <div class="row align-items-center product-breadcrumb__row">
+                        <div class="col-12 col-lg">
+                            <nav aria-label="Breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Page not found</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <!-- Temporary space for the reviews.io rating badge -->
+                            <div style="width: 400px; height: 20px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                404: the page hero from the Help & advice page (title, a line of text, buttons), on its own.
+                Shopify: the 404 template (templates/404.json). The title, text and both buttons are
+                section settings. The copy here is placeholder wording, not from a design.
+            -->
+            <section class="page-hero">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="page-hero__title">Page not found</h1>
+                            <p class="page-hero__text">Sorry, we can’t find the page you’re looking for. It may have moved, or the link may be out of date. Try the search at the top of the page, or use one of the links below.</p>
+                            <div class="page-hero__actions">
+                                <a class="btn btn-yellow" href="/">Back to homepage</a>
+                                <a class="btn btn-outline-yellow" href="help-advice.html">Help &amp; advice</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--
+            Footer.
+            Shopify: the three shop links and the three link columns are menus (linklists). The sign-up form is
+            {% form 'customer' %}, which outputs this form tag with its hidden fields; contact[email] is the field
+            name Shopify expects, as in Horizon's email-signup block. Social links come from theme settings.
+            The policy links are shop.policies, or a menu if non-Shopify pages (cookie policy) are needed.
+            Not designed yet: the sign-up success and error messages, and link hover states.
+        -->
+        <footer class="site-footer">
+            <div class="container-fluid site-footer__inner">
+                <div class="row site-footer__top">
+                    <div class="col-12 col-xl-4">
+                        <a class="site-footer__logo" href="/">
+                            <img src="/dist/images/floorseal-logo-tagline-white.svg" width="288" height="56" alt="Floorseal">
+                        </a>
+                    </div>
+                    <div class="col-12 col-xl-7 offset-xl-1">
+                        <ul class="site-footer__shop">
+                            <li><a href="#">Cleaners</a></li>
+                            <li><a href="#">Sealers</a></li>
+                            <li><a href="#">Accessories</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row site-footer__main">
+                    <div class="col-12 col-xl-4">
+                        <div class="site-footer__signup">
+                            <h2 class="site-footer__heading">Advice and offers by email</h2>
+                            <form class="site-footer__form" action="/contact#contact_form" method="post" accept-charset="UTF-8">
+                                <input type="hidden" name="form_type" value="customer">
+                                <input type="hidden" name="utf8" value="✓">
+                                <label class="visually-hidden" for="footerEmail">Email address</label>
+                                <input class="site-footer__input" id="footerEmail" type="email" name="contact[email]" placeholder="Enter your email address" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+                                <button class="site-footer__submit" type="submit" aria-label="Sign up">
+                                    <svg class="icon icon--20" aria-hidden="true"><use href="#icon-arrow-20"></use></svg>
+                                </button>
+                            </form>
+                            <ul class="site-footer__social">
+                                <li><a href="#" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="#icon-facebook"></use></svg></a></li>
+                                <li><a href="#" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a></li>
+                                <li><a href="#" aria-label="YouTube"><svg class="icon" aria-hidden="true"><use href="#icon-youtube"></use></svg></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 offset-xl-1">
+                        <nav class="row site-footer__columns" aria-label="Footer">
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Surfaces</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">Patio &amp; paving</a></li>
+                                    <li><a href="#">Driveways</a></li>
+                                    <li><a href="#">Interior floors &amp; tiles</a></li>
+                                    <li><a href="#">Brick, render &amp; masonry</a></li>
+                                    <li><a href="#">Roofs</a></li>
+                                    <li><a href="#">Wood &amp; decking</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Help &amp; advice</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">How-to guides</a></li>
+                                    <li><a href="#">Upload a photo</a></li>
+                                    <li><a href="#">Technical information</a></li>
+                                    <li><a href="#">Request SDS</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Company</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">About Floorseal</a></li>
+                                    <li><a href="#">Trade accounts</a></li>
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Complaints</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="site-footer__legal">
+                    <p class="site-footer__copyright">© Floorseal Ltd</p>
+                    <ul class="site-footer__policies">
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Cookie policy</a></li>
+                        <li><a href="#">Terms &amp; conditions</a></li>
+                    </ul>
+                    <p class="site-footer__credit">Website by <a href="https://fettle.agency">fettle.agency</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JS -->
+        <script src="/dist/scripts/lib.js"></script>
+        <script src="/dist/scripts/script.js"></script>
+    </body>
+</html>

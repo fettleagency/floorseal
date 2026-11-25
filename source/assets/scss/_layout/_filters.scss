@@ -22,14 +22,15 @@
   }
 }
 
-// A button with something ticked: yellow with navy text, and it keeps that colour while pressed or open
+// A button with something ticked: yellow with navy text, and it keeps that colour while pressed
+// or open. Like any yellow button it goes navy with white text on hover.
 @mixin filter-button-active {
   --bs-btn-color: #{$brand-navy};
   --bs-btn-bg: #{$brand-yellow};
   --bs-btn-border-color: #{$brand-yellow};
-  --bs-btn-hover-color: #{$brand-navy};
-  --bs-btn-hover-bg: #{shade-color($brand-yellow, 15%)};
-  --bs-btn-hover-border-color: #{shade-color($brand-yellow, 15%)};
+  --bs-btn-hover-color: #FFF;
+  --bs-btn-hover-bg: #{$brand-navy};
+  --bs-btn-hover-border-color: #{$brand-navy};
   --bs-btn-active-color: #{$brand-navy};
   --bs-btn-active-bg: #{$brand-yellow};
   --bs-btn-active-border-color: #{$brand-yellow};
@@ -153,6 +154,7 @@
     // Desktop: the button keeps its colour while its dropdown is open (Bootstrap would darken it).
     // A filter with something ticked is yellow and shows how many ("Surface · 1").
     @include media-breakpoint-up(lg) {
+      --bs-btn-active-color: #FFF;
       --bs-btn-active-bg: #{$brand-navy};
       --bs-btn-active-border-color: #{$brand-navy};
 

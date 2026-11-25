@@ -510,10 +510,9 @@
   }
 
   // "Read full user guide" (yellow): on hover it goes navy with white text on mobile, where
-  // it is on white, and white with navy text from md, where it is on the navy band.
+  // it is on white (the yellow button's own hover), and white with navy text from md, where
+  // it is on the navy band.
   &__actions .btn-yellow {
-    @include btn-hover($brand-navy, #FFF);
-
     @include media-breakpoint-up(md) {
       @include btn-hover(#FFF, $brand-navy);
     }

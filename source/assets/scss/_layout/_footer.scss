@@ -104,6 +104,14 @@
       border-radius: 4px;
       font-size: 12px;
       line-height: 16px;
+      transition: color $hover-duration ease-in-out, background-color $hover-duration ease-in-out;
+
+      // Hover: fills with its outline colour, with navy text (yellow on mobile, white on desktop)
+      &:hover,
+      &:focus-visible {
+        background-color: $brand-yellow;
+        color: $brand-navy;
+      }
 
       @include media-breakpoint-up(xl) {
         height: 56px;
@@ -112,6 +120,11 @@
         font-size: 14px;
         font-weight: 500;
         line-height: 20px;
+
+        &:hover,
+        &:focus-visible {
+          background-color: #FFF;
+        }
       }
     }
   }
@@ -208,6 +221,14 @@
       border-radius: 4px;
       background-color: $brand-yellow;
       color: $brand-navy;
+      transition: background-color $hover-duration ease-in-out;
+
+      // On the navy footer the yellow squares go white on hover
+      &:hover,
+      &:focus-visible {
+        background-color: #FFF;
+        color: $brand-navy;
+      }
 
       @include media-breakpoint-up(xl) {
         width: 48px;

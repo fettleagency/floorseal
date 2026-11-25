@@ -113,6 +113,7 @@
     padding: 6px 12px;
     border-radius: 4px;
     background-color: $brand-navy;
+    color: #FFF;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: .08em;
@@ -205,6 +206,99 @@
   &:hover &__more,
   &:focus-visible &__more {
     color: $brand-yellow;
+  }
+}
+
+// ----- Category buttons (Help & advice page) -----
+// A row of outlined buttons between the heading and the cards (Cleaning guides and Sealing
+// guides): one across on mobile, half the width each from md and a quarter each from lg
+// (columns are in the markup). 24px under the heading; the
+// cards are 24px under the buttons on mobile and 56px on desktop.
+.guides--categories .section-header {
+  margin-bottom: 24px;
+}
+
+.guides__categories {
+  --bs-gutter-y: 16px;
+  margin-bottom: 24px;
+  padding-left: 0;
+  list-style: none;
+
+  @include media-breakpoint-up(lg) {
+    --bs-gutter-y: #{$grid-gutter-width};
+    margin-bottom: 56px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+// ----- Stacked card (product selector results) -----
+// The card beside product cards, on the navy band: the photo on top and a yellow panel with
+// navy text under it at every size, as tall as the product cards in its row.
+// It has the tag, title and "Read more" only: there is no room for the summary in a column
+// this narrow, so it is left out of the markup (and hidden if a shared snippet outputs it).
+.guide-card--stacked {
+  justify-content: flex-start;
+  height: 100%;
+  background-color: $brand-yellow;
+  color: $brand-navy;
+
+  &:hover,
+  &:focus {
+    color: $brand-navy;
+  }
+
+  &:focus-visible {
+    outline-color: $brand-navy;
+  }
+
+  // The photo takes the height the panel leaves
+  .guide-card__image {
+    position: relative;
+    inset: auto;
+    z-index: auto;
+    flex: 1 1 180px;
+    height: auto;
+
+    img {
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  // Below lg it sits in a half-width column, so it takes the product card's 12px padding
+  .guide-card__body {
+    flex: none;
+    min-height: 0;
+    background-color: $brand-yellow;
+
+    @include media-breakpoint-down(lg) {
+      padding: 12px 12px 16px;
+    }
+  }
+
+  .guide-card__tag {
+    @include media-breakpoint-down(lg) {
+      top: 12px;
+      left: 12px;
+    }
+  }
+
+  .guide-card__text {
+    display: none;
+  }
+
+  .guide-card__more .icon {
+    color: $brand-navy;
+  }
+
+  // Yellow text would not show on the yellow panel, so "Read more" is underlined instead
+  &:hover .guide-card__more,
+  &:focus-visible .guide-card__more {
+    color: $brand-navy;
+    text-decoration: underline;
   }
 }
 

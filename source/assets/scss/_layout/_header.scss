@@ -115,6 +115,14 @@ $header-rule: #E2E2E2;
     color: $brand-navy;
     line-height: 20px;
     text-decoration: none;
+    transition: background-color $hover-duration ease-in-out;
+
+    // On the navy bar the yellow button goes white on hover
+    &:hover,
+    &:focus-visible {
+      background-color: #FFF;
+      color: $brand-navy;
+    }
   }
 
   &__account,

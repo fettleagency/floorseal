@@ -105,6 +105,11 @@
       justify-content: space-between;
     }
 
+    // On the dark panel the yellow button goes white on hover (the white one goes yellow)
+    .btn-yellow {
+      @include btn-hover(#FFF, $brand-navy);
+    }
+
     // The arrow is a 14px glyph in a 20px box, as in Figma
     .icon--14 {
       box-sizing: content-box;

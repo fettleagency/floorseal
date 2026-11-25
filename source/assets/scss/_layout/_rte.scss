@@ -1,0 +1,227 @@
+// Rich text (.rte): the body of a how-to guide and of a default text page (delivery, legal
+// pages). It is the plain HTML the Shopify editor produces, with no classes, so everything is
+// styled by tag: h2, h3, h4, p, a, ul, ol, hr, table and images. (.rte is also the class the
+// Horizon theme puts on rich text.)
+//
+// Body (16/24) on mobile and Body L (18/28) from lg, in Text/Dark.
+// Spacing: paragraphs are 12px apart on mobile and 16px on desktop; a heading, image, list or
+// table is 16px / 24px from its neighbours; each h2 section starts 40px / 56px down.
+// (These are margins on both sides of each block; neighbouring margins collapse to the larger.)
+
+.rte {
+  --body-gap: 12px;  // between paragraphs
+  --block-gap: 16px; // around headings, images, lists and tables
+  --section-gap: 40px;
+  color: $text-dark;
+  font-size: 16px;
+  line-height: 24px;
+
+  @include media-breakpoint-up(lg) {
+    --body-gap: 16px;
+    --block-gap: 24px;
+    --section-gap: 56px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  > * {
+    margin-top: 0;
+    margin-bottom: var(--body-gap);
+  }
+
+  // Section heading: navy, in capitals, at the H3 sizes (24/32, 28/32, 32/40)
+  > h2 {
+    margin-top: var(--section-gap);
+    margin-bottom: var(--block-gap);
+    color: $brand-navy;
+    font-size: 24px;
+    line-height: 32px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(md) {
+      font-size: 28px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  // Sub-heading: navy, in capitals, H5 (16/24) on mobile and H4 (18/24) from lg
+  > h3,
+  > h4 {
+    margin-top: var(--block-gap);
+    margin-bottom: var(--block-gap);
+    color: $brand-navy;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+    }
+  }
+
+  a {
+    color: $brand-navy;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // Images fill the column. The editor wraps an image in a paragraph, which gets the
+  // block spacing.
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  > p:has(> img),
+  > figure,
+  > img {
+    margin-top: var(--block-gap);
+    margin-bottom: var(--block-gap);
+  }
+
+  // Yellow rule between sections
+  > hr {
+    height: 2px;
+    margin: var(--section-gap) 0;
+    border: 0;
+    background-color: $brand-yellow;
+    opacity: 1;
+  }
+
+  // Lists: 16px / 24px from their neighbours, items a paragraph gap apart
+  ul,
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--body-gap);
+    margin: var(--block-gap) 0;
+  }
+
+  li > p {
+    margin: 0 0 var(--body-gap);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // A list inside a list item sits a paragraph gap under its text
+  li > ul,
+  li > ol {
+    margin: var(--body-gap) 0 0;
+  }
+
+  // Unordered list: points with a yellow chevron. The chevron is the 8 x 14 arrow in its 21px
+  // wide box, centred on the first line; the text starts 12px after it on mobile and 16px on
+  // desktop.
+  ul {
+    padding: 0;
+    list-style: none;
+
+    > li {
+      position: relative;
+      padding-left: 33px;
+
+      @include media-breakpoint-up(lg) {
+        padding-left: 37px;
+      }
+
+      &::before {
+        position: absolute;
+        top: 5px;
+        left: 6px;
+        width: 8px;
+        height: 14px;
+        background-color: $brand-yellow;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Cpath d='M1.28 14 0 12.72 5.44 7 0 1.28 1.28 0 8 7 1.28 14Z'/%3E%3C/svg%3E") center / contain no-repeat;
+        content: "";
+
+        @include media-breakpoint-up(lg) {
+          top: 7px;
+        }
+      }
+    }
+  }
+
+  // Ordered list: plain numbers in navy SemiBold, then letters and roman numerals for lists
+  // inside lists (as numbered clauses on legal pages). The how-to guide restyles its top-level
+  // list as numbered steps (_guide-article.scss).
+  ol {
+    padding-left: 33px;
+    list-style: decimal;
+
+    @include media-breakpoint-up(lg) {
+      padding-left: 37px;
+    }
+
+    > li::marker {
+      color: $brand-navy;
+      font-weight: 600;
+    }
+
+    ol {
+      list-style: lower-alpha;
+
+      ol {
+        list-style: lower-roman;
+      }
+    }
+  }
+
+  // Table: full width, a Neutral/Line rule above and below each row, cells aligned to the top.
+  // Heading cells (th, in the head or down the first column) are navy SemiBold.
+  table {
+    width: 100%;
+    margin: var(--block-gap) 0;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 12px 16px 12px 0;
+    border-top: 1px solid $neutral-line;
+    border-bottom: 1px solid $neutral-line;
+    text-align: left;
+    vertical-align: top;
+
+    @include media-breakpoint-up(lg) {
+      padding: 16px 24px 16px 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  th {
+    color: $brand-navy;
+    font-weight: 600;
+  }
+
+  // Nothing above the first block or below the last
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ----- Default text page -----
+// The page hero (title, optional intro) and then this: the rich text in the same columns as
+// the title (in the markup: ten from lg, eight from xl). On white, XXXLG padding underneath; the hero's
+// own padding is the space above.
+.page-content {
+  padding-bottom: var(--xxxl-space);
+  background-color: #FFF;
+}
