@@ -5,7 +5,8 @@
 
 // ----- Page hero (Figma "section/hero") -----
 // Title, intro and one or more buttons on white. XLG padding top and bottom (40, 56, 80).
-// Used by the Help & advice page and, on its own, by the 404 page.
+// Used by the Help & advice page, on its own by the 404 page, by the default text page and
+// for the basket's heading and empty state.
 
 .page-hero {
   padding: var(--xl-space) 0;
@@ -27,6 +28,18 @@
       font-size: 18px;
       line-height: 28px;
     }
+  }
+
+  // With less space under it (SM: 24, 32, 40), where the page's content follows straight on
+  // (the basket heading)
+  &--compact {
+    padding-bottom: var(--sm-space);
+  }
+
+  // With more space under it (XXXLG), where it is the last thing before the footer
+  // (the empty basket)
+  &--end {
+    padding-bottom: var(--xxxl-space);
   }
 
   // Buttons: full width and stacked 12px apart on mobile, side by side 16px apart from md

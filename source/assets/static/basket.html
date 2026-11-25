@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" href="/dist/styles/main.css">
+        <title>Your basket – Floorseal</title>
+    </head>
+    <body>
+        <!-- Icon sprite: referenced with <svg class="icon"><use href="#icon-name"></use></svg> -->
+        <svg xmlns="http://www.w3.org/2000/svg" hidden>
+            <symbol id="icon-chevron" viewBox="0 0 16 16"><path fill="currentColor" d="M5.49 15 4 13.51 9.51 8 4 2.49 5.49 1l7 7-7 7Z"/></symbol>
+            <symbol id="icon-back" viewBox="0 0 16 16"><path fill="currentColor" d="m10.77 14.99 1.48-1.49L6.77 8.02l5.48-5.49-1.48-1.48L3.8 8.02l6.97 6.97Z"/></symbol>
+            <symbol id="icon-plus" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M8 3.33v9.34M3.33 8h9.34"/></symbol>
+            <symbol id="icon-minus" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M3.33 8h9.34"/></symbol>
+            <symbol id="icon-arrow" viewBox="0 0 14 14"><path fill="currentColor" d="M10.15 7.5H0V5.83h10.15L5.48 1.17 6.67 0l6.66 6.67-6.66 6.66-1.19-1.16L10.15 7.5Z"/></symbol>
+            <symbol id="icon-search" viewBox="0 0 24 24"><path fill="currentColor" d="m18.23 20-6.1-6.11a5.6 5.6 0 0 1-1.63.83c-.62.2-1.28.3-1.99.3-1.81 0-3.35-.63-4.61-1.89A6.28 6.28 0 0 1 2 8.51c0-1.81.63-3.35 1.9-4.61A6.28 6.28 0 0 1 8.51 2c1.82 0 3.36.63 4.62 1.9a6.28 6.28 0 0 1 1.9 4.61c0 .72-.1 1.38-.31 1.99-.2.6-.48 1.14-.83 1.6l6.12 6.13L18.23 20ZM8.51 12.5c1.11 0 2.06-.39 2.83-1.16a3.84 3.84 0 0 0 1.16-2.83c0-1.11-.39-2.05-1.16-2.82a3.85 3.85 0 0 0-2.83-1.16c-1.11 0-2.05.39-2.82 1.16a3.84 3.84 0 0 0-1.16 2.82c0 1.11.39 2.06 1.16 2.83.77.77 1.71 1.16 2.82 1.16Z"/></symbol>
+            <symbol id="icon-basket" viewBox="0 0 40 40"><path fill="currentColor" d="M12.19 32c-.6 0-1.12-.22-1.55-.65A2.17 2.17 0 0 1 10 29.78V15.76c0-.61.21-1.14.64-1.57.43-.43.94-.65 1.55-.65h2.65c0-1.54.53-2.85 1.59-3.92A5.2 5.2 0 0 1 20.29 8c1.51 0 2.79.54 3.85 1.62a5.36 5.36 0 0 1 1.59 3.92h2.65c.6 0 1.12.22 1.55.65.43.43.64.96.64 1.57v14.02c0 .61-.21 1.14-.64 1.57-.43.43-.94.65-1.55.65H12.19Zm0-1.85h16.19c.1 0 .18-.04.26-.11a.37.37 0 0 0 .12-.26V15.76a.37.37 0 0 0-.12-.26.36.36 0 0 0-.26-.12H12.19a.36.36 0 0 0-.26.12.37.37 0 0 0-.11.26v14.02c0 .09.03.18.11.26.08.07.17.11.26.11Zm4.47-16.61h7.26c0-1.03-.35-1.9-1.06-2.62a3.48 3.48 0 0 0-2.57-1.07c-1.01 0-1.87.36-2.58 1.07a3.57 3.57 0 0 0-1.05 2.62Z"/></symbol>
+            <symbol id="icon-account" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-6.4 9.6h12.8a.8.8 0 0 0 .8-.8v-3.2a4 4 0 0 0-4-4H8.8a4 4 0 0 0-4 4V20a.8.8 0 0 0 .8.8Z"/></symbol>
+            <symbol id="icon-photo" viewBox="0 0 29 29"><path fill="currentColor" d="M3.6 25.2c-.66 0-1.23-.24-1.7-.7a2.31 2.31 0 0 1-.7-1.7V8.4c0-.66.23-1.23.7-1.7.47-.47 1.04-.7 1.7-.7h3.78L9.6 3.6h7.2V6h-6.15L8.46 8.4H3.6v14.4h19.2V12h2.4v10.8c0 .66-.24 1.23-.7 1.7-.48.46-1.04.7-1.7.7H3.6ZM22.8 8.4V6h-2.4V3.6h2.4V1.2h2.4v2.4h2.4V6h-2.4v2.4h-2.4ZM13.2 21c1.5 0 2.77-.53 3.83-1.58A5.2 5.2 0 0 0 18.6 15.6c0-1.5-.53-2.78-1.57-3.83A5.21 5.21 0 0 0 13.2 10.2c-1.5 0-2.78.52-3.83 1.57A5.21 5.21 0 0 0 7.8 15.6c0 1.5.52 2.77 1.57 3.82A5.21 5.21 0 0 0 13.2 21Zm0-2.4c-.84 0-1.55-.29-2.13-.87a2.9 2.9 0 0 1-.87-2.13c0-.84.29-1.55.87-2.13a2.9 2.9 0 0 1 2.13-.87c.84 0 1.55.29 2.13.87.58.58.87 1.29.87 2.13 0 .84-.29 1.55-.87 2.13a2.9 2.9 0 0 1-2.13.87Z"/></symbol>
+            <symbol id="icon-arrow-20" viewBox="0 0 20 20"><path fill="currentColor" d="M15.22 11.25H0v-2.5h15.22l-7-7L10 0l10 10-10 10-1.78-1.75 7-7Z"/></symbol>
+            <symbol id="icon-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M13.84 24V13.36h3.55L17.93 9h-4.09V6.27c0-1.22.41-2.18 2.18-2.18h2.32V.14C17.93.14 16.57 0 14.93 0c-3.27 0-5.59 2.05-5.59 5.73V9H5.66v4.36h3.68V24h4.5Z"/></symbol>
+            <symbol id="icon-instagram" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M6.67 0h10.66A6.67 6.67 0 0 1 24 6.67v10.66A6.67 6.67 0 0 1 17.33 24H6.67A6.67 6.67 0 0 1 0 17.33V6.67A6.67 6.67 0 0 1 6.67 0Zm0 2.4h10.66a4.27 4.27 0 0 1 4.27 4.27v10.66a4.27 4.27 0 0 1-4.27 4.27H6.67a4.27 4.27 0 0 1-4.27-4.27V6.67A4.27 4.27 0 0 1 6.67 2.4ZM12 5.87a6.13 6.13 0 1 1 0 12.26 6.13 6.13 0 0 1 0-12.26Zm0 2.4a3.73 3.73 0 1 0 0 7.46 3.73 3.73 0 0 0 0-7.46Zm6.93-4.67a1.47 1.47 0 1 1 0 2.93 1.47 1.47 0 0 1 0-2.93Z"/></symbol>
+            <symbol id="icon-youtube" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M4.8 3.6h14.4A4.8 4.8 0 0 1 24 8.4v7.2a4.8 4.8 0 0 1-4.8 4.8H4.8A4.8 4.8 0 0 1 0 15.6V8.4a4.8 4.8 0 0 1 4.8-4.8Zm4.8 4.8L15.84 12 9.6 15.6V8.4Z"/></symbol>
+            <symbol id="icon-trade" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M9 8V5h6v3M3 13h18M3 8h18v12H3V8Z"/></symbol>
+            <symbol id="icon-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></symbol>
+            <symbol id="icon-close-small" viewBox="0 0 12 12"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m3 3 6 6M9 3 3 9"/></symbol>
+            <symbol id="icon-delivery" viewBox="0 0 33.7002 26.2002"><path fill="currentColor" d="M23 0C23.4418 0 23.7997 0.358067 23.7998 0.799805V9.5H28.7139C29.1512 9.50001 29.5705 9.66876 29.8857 9.96875L29.9473 10.0303L33.2334 13.4951C33.5329 13.8109 33.7001 14.2299 33.7002 14.665V20.4004C33.7 21.3391 32.9388 22.0996 32 22.0996H28.9785C28.9927 22.2311 29 22.3647 29 22.5C28.9999 24.5434 27.3432 26.2002 25.2998 26.2002C23.2565 26.2001 21.5997 24.5433 21.5996 22.5C21.5996 22.399 21.6053 22.2991 21.6133 22.2002H11.1875C11.1954 22.2991 11.2002 22.399 11.2002 22.5C11.2001 24.5433 9.5433 26.2001 7.5 26.2002C5.45669 26.2001 3.79991 24.5433 3.7998 22.5C3.79981 22.399 3.80554 22.2991 3.81348 22.2002H0.799805L0.758789 22.1992C0.349825 22.1785 0.0218245 21.8503 0.000976562 21.4414L0 21.4004V0.799805C0.000105527 0.358132 0.358132 0.000105549 0.799805 0H23ZM7.5 20.5996C6.45079 20.5997 5.5997 21.4508 5.59961 22.5C5.59971 23.5492 6.4508 24.3993 7.5 24.3994C8.54919 24.3993 9.39931 23.5492 9.39941 22.5C9.39932 21.4508 8.54919 20.5997 7.5 20.5996ZM25.2998 20.5996C24.2506 20.5997 23.3995 21.4508 23.3994 22.5C23.3995 23.5492 24.2506 24.3993 25.2998 24.3994C26.3491 24.3994 27.2001 23.5493 27.2002 22.5C27.2001 21.4507 26.3491 20.5996 25.2998 20.5996ZM1.7998 20.4004H4.4541C5.12166 19.4339 6.23657 18.7999 7.5 18.7998C8.76336 18.7999 9.87828 19.434 10.5459 20.4004H22V1.7998H1.7998V20.4004ZM23.7998 19.1172C24.2583 18.9135 24.7658 18.7998 25.2998 18.7998C26.519 18.7998 27.6003 19.39 28.2744 20.2998H31.9004V16.2002H23.7998V19.1172ZM15.3047 10.916L10.7529 15.4688L9.47949 14.1963L12.7598 10.916L9.47949 7.63672L10.7529 6.36328L15.3047 10.916ZM23.7998 14.4004H31.6104L28.6709 11.2998H23.7998V14.4004Z"/></symbol>
+            <symbol id="icon-despatch" viewBox="0 0 29.373 26.5686"><path fill="currentColor" d="M11.6934 0.204102C12.1813 -0.0589841 12.7658 -0.0679667 13.2598 0.178711L13.3066 0.204102L24.1074 6.02832C24.6572 6.32498 24.9999 6.89969 25 7.52441V14.2168L23.2002 15.1504V9.20898L19.4463 11.1543V14.4961L17.6465 15.4297V12.0879L13.4004 14.29V24.2305L17 22.1533V24.2314L13.3477 26.3408L13.1465 26.4404C12.6654 26.639 12.1145 26.6068 11.6553 26.3447L0.857422 20.1807C0.327437 19.8781 5.05436e-05 19.3144 0 18.7041V7.52441C0.0001486 6.89969 0.342771 6.32498 0.892578 6.02832L11.6934 0.204102ZM29.373 18.4111L26.3047 21.4795L25.0312 20.207L25.96 19.2783H22.5C21.2299 19.2785 20.2002 20.3089 20.2002 21.5791C20.2005 22.849 21.2301 23.8788 22.5 23.8789H23.0439V25.6787H22.5C20.236 25.6786 18.4007 23.8431 18.4004 21.5791C18.4004 19.3148 20.2358 17.4787 22.5 17.4785H25.8945L25.0312 16.6152L26.3047 15.3428L29.373 18.4111ZM1.7998 18.6465L11.5996 24.2402V14.1621L1.7998 8.6709V18.6465ZM2.68652 7.10449L12.6162 12.6689L16.8594 10.4688L7.00293 4.77734L2.68652 7.10449ZM8.86328 3.77344L18.5967 9.39355C18.6481 9.42322 18.6967 9.45683 18.7441 9.49121L22.8193 7.37891L12.5 1.81348L8.86328 3.77344Z"/></symbol>
+        </svg>
+
+        <!--
+            Header and main menu
+            - A regular Bootstrap navbar: the menu button toggles #mainMenu (Collapse), which opens inline
+              on mobile and sits in the header row from lg up.
+            - Surfaces and Help & advice are Bootstrap dropdowns inside it (see the note above them).
+        -->
+        <header class="site-header">
+            <!-- Utility bar: the message on its own on mobile; account and trade sign-in join it from lg up
+                 (on mobile those two are in the menu, under "Your account") -->
+            <div class="site-header__utility">
+                <div class="container-fluid">
+                    <p class="site-header__utility-message">Free UK mainland delivery</p>
+                    <div class="site-header__utility-links d-none d-lg-flex">
+                        <a class="site-header__account" href="#">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-account"></use></svg>
+                            Account
+                        </a>
+                        <a class="site-header__trade" href="#">Trade sign-in</a>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-expand-lg site-header__nav" aria-label="Main">
+                <div class="container-fluid">
+                    <div class="site-header__bar">
+                        <button class="menu-toggle d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Menu">
+                            <span class="menu-toggle__bar"></span>
+                            <span class="menu-toggle__bar"></span>
+                            <span class="menu-toggle__bar"></span>
+                        </button>
+                        <a class="site-header__logo" href="/">
+                            <img src="/dist/images/floorseal-logo.svg" width="208" height="36" alt="Floorseal">
+                        </a>
+                        <a class="basket-button" href="basket.html" aria-label="Basket">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-basket"></use></svg>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="mainMenu">
+                        <div class="mobile-menu">
+                            <ul class="navbar-nav mobile-menu__list mobile-menu__list--main">
+                                <li class="nav-item">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Cleaners
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Sealers
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <!-- Accessories is in the mobile menu only -->
+                                <li class="nav-item d-lg-none">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Accessories
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <!--
+                                    Surfaces and Help & advice: one Bootstrap dropdown each, shared by mobile and desktop.
+                                    - Mobile: the .dropdown-menu is the panel that slides in over the main menu, with a back row
+                                      and plus/minus groups (Bootstrap Collapse; data-bs-parent keeps one group open at a time).
+                                    - Desktop: the same .dropdown-menu is the full-width panel under the header. The groups are
+                                      always open, in a Bootstrap .row: each li.nav-submenu__col is a .col-lg-* holding the groups
+                                      stacked in it. On mobile the columns disappear (display: contents) and the groups form
+                                      one list; order-1 puts Roofs and Wood & decking at the end of it.
+                                    - data-bs-auto-close="outside" stops a tap on a group closing the whole panel.
+                                    - Each group title is written twice: a link for desktop, a button for mobile.
+                                -->
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        Surfaces
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                    <div class="dropdown-menu nav-submenu">
+                                        <div class="nav-submenu__back-row d-lg-none">
+                                            <button class="nav-submenu__back" type="button" data-submenu-back>
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+                                                Menu
+                                            </button>
+                                            <p class="nav-submenu__title">Surfaces</p>
+                                        </div>
+                                        <div class="nav-submenu__body container-fluid">
+                                            <ul class="row mobile-menu__list nav-submenu__groups" id="menuSurfacesGroups">
+                                                <li class="d-lg-none">
+                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                        All surfaces
+                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                    </a>
+                                                </li>
+                                                <li class="col-lg-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Patio &amp; paving</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesPatio" aria-controls="surfacesPatio" aria-expanded="false">
+                                                                Patio &amp; paving
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesPatio" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All patio &amp; paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Indian sandstone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Limestone paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Black limestone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Slate paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Yorkstone &amp; flagstone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Granite pavers</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Outdoor porcelain</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-2 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Driveways</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesDriveways" aria-controls="surfacesDriveways" aria-expanded="false">
+                                                                Driveways
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesDriveways" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All driveways</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Block paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Tarmac</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Resin bound</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Concrete</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-submenu__group order-1">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                Roofs
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-4 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Interior floors &amp; tiles</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesInterior" aria-controls="surfacesInterior" aria-expanded="false">
+                                                                Interior floors &amp; tiles
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesInterior" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist mobile-menu__sublist--two-col">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All interior floors &amp; tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Natural stone floors</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Travertine tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Limestone tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Slate tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Victorian tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Quarry tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Terracotta</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Ceramic</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Marble</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Terrazzo</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Vinyl</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Indoor porcelain</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Brick, render &amp; masonry</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesBrick" aria-controls="surfacesBrick" aria-expanded="false">
+                                                                Brick, render &amp; masonry
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesBrick" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All brick, render &amp; masonry</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Exterior brick</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Interior exposed brick</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Render &amp; masonry</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-submenu__group order-1">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                Wood &amp; decking
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Desktop only: footer strip -->
+                                        <div class="nav-submenu__footer d-none d-lg-flex">
+                                            <a class="nav-submenu__footer-link" href="#">
+                                                All surfaces
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                            <a class="nav-submenu__footer-link nav-submenu__footer-link--dark" href="#">
+                                                <svg class="icon icon--28" aria-hidden="true"><use href="#icon-photo"></use></svg>
+                                                Not sure what surface you have? Upload a photo
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        Help &amp; advice
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                    <div class="dropdown-menu nav-submenu">
+                                        <div class="nav-submenu__back-row d-lg-none">
+                                            <button class="nav-submenu__back" type="button" data-submenu-back>
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+                                                Menu
+                                            </button>
+                                            <p class="nav-submenu__title">Help &amp; advice</p>
+                                        </div>
+                                        <div class="nav-submenu__body container-fluid">
+                                            <ul class="row mobile-menu__list nav-submenu__groups" id="menuHelpGroups">
+                                                <li class="order-first d-lg-none">
+                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                        All help &amp; advice
+                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 col-xl-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Solve a problem</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#helpProblems" aria-controls="helpProblems" aria-expanded="false">
+                                                                Solve a problem
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="helpProblems" data-bs-parent="#menuHelpGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li><a class="mobile-menu__sublink" href="#">Black spot</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Green growth, moss &amp; algae</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Rust marks</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Cement &amp; grout haze</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Efflorescence</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Tyre marks &amp; oil</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Faded colour</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Dusty concrete floors</a></li>
+                                                                    <li>
+                                                                        <a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">
+                                                                            All problems
+                                                                            <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- How-to guides: a plain link on mobile; on desktop the same link is the column title, with its guides listed under it -->
+                                                <li class="col-lg-4 col-xl-2 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                How-to guides
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                            <ul class="mobile-menu__sublist d-none d-lg-block">
+                                                                <li><a class="mobile-menu__sublink" href="#">Cleaning guides</a></li>
+                                                                <li><a class="mobile-menu__sublink" href="#">Sealing guides</a></li>
+                                                                <li>
+                                                                    <a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">
+                                                                        All how-to guides
+                                                                        <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- Get help: a titled column of links on desktop, four plain rows on mobile -->
+                                                <li class="col-lg-4 col-xl-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <p class="mobile-menu__item d-none d-lg-flex">Get help</p>
+                                                            <ul class="mobile-menu__list mobile-menu__list--rows">
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Upload a photo
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Technical information
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Frequently asked questions
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Contact us
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- Product selector card: last column on desktop, straight after the first link on mobile (order-first) -->
+                                                <li class="col-lg-12 col-xl-4 nav-submenu__col nav-submenu__col--fill">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group mobile-menu__promo-wrap order-first">
+                                                            <div class="mobile-menu__promo">
+                                                                <div class="mobile-menu__promo-content">
+                                                                    <!-- Icon placeholder in the design -->
+                                                                    <div class="mobile-menu__promo-icon"></div>
+                                                                    <div class="mobile-menu__promo-copy">
+                                                                        <p class="mobile-menu__promo-title">Find the right product</p>
+                                                                        <p class="mobile-menu__promo-text">Answer a few questions about your surface and the result you want.</p>
+                                                                    </div>
+                                                                </div>
+                                                                <a class="mobile-menu__button" href="#">
+                                                                    Start the product selector
+                                                                    <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Desktop only: footer strip -->
+                                        <div class="nav-submenu__footer d-none d-lg-flex">
+                                            <a class="nav-submenu__footer-link" href="#">
+                                                All help &amp; advice
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                            <a class="nav-submenu__footer-link nav-submenu__footer-link--dark" href="#">
+                                                <svg class="icon icon--28" aria-hidden="true"><use href="#icon-photo"></use></svg>
+                                                Not sure what surface you have? Upload a photo
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <!--
+                                Site search. The form is used on mobile (moved to the top of the menu with order-first)
+                                and on wide desktops (xxl up, right of the links). Between lg and xxl there isn't room
+                                for the field, so a button links to the search page instead.
+                                Shopify: the form action and the link href both become {{ routes.search_url }}.
+                                name="q" and the hidden options[prefix]=last field are what Shopify search expects,
+                                as in Horizon's own form. The outer .site-search is only layout, so it can become
+                                Horizon's <predictive-search-component> (with the results panel inside it) without restyling.
+                            -->
+                            <div class="site-search order-first order-lg-0">
+                                <form class="site-search__form d-lg-none d-xxl-flex" action="/search" method="get" role="search">
+                                    <label class="visually-hidden" for="siteSearchInput">Search products and guides</label>
+                                    <input class="site-search__input" id="siteSearchInput" type="search" name="q" placeholder="Search products &amp; guides" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                                    <input type="hidden" name="options[prefix]" value="last">
+                                    <button class="site-search__submit" type="submit" aria-label="Search">
+                                        <svg class="icon icon--24" aria-hidden="true"><use href="#icon-search"></use></svg>
+                                    </button>
+                                </form>
+                                <a class="site-search__link d-none d-lg-flex d-xxl-none" href="/search" aria-label="Search">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-search"></use></svg>
+                                </a>
+                            </div>
+
+                            <div class="mobile-menu__account d-lg-none">
+                                <p class="mobile-menu__label">Your account</p>
+                                <a class="mobile-menu__card" href="#">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-account"></use></svg>
+                                    <span class="mobile-menu__card-text">
+                                        <span class="mobile-menu__card-title">Account</span>
+                                        <span class="mobile-menu__card-desc">Sign in, orders and reorder</span>
+                                    </span>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                </a>
+                                <a class="mobile-menu__card mobile-menu__card--trade" href="#">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-trade"></use></svg>
+                                    <span class="mobile-menu__card-text">
+                                        <span class="mobile-menu__card-title">Trade account</span>
+                                        <span class="mobile-menu__card-desc">Trade sign-in and applications</span>
+                                    </span>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                </a>
+                            </div>
+
+                            <div class="mobile-menu__more d-lg-none">
+                                <p class="mobile-menu__label">More</p>
+                                <ul class="mobile-menu__more-links">
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">About Floorseal</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main id="MainContent">
+            <!--
+                Breadcrumb row (from md), as on the Help & advice and product pages.
+                Shopify: the breadcrumb is built by the theme. The badge is the reviews.io app's widget,
+                which replaces the temporary space below.
+            -->
+            <div class="product-breadcrumb d-none d-md-block">
+                <div class="container-fluid">
+                    <div class="row align-items-center product-breadcrumb__row">
+                        <div class="col-12 col-lg">
+                            <nav aria-label="Breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Basket</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <!-- Temporary space for the reviews.io rating badge -->
+                            <div style="width: 400px; height: 20px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                Basket page. With something in the basket: the heading, the items beside the order summary,
+                then "Complete the job". With nothing in it: the empty state at the end of this file instead.
+                Shopify: the cart template. Both states are in the page here so each can be seen
+                (basket.html?empty shows the empty one); in Shopify the template outputs one or the other,
+                depending on whether cart.item_count is 0.
+                js/custom/basket.js keeps the line totals, the summary and the item count in step with the
+                quantities on the static page; in Shopify the theme's cart script does that.
+            -->
+
+            <!-- Heading: the page hero with less space under it. The count is cart.item_count. -->
+            <section class="page-hero page-hero--compact" data-basket-filled>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="page-hero__title">Your basket</h1>
+                            <p class="page-hero__text" data-basket-count>3 items</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Items and order summary: eight columns and four from lg, stacked below.
+                Shopify: the items are one form posting to /cart (cart.items; each quantity is an
+                updates[] input, and "Remove" is the line's change URL with quantity 0). The Checkout button
+                belongs to the same form (name="checkout"). The summary shows cart.total_price; delivery is
+                free to the UK mainland, and discount codes and delivery options come at checkout.
+                Item images are placeholders that show the size to output (240 x 240, shown at 120).
+            -->
+            <section class="basket" data-basket data-basket-filled>
+                <div class="container-fluid">
+                    <div class="row basket__row">
+                        <div class="col-lg-8">
+                            <form class="basket-items" id="basketForm" action="/cart" method="post">
+                                <div class="basket-items__head d-none d-md-grid" aria-hidden="true">
+                                    <span>Product</span>
+                                    <span>Quantity</span>
+                                    <span>Total</span>
+                                </div>
+                                <ul class="basket-items__list">
+                                <li class="basket-item" data-basket-item data-price="54.95">
+                                    <a class="basket-item__image" href="/products/black-spot-remover-plus" tabindex="-1" aria-hidden="true">
+                                        <img src="https://placehold.co/240x240/D9DBE0/6B7380/png" width="240" height="240" alt="" loading="lazy">
+                                    </a>
+                                    <div class="basket-item__info">
+                                        <h2 class="basket-item__title"><a href="/products/black-spot-remover-plus">Black Spot Remover Plus</a></h2>
+                                        <p class="basket-item__option">10 litre</p>
+                                        <p class="basket-item__price">£54.95 each</p>
+                                    </div>
+                                    <div class="quantity-selector quantity-selector--basket">
+                                        <button type="button" name="minus" aria-label="Decrease quantity of Black Spot Remover Plus">–</button>
+                                        <input type="number" name="updates[]" value="1" min="1" step="1" inputmode="numeric" aria-label="Quantity of Black Spot Remover Plus">
+                                        <button type="button" name="plus" aria-label="Increase quantity of Black Spot Remover Plus">+</button>
+                                    </div>
+                                    <p class="basket-item__total"><span class="visually-hidden">Total </span><span data-basket-line-total>£54.95</span></p>
+                                    <a class="basket-item__remove" href="/cart/change?line=1&amp;quantity=0" data-basket-remove aria-label="Remove Black Spot Remover Plus">Remove</a>
+                                </li>
+                                <li class="basket-item" data-basket-item data-price="27.95">
+                                    <a class="basket-item__image" href="/products/patio-cleaner-plus" tabindex="-1" aria-hidden="true">
+                                        <img src="https://placehold.co/240x240/D9DBE0/6B7380/png" width="240" height="240" alt="" loading="lazy">
+                                    </a>
+                                    <div class="basket-item__info">
+                                        <h2 class="basket-item__title"><a href="/products/patio-cleaner-plus">Patio Cleaner Plus</a></h2>
+                                        <p class="basket-item__option">5 litre</p>
+                                        <p class="basket-item__price">£27.95 each</p>
+                                    </div>
+                                    <div class="quantity-selector quantity-selector--basket">
+                                        <button type="button" name="minus" aria-label="Decrease quantity of Patio Cleaner Plus">–</button>
+                                        <input type="number" name="updates[]" value="2" min="1" step="1" inputmode="numeric" aria-label="Quantity of Patio Cleaner Plus">
+                                        <button type="button" name="plus" aria-label="Increase quantity of Patio Cleaner Plus">+</button>
+                                    </div>
+                                    <p class="basket-item__total"><span class="visually-hidden">Total </span><span data-basket-line-total>£55.90</span></p>
+                                    <a class="basket-item__remove" href="/cart/change?line=1&amp;quantity=0" data-basket-remove aria-label="Remove Patio Cleaner Plus">Remove</a>
+                                </li>
+                                </ul>
+                                <div class="basket-items__after">
+                                    <a class="section-header__link" href="collection.html">Continue shopping <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+                                    <ul class="row product-notes">
+                                        <li class="col-6">
+                                            <svg class="icon" viewBox="0 0 33.7 26.2" aria-hidden="true"><use href="#icon-delivery"></use></svg>
+                                            <p>Free UK mainland delivery<span class="d-none d-md-inline"><br>1–2 working days</span></p>
+                                        </li>
+                                        <li class="col-6">
+                                            <svg class="icon" viewBox="0 0 29.4 26.6" aria-hidden="true"><use href="#icon-despatch"></use></svg>
+                                            <p>Same-day despatch<br>Order by 1pm Mon–Fri</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4">
+                            <aside class="order-summary" aria-labelledby="orderSummaryTitle">
+                                <h2 class="order-summary__title" id="orderSummaryTitle">Order summary</h2>
+                                <dl class="order-summary__lines">
+                                    <div>
+                                        <dt>Subtotal</dt>
+                                        <dd data-basket-subtotal>£110.85</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Delivery to UK mainland</dt>
+                                        <dd>Free</dd>
+                                    </div>
+                                </dl>
+                                <p class="order-summary__total">
+                                    <span class="order-summary__total-label">Total</span>
+                                    <span class="order-summary__amount" data-basket-total>£110.85</span>
+                                    <span class="order-summary__vat">inc. VAT</span>
+                                </p>
+                                <button class="btn btn-yellow order-summary__checkout" type="submit" name="checkout" form="basketForm">Checkout</button>
+                                <p class="order-summary__note">Discount codes and delivery options are added at checkout.</p>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Complete the job: the same section, header and product cards as the product page
+                (three sprayers and a sealer; the design draws three sprayers and a fourth card to be confirmed).
+                Shopify: complementary products for what is in the basket (Search & Discovery), or a fixed list.
+                "From" prices leave out the sample size: they start at the smallest full-size container.
+            -->
+            <section class="complete-job" data-basket-filled>
+                <div class="container-fluid">
+                    <div class="row align-items-start section-header">
+                        <div class="col-12">
+                            <h2 class="section-header__title">Complete the job</h2>
+                        </div>
+                    </div>
+                    <ul class="row product-grid">
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">Budget sprayer option</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/basic-7-pump-up-sprayer">Basic 7 Pump-Up Sprayer</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">£29.99</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">For applying undiluted</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/industrial-7-pump-up-sprayer">Industrial 7 Pump-Up Sprayer</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">£44.99</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">Professional sprayer option</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/ik-multi-9-professional-pump-up-sprayer">IK Multi 9 Professional Pump-Up Sprayer</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">£79.99</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">Seal it once clean</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/indian-sandstone-sealer-colour-intensifier">Indian Sandstone Sealer &amp; Colour Intensifier</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">From £28.95</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!--
+                Empty state (Figma "Basket page – empty state"): the page hero with two buttons, and nothing
+                else before the footer. Hidden here until the basket is empty.
+            -->
+            <section class="page-hero page-hero--end" data-basket-empty hidden>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1 class="page-hero__title">Your basket is empty</h1>
+                            <p class="page-hero__text">Start with our cleaners and sealers, or tell us your surface and we’ll show you the products that fit.</p>
+                            <div class="page-hero__actions">
+                                <a class="btn btn-yellow" href="collection.html">Shop cleaners <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+                                <a class="btn btn-yellow" href="/collections/sealers">Shop sealers <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--
+            Footer.
+            Shopify: the three shop links and the three link columns are menus (linklists). The sign-up form is
+            {% form 'customer' %}, which outputs this form tag with its hidden fields; contact[email] is the field
+            name Shopify expects, as in Horizon's email-signup block. Social links come from theme settings.
+            The policy links are shop.policies, or a menu if non-Shopify pages (cookie policy) are needed.
+            Not designed yet: the sign-up success and error messages, and link hover states.
+        -->
+        <footer class="site-footer">
+            <div class="container-fluid site-footer__inner">
+                <div class="row site-footer__top">
+                    <div class="col-12 col-xl-4">
+                        <a class="site-footer__logo" href="/">
+                            <img src="/dist/images/floorseal-logo-white.svg" width="208" height="36" alt="Floorseal">
+                        </a>
+                    </div>
+                    <div class="col-12 col-xl-7 offset-xl-1">
+                        <ul class="site-footer__shop">
+                            <li><a href="#">Cleaners</a></li>
+                            <li><a href="#">Sealers</a></li>
+                            <li><a href="#">Accessories</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row site-footer__main">
+                    <div class="col-12 col-xl-4">
+                        <div class="site-footer__signup">
+                            <h2 class="site-footer__heading">Advice and offers by email</h2>
+                            <form class="site-footer__form" action="/contact#contact_form" method="post" accept-charset="UTF-8">
+                                <input type="hidden" name="form_type" value="customer">
+                                <input type="hidden" name="utf8" value="✓">
+                                <label class="visually-hidden" for="footerEmail">Email address</label>
+                                <input class="site-footer__input" id="footerEmail" type="email" name="contact[email]" placeholder="Enter your email address" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+                                <button class="site-footer__submit" type="submit" aria-label="Sign up">
+                                    <svg class="icon icon--20" aria-hidden="true"><use href="#icon-arrow-20"></use></svg>
+                                </button>
+                            </form>
+                            <ul class="site-footer__social">
+                                <li><a href="#" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="#icon-facebook"></use></svg></a></li>
+                                <li><a href="#" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a></li>
+                                <li><a href="#" aria-label="YouTube"><svg class="icon" aria-hidden="true"><use href="#icon-youtube"></use></svg></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 offset-xl-1">
+                        <nav class="row site-footer__columns" aria-label="Footer">
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Surfaces</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">Patio &amp; paving</a></li>
+                                    <li><a href="#">Driveways</a></li>
+                                    <li><a href="#">Interior floors &amp; tiles</a></li>
+                                    <li><a href="#">Brick, render &amp; masonry</a></li>
+                                    <li><a href="#">Roofs</a></li>
+                                    <li><a href="#">Wood &amp; decking</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Help &amp; advice</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">How-to guides</a></li>
+                                    <li><a href="#">Upload a photo</a></li>
+                                    <li><a href="#">Technical information</a></li>
+                                    <li><a href="#">Request SDS</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Company</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">About Floorseal</a></li>
+                                    <li><a href="#">Trade accounts</a></li>
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Complaints</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="site-footer__legal">
+                    <p class="site-footer__copyright">© Floorseal Ltd</p>
+                    <ul class="site-footer__policies">
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Cookie policy</a></li>
+                        <li><a href="#">Terms &amp; conditions</a></li>
+                    </ul>
+                    <p class="site-footer__credit">Website by <a href="https://fettle.agency">fettle.agency</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JS -->
+        <script src="/dist/scripts/lib.js"></script>
+        <script src="/dist/scripts/script.js"></script>
+    </body>
+</html>

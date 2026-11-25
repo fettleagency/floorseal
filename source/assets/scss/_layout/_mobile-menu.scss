@@ -11,8 +11,10 @@
 // Sub-link colour on desktop: #1A1F29 at 70% in Figma, not one of the colour variables.
 // (The Patio & paving links are at 60% in the design; the other three groups are at 70%.)
 $submenu-link: rgba(#1A1F29, .7);
-// Page dim behind the open desktop panel: #333842 at 45% in Figma
-$submenu-dim: rgba(#333842, .45);
+// Page dim behind the open desktop panel: the same navy at 60% as the basket drawer and
+// filter panel ($page-dim-* in _configs/_variables.scss). Figma draws this one as #333842 at
+// 45%, which looked black beside the others.
+$submenu-dim: rgba($page-dim-colour, $page-dim-opacity);
 // Desktop nav link colour: #1A1F29 in Figma, not one of the colour variables
 $nav-link-desktop: #1A1F29;
 

@@ -65,7 +65,21 @@
     }
   }
 
-  // ----- Logo with tagline: 247x48 mobile, 288x56 desktop -----
+  // Side by side from xl, the logo is centred on the taller shop buttons
+  &__top {
+    @include media-breakpoint-up(xl) {
+      align-items: center;
+    }
+  }
+
+  // ----- Logo -----
+  // The logo without the tagline, in white, at the header logo's sizes: 208x36 below lg,
+  // 231x40 at lg and 277x48 from xl. From xl it is centred on the 56px shop buttons beside it.
+  //
+  // Until 25 Nov 2026 the footer used the logo with the "Premium surface sealers & cleaners"
+  // tagline (the client asked for it to go). To put it back: the file is still in the project,
+  // images/floorseal-logo-tagline-white.svg; the <img> was width="288" height="56"; and it was
+  // 247x48 below xl and 288x56 from xl, the same height as the shop buttons.
 
   &__logo {
     display: block;
@@ -73,12 +87,17 @@
 
     img {
       display: block;
-      width: 247px;
-      height: 48px;
+      width: 208px;
+      height: 36px;
+
+      @include media-breakpoint-up(lg) {
+        width: 231px;
+        height: 40px;
+      }
 
       @include media-breakpoint-up(xl) {
-        width: 288px;
-        height: 56px;
+        width: 277px;
+        height: 48px;
       }
     }
   }
@@ -164,13 +183,10 @@
     padding: 0 16px;
     border-radius: 4px;
     background-color: #FFF;
-
-    &:focus-within {
-      outline: 2px solid $brand-yellow;
-      outline-offset: 2px;
-    }
   }
 
+  // No focus style on the field: the text cursor shows where you are. (The arrow button
+  // keeps its outline when reached with the keyboard.)
   &__input {
     flex: 1 1 auto;
     min-width: 0;

@@ -1,8 +1,12 @@
 $grid-gutter-width: 32px;
 
-// Dim behind a slide-in panel (filters, basket): navy at 60%
-$offcanvas-backdrop-bg: $brand-navy;
-$offcanvas-backdrop-opacity: .6;
+// The dim over the page behind an open panel or menu: navy at 60%. One colour for every
+// overlay: the basket drawer and filter panel (Bootstrap's offcanvas backdrop) and the desktop
+// menu's dim (_mobile-menu.scss).
+$page-dim-colour: $brand-navy;
+$page-dim-opacity: .6;
+$offcanvas-backdrop-bg: $page-dim-colour;
+$offcanvas-backdrop-opacity: $page-dim-opacity;
 
 // Widest the page content gets: an element that fills a .container-fluid is never wider than this.
 // The container itself is that plus the two 64px page margins (1568px). See _layout/_main.scss.

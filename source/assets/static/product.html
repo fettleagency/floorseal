@@ -67,7 +67,7 @@
                         <a class="site-header__logo" href="/">
                             <img src="/dist/images/floorseal-logo.svg" width="208" height="36" alt="Floorseal">
                         </a>
-                        <a class="basket-button" href="#" aria-label="Basket">
+                        <a class="basket-button" href="basket.html" aria-label="Basket">
                             <svg class="icon" aria-hidden="true"><use href="#icon-basket"></use></svg>
                         </a>
                     </div>
@@ -1471,7 +1471,7 @@
                 <div class="row site-footer__top">
                     <div class="col-12 col-xl-4">
                         <a class="site-footer__logo" href="/">
-                            <img src="/dist/images/floorseal-logo-tagline-white.svg" width="288" height="56" alt="Floorseal">
+                            <img src="/dist/images/floorseal-logo-white.svg" width="208" height="36" alt="Floorseal">
                         </a>
                     </div>
                     <div class="col-12 col-xl-7 offset-xl-1">
@@ -1552,6 +1552,96 @@
                 </div>
             </div>
         </footer>
+
+        <!--
+            Basket drawer (Figma "Basket drawer – open over product page"): slides in from the right over the
+            dimmed page after Add to basket. The header and footer stay put while the items scroll; the cross,
+            the dimmed page and Escape close it. A Bootstrap offcanvas: 480px wide from md, and below that the
+            same width as the filter panel, leaving a strip of the page on the left.
+            It reuses the basket page's parts: the item row (in its drawer layout), the quantity box and the
+            buttons; the panel title and close button are the filter panel's.
+            Shopify: the theme's cart drawer, in the layout so it is on every page (here it is only on the
+            product page). The items are cart.items in a form posting to /cart, as on the basket page;
+            "Complete the job" is the same product list as that page; the plus buttons add one of that product.
+            js/custom/basket.js opens it when a product form is sent and keeps the totals in step on the
+            static page.
+        -->
+        <div class="offcanvas offcanvas-end basket-drawer" id="basketDrawer" tabindex="-1" aria-labelledby="basketDrawerTitle" data-basket-scope>
+            <div class="offcanvas-header basket-drawer__header">
+                <h2 class="offcanvas-title collection-filters__title" id="basketDrawerTitle">Added to your basket</h2>
+                <button class="collection-filters__close" type="button" data-bs-dismiss="offcanvas" aria-label="Close basket">
+                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-close"></use></svg>
+                </button>
+            </div>
+            <form class="offcanvas-body basket-drawer__body" id="basketDrawerForm" action="/cart" method="post" data-basket>
+                <ul class="basket-items__list basket-drawer__items">
+                <li class="basket-item basket-item--drawer" data-basket-item data-price="29.95">
+                    <a class="basket-item__image" href="/products/black-spot-remover-plus" tabindex="-1" aria-hidden="true">
+                        <img src="https://placehold.co/160x160/D9DBE0/6B7380/png" width="160" height="160" alt="" loading="lazy">
+                    </a>
+                    <div class="basket-item__info">
+                        <h3 class="basket-item__title"><a href="/products/black-spot-remover-plus">Black Spot Remover Plus</a></h3>
+                        <p class="basket-item__option">5 litre</p>
+                    </div>
+                    <div class="quantity-selector quantity-selector--basket">
+                        <button type="button" name="minus" aria-label="Decrease quantity of Black Spot Remover Plus">–</button>
+                        <input type="number" name="updates[]" value="1" min="1" step="1" inputmode="numeric" aria-label="Quantity of Black Spot Remover Plus">
+                        <button type="button" name="plus" aria-label="Increase quantity of Black Spot Remover Plus">+</button>
+                    </div>
+                    <a class="basket-item__remove" href="/cart/change?line=1&amp;quantity=0" data-basket-remove aria-label="Remove Black Spot Remover Plus">Remove</a>
+                    <p class="basket-item__total"><span class="visually-hidden">Total </span><span data-basket-line-total>£29.95</span></p>
+                </li>
+                <li class="basket-item basket-item--drawer" data-basket-item data-price="27.95">
+                    <a class="basket-item__image" href="/products/patio-cleaner-plus" tabindex="-1" aria-hidden="true">
+                        <img src="https://placehold.co/160x160/D9DBE0/6B7380/png" width="160" height="160" alt="" loading="lazy">
+                    </a>
+                    <div class="basket-item__info">
+                        <h3 class="basket-item__title"><a href="/products/patio-cleaner-plus">Patio Cleaner Plus</a></h3>
+                        <p class="basket-item__option">5 litre</p>
+                    </div>
+                    <div class="quantity-selector quantity-selector--basket">
+                        <button type="button" name="minus" aria-label="Decrease quantity of Patio Cleaner Plus">–</button>
+                        <input type="number" name="updates[]" value="1" min="1" step="1" inputmode="numeric" aria-label="Quantity of Patio Cleaner Plus">
+                        <button type="button" name="plus" aria-label="Increase quantity of Patio Cleaner Plus">+</button>
+                    </div>
+                    <a class="basket-item__remove" href="/cart/change?line=1&amp;quantity=0" data-basket-remove aria-label="Remove Patio Cleaner Plus">Remove</a>
+                    <p class="basket-item__total"><span class="visually-hidden">Total </span><span data-basket-line-total>£27.95</span></p>
+                </li>
+                </ul>
+                <p class="basket-drawer__empty" data-basket-empty hidden>Your basket is empty.</p>
+                <div class="basket-drawer__more" data-basket-filled>
+                    <h3 class="basket-drawer__heading">Complete the job</h3>
+                    <ul class="basket-drawer__accessories">
+                    <li class="basket-accessory">
+                        <img class="basket-accessory__image" src="https://placehold.co/128x128/D9DBE0/6B7380/png" width="128" height="128" alt="" loading="lazy">
+                        <div class="basket-accessory__info">
+                            <h4 class="basket-accessory__title"><a href="/products/basic-7-pump-up-sprayer">Basic 7 Pump-Up Sprayer</a></h4>
+                            <p class="basket-accessory__price">£29.99</p>
+                        </div>
+                        <button class="basket-accessory__add" type="button" aria-label="Add Basic 7 Pump-Up Sprayer to basket">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                        </button>
+                    </li>
+                    <li class="basket-accessory">
+                        <img class="basket-accessory__image" src="https://placehold.co/128x128/D9DBE0/6B7380/png" width="128" height="128" alt="" loading="lazy">
+                        <div class="basket-accessory__info">
+                            <h4 class="basket-accessory__title"><a href="/products/industrial-7-pump-up-sprayer">Industrial 7 Pump-Up Sprayer</a></h4>
+                            <p class="basket-accessory__price">£44.99</p>
+                        </div>
+                        <button class="basket-accessory__add" type="button" aria-label="Add Industrial 7 Pump-Up Sprayer to basket">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                        </button>
+                    </li>
+                    </ul>
+                </div>
+            </form>
+            <div class="basket-drawer__footer" data-basket-filled>
+                <p class="basket-drawer__subtotal"><span>Subtotal</span> <span data-basket-subtotal>£57.90</span></p>
+                <p class="basket-drawer__note">Free UK mainland delivery. Prices include VAT.</p>
+                <button class="btn btn-yellow" type="submit" name="checkout" form="basketDrawerForm">Checkout</button>
+                <a class="btn btn-outline-yellow" href="basket.html">View basket</a>
+            </div>
+        </div>
 
         <!-- JS -->
         <script src="/dist/scripts/lib.js"></script>

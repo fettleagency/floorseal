@@ -517,6 +517,21 @@ $product-border-desktop: #C2C2C2;
   }
 }
 
+// The basket's quantity box is shorter: 111 x 48 on mobile and 139 x 56 from md
+.quantity-selector--basket {
+  width: 111px;
+  height: 48px;
+
+  @include media-breakpoint-up(md) {
+    width: 139px;
+    height: 56px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: 56px;
+  }
+}
+
 // ----- Delivery notes -----
 // Two notes, half the panel each, a navy icon with two lines of text in Body S capitals
 // (the same size on every breakpoint; the mobile design has it smaller).
