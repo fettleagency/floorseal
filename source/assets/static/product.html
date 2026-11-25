@@ -1,0 +1,1562 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" href="/dist/styles/main.css">
+        <title>Black Spot Remover Plus – Floorseal</title>
+    </head>
+    <body>
+        <!-- Icon sprite: referenced with <svg class="icon"><use href="#icon-name"></use></svg> -->
+        <svg xmlns="http://www.w3.org/2000/svg" hidden>
+            <symbol id="icon-chevron" viewBox="0 0 16 16"><path fill="currentColor" d="M5.49 15 4 13.51 9.51 8 4 2.49 5.49 1l7 7-7 7Z"/></symbol>
+            <symbol id="icon-back" viewBox="0 0 16 16"><path fill="currentColor" d="m10.77 14.99 1.48-1.49L6.77 8.02l5.48-5.49-1.48-1.48L3.8 8.02l6.97 6.97Z"/></symbol>
+            <symbol id="icon-plus" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M8 3.33v9.34M3.33 8h9.34"/></symbol>
+            <symbol id="icon-minus" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M3.33 8h9.34"/></symbol>
+            <symbol id="icon-arrow" viewBox="0 0 14 14"><path fill="currentColor" d="M10.15 7.5H0V5.83h10.15L5.48 1.17 6.67 0l6.66 6.67-6.66 6.66-1.19-1.16L10.15 7.5Z"/></symbol>
+            <symbol id="icon-search" viewBox="0 0 24 24"><path fill="currentColor" d="m18.23 20-6.1-6.11a5.6 5.6 0 0 1-1.63.83c-.62.2-1.28.3-1.99.3-1.81 0-3.35-.63-4.61-1.89A6.28 6.28 0 0 1 2 8.51c0-1.81.63-3.35 1.9-4.61A6.28 6.28 0 0 1 8.51 2c1.82 0 3.36.63 4.62 1.9a6.28 6.28 0 0 1 1.9 4.61c0 .72-.1 1.38-.31 1.99-.2.6-.48 1.14-.83 1.6l6.12 6.13L18.23 20ZM8.51 12.5c1.11 0 2.06-.39 2.83-1.16a3.84 3.84 0 0 0 1.16-2.83c0-1.11-.39-2.05-1.16-2.82a3.85 3.85 0 0 0-2.83-1.16c-1.11 0-2.05.39-2.82 1.16a3.84 3.84 0 0 0-1.16 2.82c0 1.11.39 2.06 1.16 2.83.77.77 1.71 1.16 2.82 1.16Z"/></symbol>
+            <symbol id="icon-basket" viewBox="0 0 40 40"><path fill="currentColor" d="M12.19 32c-.6 0-1.12-.22-1.55-.65A2.17 2.17 0 0 1 10 29.78V15.76c0-.61.21-1.14.64-1.57.43-.43.94-.65 1.55-.65h2.65c0-1.54.53-2.85 1.59-3.92A5.2 5.2 0 0 1 20.29 8c1.51 0 2.79.54 3.85 1.62a5.36 5.36 0 0 1 1.59 3.92h2.65c.6 0 1.12.22 1.55.65.43.43.64.96.64 1.57v14.02c0 .61-.21 1.14-.64 1.57-.43.43-.94.65-1.55.65H12.19Zm0-1.85h16.19c.1 0 .18-.04.26-.11a.37.37 0 0 0 .12-.26V15.76a.37.37 0 0 0-.12-.26.36.36 0 0 0-.26-.12H12.19a.36.36 0 0 0-.26.12.37.37 0 0 0-.11.26v14.02c0 .09.03.18.11.26.08.07.17.11.26.11Zm4.47-16.61h7.26c0-1.03-.35-1.9-1.06-2.62a3.48 3.48 0 0 0-2.57-1.07c-1.01 0-1.87.36-2.58 1.07a3.57 3.57 0 0 0-1.05 2.62Z"/></symbol>
+            <symbol id="icon-account" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11.2a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-6.4 9.6h12.8a.8.8 0 0 0 .8-.8v-3.2a4 4 0 0 0-4-4H8.8a4 4 0 0 0-4 4V20a.8.8 0 0 0 .8.8Z"/></symbol>
+            <symbol id="icon-photo" viewBox="0 0 29 29"><path fill="currentColor" d="M3.6 25.2c-.66 0-1.23-.24-1.7-.7a2.31 2.31 0 0 1-.7-1.7V8.4c0-.66.23-1.23.7-1.7.47-.47 1.04-.7 1.7-.7h3.78L9.6 3.6h7.2V6h-6.15L8.46 8.4H3.6v14.4h19.2V12h2.4v10.8c0 .66-.24 1.23-.7 1.7-.48.46-1.04.7-1.7.7H3.6ZM22.8 8.4V6h-2.4V3.6h2.4V1.2h2.4v2.4h2.4V6h-2.4v2.4h-2.4ZM13.2 21c1.5 0 2.77-.53 3.83-1.58A5.2 5.2 0 0 0 18.6 15.6c0-1.5-.53-2.78-1.57-3.83A5.21 5.21 0 0 0 13.2 10.2c-1.5 0-2.78.52-3.83 1.57A5.21 5.21 0 0 0 7.8 15.6c0 1.5.52 2.77 1.57 3.82A5.21 5.21 0 0 0 13.2 21Zm0-2.4c-.84 0-1.55-.29-2.13-.87a2.9 2.9 0 0 1-.87-2.13c0-.84.29-1.55.87-2.13a2.9 2.9 0 0 1 2.13-.87c.84 0 1.55.29 2.13.87.58.58.87 1.29.87 2.13 0 .84-.29 1.55-.87 2.13a2.9 2.9 0 0 1-2.13.87Z"/></symbol>
+            <symbol id="icon-arrow-20" viewBox="0 0 20 20"><path fill="currentColor" d="M15.22 11.25H0v-2.5h15.22l-7-7L10 0l10 10-10 10-1.78-1.75 7-7Z"/></symbol>
+            <symbol id="icon-facebook" viewBox="0 0 24 24"><path fill="currentColor" d="M13.84 24V13.36h3.55L17.93 9h-4.09V6.27c0-1.22.41-2.18 2.18-2.18h2.32V.14C17.93.14 16.57 0 14.93 0c-3.27 0-5.59 2.05-5.59 5.73V9H5.66v4.36h3.68V24h4.5Z"/></symbol>
+            <symbol id="icon-instagram" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M6.67 0h10.66A6.67 6.67 0 0 1 24 6.67v10.66A6.67 6.67 0 0 1 17.33 24H6.67A6.67 6.67 0 0 1 0 17.33V6.67A6.67 6.67 0 0 1 6.67 0Zm0 2.4h10.66a4.27 4.27 0 0 1 4.27 4.27v10.66a4.27 4.27 0 0 1-4.27 4.27H6.67a4.27 4.27 0 0 1-4.27-4.27V6.67A4.27 4.27 0 0 1 6.67 2.4ZM12 5.87a6.13 6.13 0 1 1 0 12.26 6.13 6.13 0 0 1 0-12.26Zm0 2.4a3.73 3.73 0 1 0 0 7.46 3.73 3.73 0 0 0 0-7.46Zm6.93-4.67a1.47 1.47 0 1 1 0 2.93 1.47 1.47 0 0 1 0-2.93Z"/></symbol>
+            <symbol id="icon-youtube" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M4.8 3.6h14.4A4.8 4.8 0 0 1 24 8.4v7.2a4.8 4.8 0 0 1-4.8 4.8H4.8A4.8 4.8 0 0 1 0 15.6V8.4a4.8 4.8 0 0 1 4.8-4.8Zm4.8 4.8L15.84 12 9.6 15.6V8.4Z"/></symbol>
+            <symbol id="icon-trade" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M9 8V5h6v3M3 13h18M3 8h18v12H3V8Z"/></symbol>
+            <symbol id="icon-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></symbol>
+            <symbol id="icon-close-small" viewBox="0 0 12 12"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="m3 3 6 6M9 3 3 9"/></symbol>
+            <symbol id="icon-delivery" viewBox="0 0 33.7002 26.2002"><path fill="currentColor" d="M23 0C23.4418 0 23.7997 0.358067 23.7998 0.799805V9.5H28.7139C29.1512 9.50001 29.5705 9.66876 29.8857 9.96875L29.9473 10.0303L33.2334 13.4951C33.5329 13.8109 33.7001 14.2299 33.7002 14.665V20.4004C33.7 21.3391 32.9388 22.0996 32 22.0996H28.9785C28.9927 22.2311 29 22.3647 29 22.5C28.9999 24.5434 27.3432 26.2002 25.2998 26.2002C23.2565 26.2001 21.5997 24.5433 21.5996 22.5C21.5996 22.399 21.6053 22.2991 21.6133 22.2002H11.1875C11.1954 22.2991 11.2002 22.399 11.2002 22.5C11.2001 24.5433 9.5433 26.2001 7.5 26.2002C5.45669 26.2001 3.79991 24.5433 3.7998 22.5C3.79981 22.399 3.80554 22.2991 3.81348 22.2002H0.799805L0.758789 22.1992C0.349825 22.1785 0.0218245 21.8503 0.000976562 21.4414L0 21.4004V0.799805C0.000105527 0.358132 0.358132 0.000105549 0.799805 0H23ZM7.5 20.5996C6.45079 20.5997 5.5997 21.4508 5.59961 22.5C5.59971 23.5492 6.4508 24.3993 7.5 24.3994C8.54919 24.3993 9.39931 23.5492 9.39941 22.5C9.39932 21.4508 8.54919 20.5997 7.5 20.5996ZM25.2998 20.5996C24.2506 20.5997 23.3995 21.4508 23.3994 22.5C23.3995 23.5492 24.2506 24.3993 25.2998 24.3994C26.3491 24.3994 27.2001 23.5493 27.2002 22.5C27.2001 21.4507 26.3491 20.5996 25.2998 20.5996ZM1.7998 20.4004H4.4541C5.12166 19.4339 6.23657 18.7999 7.5 18.7998C8.76336 18.7999 9.87828 19.434 10.5459 20.4004H22V1.7998H1.7998V20.4004ZM23.7998 19.1172C24.2583 18.9135 24.7658 18.7998 25.2998 18.7998C26.519 18.7998 27.6003 19.39 28.2744 20.2998H31.9004V16.2002H23.7998V19.1172ZM15.3047 10.916L10.7529 15.4688L9.47949 14.1963L12.7598 10.916L9.47949 7.63672L10.7529 6.36328L15.3047 10.916ZM23.7998 14.4004H31.6104L28.6709 11.2998H23.7998V14.4004Z"/></symbol>
+            <symbol id="icon-despatch" viewBox="0 0 29.373 26.5686"><path fill="currentColor" d="M11.6934 0.204102C12.1813 -0.0589841 12.7658 -0.0679667 13.2598 0.178711L13.3066 0.204102L24.1074 6.02832C24.6572 6.32498 24.9999 6.89969 25 7.52441V14.2168L23.2002 15.1504V9.20898L19.4463 11.1543V14.4961L17.6465 15.4297V12.0879L13.4004 14.29V24.2305L17 22.1533V24.2314L13.3477 26.3408L13.1465 26.4404C12.6654 26.639 12.1145 26.6068 11.6553 26.3447L0.857422 20.1807C0.327437 19.8781 5.05436e-05 19.3144 0 18.7041V7.52441C0.0001486 6.89969 0.342771 6.32498 0.892578 6.02832L11.6934 0.204102ZM29.373 18.4111L26.3047 21.4795L25.0312 20.207L25.96 19.2783H22.5C21.2299 19.2785 20.2002 20.3089 20.2002 21.5791C20.2005 22.849 21.2301 23.8788 22.5 23.8789H23.0439V25.6787H22.5C20.236 25.6786 18.4007 23.8431 18.4004 21.5791C18.4004 19.3148 20.2358 17.4787 22.5 17.4785H25.8945L25.0312 16.6152L26.3047 15.3428L29.373 18.4111ZM1.7998 18.6465L11.5996 24.2402V14.1621L1.7998 8.6709V18.6465ZM2.68652 7.10449L12.6162 12.6689L16.8594 10.4688L7.00293 4.77734L2.68652 7.10449ZM8.86328 3.77344L18.5967 9.39355C18.6481 9.42322 18.6967 9.45683 18.7441 9.49121L22.8193 7.37891L12.5 1.81348L8.86328 3.77344Z"/></symbol>
+            <symbol id="icon-chevron-down" viewBox="0 0 16 16"><path fill="none" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" d="m4 6 4 4 4-4"/></symbol>
+            <symbol id="icon-download" viewBox="0 0 20 20"><path fill="none" stroke="currentColor" stroke-width="1.83" stroke-linecap="round" stroke-linejoin="round" d="M10 3.33v9.17m3.33-3.33L10 12.5 6.67 9.17m-2.5 6.66h11.66"/></symbol>
+            <symbol id="icon-fact-coverage" viewBox="0 0 100 100"><path fill="currentColor" d="M32.3287 27.043L30.1012 29.2706L28.6461 27.8155V71.3252H72.3248L70.8141 69.8145L73.0416 67.587L78.4117 72.9571L73.0416 78.3272L70.8141 76.0997L72.4381 74.4756H27.7711C26.5148 74.4755 25.4967 73.4566 25.4967 72.2002V27.5899L23.816 29.2706L21.5885 27.043L26.9586 21.6729L32.3287 27.043ZM76.0719 63.8008H72.9215V58.2012H76.0719V63.8008ZM51.6979 44.7852C52.3967 44.7852 53.0289 44.947 53.5934 45.2696C54.1576 45.5787 54.601 46.0624 54.9234 46.7208C55.2594 47.3659 55.4273 48.1993 55.4273 49.2208V54.9668C55.4273 55.1144 55.3806 55.2352 55.2867 55.3292C55.1927 55.4232 55.0782 55.4707 54.9439 55.4708H52.9479C52.8135 55.4708 52.6992 55.4232 52.6051 55.3292C52.5112 55.2352 52.4645 55.1144 52.4645 54.9668V49.3819C52.4644 48.831 52.3835 48.4009 52.2223 48.0918C52.061 47.7693 51.8456 47.5407 51.5768 47.4063C51.3216 47.272 51.0328 47.2052 50.7105 47.2051C50.4283 47.2051 50.1522 47.2719 49.8834 47.4063C49.6281 47.5407 49.4136 47.7694 49.2389 48.0918C49.0776 48.4009 48.9967 48.8309 48.9967 49.3819V54.9668C48.9966 55.1145 48.9491 55.2352 48.8551 55.3292C48.7611 55.4231 48.6404 55.4707 48.4928 55.4708H46.5172C46.3693 55.4708 46.248 55.4232 46.1539 55.3292C46.06 55.2352 46.0134 55.1144 46.0133 54.9668V49.3819C46.0133 48.831 45.9323 48.4009 45.7711 48.0918C45.6098 47.7693 45.3944 47.5407 45.1256 47.4063C44.8703 47.272 44.5879 47.2051 44.2789 47.2051C43.9967 47.2052 43.7215 47.279 43.4527 47.4268C43.184 47.5612 42.9624 47.7828 42.7877 48.0918C42.6264 48.401 42.5455 48.8248 42.5455 49.3624V54.9668C42.5454 55.1145 42.4979 55.2352 42.4039 55.3292C42.3098 55.4232 42.1955 55.4708 42.0611 55.4708H40.025C39.8907 55.4707 39.7762 55.4232 39.6822 55.3292C39.5884 55.2352 39.5417 55.1144 39.5416 54.9668V45.4913C39.5416 45.3434 39.5881 45.2221 39.6822 45.128C39.7762 45.034 39.8907 44.9874 40.025 44.9874H41.9C42.0343 44.9874 42.1487 45.0341 42.2428 45.128C42.3503 45.2221 42.4039 45.3434 42.4039 45.4913V46.1768C42.6727 45.8005 43.0429 45.4778 43.5133 45.209C43.997 44.9404 44.5679 44.7987 45.2262 44.7852C46.7852 44.7583 47.8543 45.35 48.4322 46.5596C48.7413 46.0357 49.1846 45.6126 49.7623 45.2901C50.3536 44.9541 50.999 44.7852 51.6979 44.7852ZM76.0719 52.251H72.9215V46.6504H76.0719V52.251ZM60.4225 42.2735C60.9869 42.2735 61.4613 42.3676 61.8443 42.5557C62.2271 42.7371 62.5157 42.9892 62.7105 43.3116C62.9054 43.6341 63.0035 44.0074 63.0035 44.4307C63.0035 44.7532 62.9358 45.0527 62.8014 45.3282C62.6737 45.6035 62.4854 45.8689 62.2369 46.1241C61.9883 46.3727 61.6929 46.6317 61.3502 46.9004L60.1607 48.0899H62.902C62.9758 48.0899 63.0366 48.1132 63.0836 48.1602C63.1306 48.2072 63.1539 48.2679 63.1539 48.3418V49.1983C63.1539 49.2722 63.1306 49.3329 63.0836 49.3799C63.0366 49.4269 62.9758 49.4502 62.902 49.4502H57.9127C57.8388 49.4502 57.7781 49.427 57.7311 49.3799C57.6841 49.3329 57.6607 49.2721 57.6607 49.1983V48.5938C57.6607 48.54 57.6739 48.4692 57.7008 48.3819C57.7344 48.2878 57.8052 48.1968 57.9127 48.1094L59.2437 46.7891C59.7341 46.4129 60.1309 46.0941 60.4332 45.8321C60.7421 45.5702 60.9699 45.3312 61.1178 45.1163C61.2656 44.9013 61.3404 44.6928 61.3404 44.4913C61.3404 44.2292 61.2656 44.0138 61.1178 43.8458C60.9766 43.6713 60.7448 43.584 60.4225 43.584C60.2076 43.5841 60.0263 43.6307 59.8785 43.7247C59.7374 43.812 59.6261 43.9303 59.5455 44.0782C59.465 44.2259 59.4112 44.387 59.3844 44.5616C59.3642 44.6489 59.3207 44.7096 59.2535 44.7432C59.1931 44.7768 59.1292 44.793 59.0621 44.793H57.9937C57.9268 44.793 57.8729 44.7735 57.8326 44.7334C57.7924 44.6865 57.7721 44.6357 57.7721 44.5821C57.7788 44.273 57.8426 43.9806 57.9635 43.7051C58.0912 43.4296 58.2692 43.1838 58.4977 42.9688C58.7261 42.7539 59.0014 42.5858 59.3238 42.4649C59.6463 42.3372 60.0126 42.2735 60.4225 42.2735ZM76.0719 41.0508H72.9215V35.4512H76.0719V41.0508ZM76.0719 29.501H72.9215V27.0508H70.4713V23.9004H76.0719V29.501ZM41.7721 27.0508H36.1715V23.9004H41.7721V27.0508ZM53.3219 27.0508H47.7213V23.9004H53.3219V27.0508ZM64.5221 27.0508H58.9215V23.9004H64.5221V27.0508Z"/></symbol>
+            <symbol id="icon-fact-application" viewBox="0 0 100 100"><path fill="currentColor" d="M49.9733 72.0496C50.9395 72.0498 51.723 72.8334 51.7233 73.7996C51.7233 74.766 50.9396 75.5495 49.9733 75.5496C49.0068 75.5496 48.2233 74.7661 48.2233 73.7996C48.2235 72.8333 49.0069 72.0496 49.9733 72.0496ZM32.2672 67.2225C32.6909 66.3538 33.7393 65.9931 34.608 66.4168C35.4763 66.8405 35.8371 67.8881 35.4137 68.7566C34.99 69.6253 33.9415 69.986 33.0729 69.5623C32.2045 69.1385 31.8436 68.091 32.2672 67.2225ZM65.3932 66.4168C66.2618 65.9934 67.3094 66.3539 67.733 67.2225C68.1566 68.091 67.7958 69.1385 66.9274 69.5623C66.0587 69.986 65.0102 69.6253 64.5865 68.7566C64.1631 67.888 64.5246 66.8404 65.3932 66.4168ZM49.9733 65.4002C50.9396 65.4003 51.7233 66.1838 51.7233 67.1502C51.7232 68.1165 50.9396 68.9 49.9733 68.9002C49.0068 68.9002 48.2233 68.1166 48.2233 67.1502C48.2233 66.1837 49.0068 65.4002 49.9733 65.4002ZM35.0289 61.5604C35.4526 60.6917 36.5011 60.331 37.3697 60.7547C38.238 61.1785 38.599 62.226 38.1754 63.0945C37.7517 63.9632 36.7033 64.3239 35.8346 63.9002C34.9662 63.4765 34.6055 62.4289 35.0289 61.5604ZM62.6315 60.7547C63.5001 60.3312 64.5476 60.6917 64.9713 61.5604C65.3947 62.4289 65.034 63.4765 64.1656 63.9002C63.297 64.3239 62.2485 63.9632 61.8248 63.0945C61.4012 62.2259 61.7628 61.1784 62.6315 60.7547ZM49.9733 58.7498C50.9395 58.75 51.7231 59.5335 51.7233 60.4998C51.7233 61.4662 50.9396 62.2497 49.9733 62.2498C49.0068 62.2498 48.2233 61.4663 48.2233 60.4998C48.2234 59.5334 49.0068 58.7498 49.9733 58.7498ZM21.7887 58.5359C22.4601 57.8409 23.5681 57.8216 24.2633 58.493C24.9585 59.1644 24.9776 60.2723 24.3063 60.9676C23.6349 61.6628 22.5269 61.6819 21.8316 61.0105C21.1366 60.3391 21.1174 59.2311 21.7887 58.5359ZM75.7369 58.493C76.4321 57.8217 77.5401 57.841 78.2115 58.5359C78.8829 59.2312 78.8637 60.3392 78.1686 61.0105C77.4733 61.6819 76.3653 61.6628 75.694 60.9676C75.0227 60.2724 75.0418 59.1644 75.7369 58.493ZM37.7906 55.8973C38.2144 55.0288 39.2629 54.668 40.1315 55.0916C41 55.5154 41.3608 56.5638 40.9371 57.4324C40.5134 58.301 39.4649 58.6617 38.5963 58.2381C37.7277 57.8143 37.367 56.7659 37.7906 55.8973ZM59.8697 55.0916C60.7382 54.6683 61.7859 55.0289 62.2096 55.8973C62.6332 56.7659 62.2725 57.8144 61.4039 58.2381C60.5353 58.6617 59.4868 58.301 59.0631 57.4324C58.6394 56.5637 59.0011 55.5153 59.8697 55.0916ZM26.1647 54.0047C26.836 53.3094 27.944 53.2903 28.6393 53.9617C29.3343 54.6331 29.3535 55.7402 28.6822 56.4354C28.0108 57.1306 26.9029 57.1507 26.2076 56.4793C25.5125 55.808 25.4935 54.6999 26.1647 54.0047ZM71.3609 53.9617C72.0562 53.2903 73.1642 53.3094 73.8356 54.0047C74.5067 54.6999 74.4878 55.808 73.7926 56.4793C73.0973 57.1507 71.9894 57.1306 71.318 56.4354C70.6467 55.7402 70.6659 54.6331 71.3609 53.9617ZM49.9733 52.1004C50.9396 52.1005 51.7233 52.884 51.7233 53.8504C51.7231 54.8166 50.9395 55.6002 49.9733 55.6004C49.0069 55.6004 48.2234 54.8167 48.2233 53.8504C48.2233 52.8839 49.0068 52.1004 49.9733 52.1004ZM40.5524 50.2352C40.976 49.3665 42.0245 49.0058 42.8932 49.4295C43.7615 49.8532 44.1222 50.9008 43.6988 51.7693C43.2752 52.638 42.2267 52.9987 41.358 52.575C40.4897 52.1512 40.1287 51.1037 40.5524 50.2352ZM57.108 49.4295C57.9766 49.0061 59.0242 49.3666 59.4479 50.2352C59.8715 51.1037 59.5106 52.1512 58.6422 52.575C57.7735 52.9987 56.7251 52.638 56.3014 51.7693C55.878 50.9007 56.2395 49.8531 57.108 49.4295ZM30.5416 49.4725C31.213 48.7775 32.3211 48.7582 33.0162 49.4295C33.7111 50.1009 33.7305 51.209 33.0592 51.9041C32.3878 52.5993 31.2798 52.6184 30.5846 51.9471C29.8893 51.2757 29.8702 50.1677 30.5416 49.4725ZM66.985 49.4295C67.6801 48.7583 68.7872 48.7775 69.4586 49.4725C70.13 50.1677 70.1109 51.2757 69.4156 51.9471C68.7204 52.6183 67.6124 52.5993 66.941 51.9041C66.2697 51.2089 66.2897 50.1009 66.985 49.4295ZM49.9733 45.45C50.9396 45.4502 51.7232 46.2336 51.7233 47.2C51.7233 48.1664 50.9396 48.9498 49.9733 48.95C49.0068 48.95 48.2233 48.1665 48.2233 47.2C48.2233 46.2335 49.0068 45.45 49.9733 45.45ZM34.9176 44.9402C35.589 44.2452 36.697 44.226 37.3922 44.8973C38.0874 45.5687 38.1066 46.6766 37.4352 47.3719C36.7638 48.0671 35.6558 48.0862 34.9606 47.4148C34.2656 46.7434 34.2463 45.6354 34.9176 44.9402ZM62.608 44.8973C63.3032 44.226 64.4112 44.2453 65.0826 44.9402C65.7539 45.6354 65.7346 46.7434 65.0397 47.4148C64.3444 48.0862 63.2364 48.0671 62.565 47.3719C61.8937 46.6766 61.9128 45.5686 62.608 44.8973ZM43.3141 44.573C43.7378 43.7044 44.7862 43.3437 45.6549 43.7674C46.5232 44.1912 46.884 45.2387 46.4606 46.1072C46.0369 46.9759 44.9884 47.3366 44.1197 46.9129C43.2514 46.4891 42.8906 45.4416 43.3141 44.573ZM54.3463 43.7674C55.2149 43.3439 56.2625 43.7045 56.6861 44.573C57.1097 45.4416 56.7489 46.4891 55.8805 46.9129C55.0118 47.3366 53.9633 46.9759 53.5397 46.1072C53.1161 45.2386 53.4777 44.191 54.3463 43.7674ZM39.2936 40.409C39.965 39.7137 41.0729 39.6946 41.7682 40.366C42.4634 41.0374 42.4835 42.1454 41.8121 42.8406C41.1408 43.5358 40.0328 43.5547 39.3375 42.8836C38.6424 42.2123 38.6224 41.1042 39.2936 40.409ZM58.232 40.366C58.9273 39.6946 60.0353 39.7137 60.7066 40.409C61.3778 41.1042 61.3579 42.2123 60.6627 42.8836C59.9676 43.5545 58.8604 43.5353 58.1891 42.8406C57.5177 42.1454 57.5368 41.0374 58.232 40.366ZM61.5231 27.6004H55.9234V34.4246C55.9234 37.614 53.3375 40.2 50.1481 40.2C46.9586 40.2 44.3727 37.6141 44.3727 34.4246V27.6004H39.1227V24.45H61.5231V27.6004Z"/></symbol>
+            <symbol id="icon-fact-time" viewBox="0 0 100 100"><path fill="currentColor" d="M62.8384 55.6426C63.0987 55.0761 63.9042 55.0761 64.1645 55.6426L69.0249 66.2197C69.4211 67.0818 69.6265 68.02 69.6265 68.9688V69.4248C69.6265 72.8075 66.8842 75.5498 63.5015 75.5498C60.1188 75.5497 57.3765 72.8075 57.3765 69.4248V68.9688C57.3765 68.02 57.5818 67.0818 57.978 66.2197L62.8384 55.6426ZM56.3267 27.6006H51.4263V31.3252C52.3347 31.3866 53.2419 31.505 54.1411 31.6855C56.5695 32.1734 58.8826 33.085 60.98 34.3682L62.8501 32.5L65.0767 34.7275L63.5669 36.2363C63.8777 36.4981 64.1835 36.7675 64.48 37.0479C66.3782 38.8432 67.9204 40.969 69.0454 43.3096C69.0598 43.3394 69.0741 43.3695 69.0884 43.3994C69.1691 43.5694 69.2474 43.7409 69.3237 43.9131C69.3515 43.9755 69.3796 44.0379 69.4067 44.1006C69.4691 44.2452 69.5291 44.3911 69.5884 44.5371C69.6304 44.6403 69.672 44.7438 69.7124 44.8477C69.7521 44.9501 69.7914 45.0531 69.8296 45.1562C69.8818 45.2969 69.9327 45.4383 69.9819 45.5801C70.0117 45.666 70.0402 45.7526 70.0688 45.8389C70.1181 45.9868 70.1664 46.1352 70.2124 46.2842C70.2368 46.3634 70.2611 46.4429 70.2847 46.5225C70.3318 46.6817 70.3769 46.8417 70.4204 47.002C70.4295 47.0356 70.4408 47.0689 70.4497 47.1025H70.4468C70.9269 48.9084 71.175 50.7789 71.1704 52.668L68.02 52.6602C68.0239 51.0297 67.8086 49.416 67.3901 47.8604C67.1462 46.9517 66.8319 46.068 66.4556 45.2148C66.1275 44.4744 65.7504 43.7541 65.3237 43.0605C63.5541 40.1837 61.0205 37.8685 58.0102 36.377C55.0002 34.8856 51.6312 34.276 48.2856 34.6162C44.9399 34.9567 41.747 36.234 39.0718 38.3066C36.3965 40.3796 34.3444 43.166 33.1499 46.3486C32.661 47.6515 32.3264 49.0001 32.1431 50.3662C32.1236 50.5236 32.1038 50.6818 32.0884 50.8398C31.7584 54.2232 32.3735 57.632 33.8618 60.6797C35.3502 63.7274 37.6525 66.292 40.5063 68.084C43.36 69.8758 46.6524 70.8251 50.0102 70.8252V73.9746C48.1397 73.9746 46.2877 73.7212 44.4995 73.2344L44.4731 73.334C40.6556 72.311 37.204 70.2295 34.5093 67.3271C31.8147 64.4248 29.9848 60.8175 29.2241 56.915C28.7781 54.6265 28.713 52.2894 29.0151 49.9961C29.4783 46.2304 30.9259 42.6518 33.2192 39.6338C34.178 38.3721 35.271 37.23 36.4712 36.2217L34.977 34.7275L37.2046 32.5L39.062 34.3574C40.1667 33.6835 41.3346 33.1087 42.5532 32.6455C44.401 31.9434 46.3278 31.5085 48.2768 31.3467V27.6006H43.727V24.4502H56.3267V27.6006ZM51.7768 54.8525L45.3647 61.2637L43.1382 59.0371L48.6265 53.5479V38.7998H51.7768V54.8525Z"/></symbol>
+        </svg>
+
+        <!--
+            Header and main menu
+            - A regular Bootstrap navbar: the menu button toggles #mainMenu (Collapse), which opens inline
+              on mobile and sits in the header row from lg up.
+            - Surfaces and Help & advice are Bootstrap dropdowns inside it (see the note above them).
+        -->
+        <header class="site-header">
+            <!-- Utility bar: the message on its own on mobile; account and trade sign-in join it from lg up
+                 (on mobile those two are in the menu, under "Your account") -->
+            <div class="site-header__utility">
+                <div class="container-fluid">
+                    <p class="site-header__utility-message">Free UK mainland delivery</p>
+                    <div class="site-header__utility-links d-none d-lg-flex">
+                        <a class="site-header__account" href="#">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-account"></use></svg>
+                            Account
+                        </a>
+                        <a class="site-header__trade" href="#">Trade sign-in</a>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-expand-lg site-header__nav" aria-label="Main">
+                <div class="container-fluid">
+                    <div class="site-header__bar">
+                        <button class="menu-toggle d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Menu">
+                            <span class="menu-toggle__bar"></span>
+                            <span class="menu-toggle__bar"></span>
+                            <span class="menu-toggle__bar"></span>
+                        </button>
+                        <a class="site-header__logo" href="/">
+                            <img src="/dist/images/floorseal-logo.svg" width="208" height="36" alt="Floorseal">
+                        </a>
+                        <a class="basket-button" href="#" aria-label="Basket">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-basket"></use></svg>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="mainMenu">
+                        <div class="mobile-menu">
+                            <ul class="navbar-nav mobile-menu__list mobile-menu__list--main">
+                                <li class="nav-item">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Cleaners
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Sealers
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <!-- Accessories is in the mobile menu only -->
+                                <li class="nav-item d-lg-none">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#">
+                                        Accessories
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                </li>
+                                <!--
+                                    Surfaces and Help & advice: one Bootstrap dropdown each, shared by mobile and desktop.
+                                    - Mobile: the .dropdown-menu is the panel that slides in over the main menu, with a back row
+                                      and plus/minus groups (Bootstrap Collapse; data-bs-parent keeps one group open at a time).
+                                    - Desktop: the same .dropdown-menu is the full-width panel under the header. The groups are
+                                      always open, in a Bootstrap .row: each li.nav-submenu__col is a .col-lg-* holding the groups
+                                      stacked in it. On mobile the columns disappear (display: contents) and the groups form
+                                      one list; order-1 puts Roofs and Wood & decking at the end of it.
+                                    - data-bs-auto-close="outside" stops a tap on a group closing the whole panel.
+                                    - Each group title is written twice: a link for desktop, a button for mobile.
+                                -->
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        Surfaces
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                    <div class="dropdown-menu nav-submenu">
+                                        <div class="nav-submenu__back-row d-lg-none">
+                                            <button class="nav-submenu__back" type="button" data-submenu-back>
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+                                                Menu
+                                            </button>
+                                            <p class="nav-submenu__title">Surfaces</p>
+                                        </div>
+                                        <div class="nav-submenu__body container-fluid">
+                                            <ul class="row mobile-menu__list nav-submenu__groups" id="menuSurfacesGroups">
+                                                <li class="d-lg-none">
+                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                        All surfaces
+                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                    </a>
+                                                </li>
+                                                <li class="col-lg-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Patio &amp; paving</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesPatio" aria-controls="surfacesPatio" aria-expanded="false">
+                                                                Patio &amp; paving
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesPatio" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All patio &amp; paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Indian sandstone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Limestone paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Black limestone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Slate paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Yorkstone &amp; flagstone</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Granite pavers</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Outdoor porcelain</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-2 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Driveways</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesDriveways" aria-controls="surfacesDriveways" aria-expanded="false">
+                                                                Driveways
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesDriveways" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All driveways</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Block paving</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Tarmac</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Resin bound</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Concrete</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-submenu__group order-1">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                Roofs
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-4 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Interior floors &amp; tiles</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesInterior" aria-controls="surfacesInterior" aria-expanded="false">
+                                                                Interior floors &amp; tiles
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesInterior" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist mobile-menu__sublist--two-col">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All interior floors &amp; tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Natural stone floors</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Travertine tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Limestone tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Slate tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Victorian tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Quarry tiles</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Terracotta</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Ceramic</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Marble</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Terrazzo</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Vinyl</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Indoor porcelain</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="col-lg-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Brick, render &amp; masonry</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#surfacesBrick" aria-controls="surfacesBrick" aria-expanded="false">
+                                                                Brick, render &amp; masonry
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="surfacesBrick" data-bs-parent="#menuSurfacesGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li class="d-lg-none"><a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">All brick, render &amp; masonry</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Exterior brick</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Interior exposed brick</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Render &amp; masonry</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                        <li class="nav-submenu__group order-1">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                Wood &amp; decking
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Desktop only: footer strip -->
+                                        <div class="nav-submenu__footer d-none d-lg-flex">
+                                            <a class="nav-submenu__footer-link" href="#">
+                                                All surfaces
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                            <a class="nav-submenu__footer-link nav-submenu__footer-link--dark" href="#">
+                                                <svg class="icon icon--28" aria-hidden="true"><use href="#icon-photo"></use></svg>
+                                                Not sure what surface you have? Upload a photo
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown position-static">
+                                    <a class="nav-link mobile-menu__item mobile-menu__item--lg" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        Help &amp; advice
+                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                    </a>
+                                    <div class="dropdown-menu nav-submenu">
+                                        <div class="nav-submenu__back-row d-lg-none">
+                                            <button class="nav-submenu__back" type="button" data-submenu-back>
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-back"></use></svg>
+                                                Menu
+                                            </button>
+                                            <p class="nav-submenu__title">Help &amp; advice</p>
+                                        </div>
+                                        <div class="nav-submenu__body container-fluid">
+                                            <ul class="row mobile-menu__list nav-submenu__groups" id="menuHelpGroups">
+                                                <li class="order-first d-lg-none">
+                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                        All help &amp; advice
+                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                    </a>
+                                                </li>
+                                                <li class="col-lg-4 col-xl-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item d-none d-lg-flex" href="#">Solve a problem</a>
+                                                            <button class="mobile-menu__item mobile-menu__item--lg d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#helpProblems" aria-controls="helpProblems" aria-expanded="false">
+                                                                Solve a problem
+                                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                                            </button>
+                                                            <div class="collapse" id="helpProblems" data-bs-parent="#menuHelpGroups">
+                                                                <ul class="mobile-menu__sublist">
+                                                                    <li><a class="mobile-menu__sublink" href="#">Black spot</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Green growth, moss &amp; algae</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Rust marks</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Cement &amp; grout haze</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Efflorescence</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Tyre marks &amp; oil</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Faded colour</a></li>
+                                                                    <li><a class="mobile-menu__sublink" href="#">Dusty concrete floors</a></li>
+                                                                    <li>
+                                                                        <a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">
+                                                                            All problems
+                                                                            <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- How-to guides: a plain link on mobile; on desktop the same link is the column title, with its guides listed under it -->
+                                                <li class="col-lg-4 col-xl-2 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                How-to guides
+                                                                <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                            </a>
+                                                            <ul class="mobile-menu__sublist d-none d-lg-block">
+                                                                <li><a class="mobile-menu__sublink" href="#">Product guides</a></li>
+                                                                <li><a class="mobile-menu__sublink" href="#">Surface guides</a></li>
+                                                                <li><a class="mobile-menu__sublink" href="#">Cleaning guides</a></li>
+                                                                <li><a class="mobile-menu__sublink" href="#">Sealing guides</a></li>
+                                                                <li>
+                                                                    <a class="mobile-menu__sublink mobile-menu__sublink--all" href="#">
+                                                                        All how-to guides
+                                                                        <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- Get help: a titled column of links on desktop, four plain rows on mobile -->
+                                                <li class="col-lg-4 col-xl-3 nav-submenu__col">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group">
+                                                            <p class="mobile-menu__item d-none d-lg-flex">Get help</p>
+                                                            <ul class="mobile-menu__list mobile-menu__list--rows">
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Upload a photo
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Technical information
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Frequently asked questions
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="mobile-menu__item mobile-menu__item--lg" href="#">
+                                                                        Contact us
+                                                                        <svg class="icon d-lg-none" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <!-- Product selector card: last column on desktop, straight after the first link on mobile (order-first) -->
+                                                <li class="col-lg-12 col-xl-4 nav-submenu__col nav-submenu__col--fill">
+                                                    <ul class="mobile-menu__list">
+                                                        <li class="nav-submenu__group mobile-menu__promo-wrap order-first">
+                                                            <div class="mobile-menu__promo">
+                                                                <div class="mobile-menu__promo-content">
+                                                                    <!-- Icon placeholder in the design -->
+                                                                    <div class="mobile-menu__promo-icon"></div>
+                                                                    <div class="mobile-menu__promo-copy">
+                                                                        <p class="mobile-menu__promo-title">Find the right product</p>
+                                                                        <p class="mobile-menu__promo-text">Answer a few questions about your surface and the result you want.</p>
+                                                                    </div>
+                                                                </div>
+                                                                <a class="mobile-menu__button" href="#">
+                                                                    Start the product selector
+                                                                    <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- Desktop only: footer strip -->
+                                        <div class="nav-submenu__footer d-none d-lg-flex">
+                                            <a class="nav-submenu__footer-link" href="#">
+                                                All help &amp; advice
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                            <a class="nav-submenu__footer-link nav-submenu__footer-link--dark" href="#">
+                                                <svg class="icon icon--28" aria-hidden="true"><use href="#icon-photo"></use></svg>
+                                                Not sure what surface you have? Upload a photo
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <!--
+                                Site search. The form is used on mobile (moved to the top of the menu with order-first)
+                                and on wide desktops (xxl up, right of the links). Between lg and xxl there isn't room
+                                for the field, so a button links to the search page instead.
+                                Shopify: the form action and the link href both become {{ routes.search_url }}.
+                                name="q" and the hidden options[prefix]=last field are what Shopify search expects,
+                                as in Horizon's own form. The outer .site-search is only layout, so it can become
+                                Horizon's <predictive-search-component> (with the results panel inside it) without restyling.
+                            -->
+                            <div class="site-search order-first order-lg-0">
+                                <form class="site-search__form d-lg-none d-xxl-flex" action="/search" method="get" role="search">
+                                    <label class="visually-hidden" for="siteSearchInput">Search products and guides</label>
+                                    <input class="site-search__input" id="siteSearchInput" type="search" name="q" placeholder="Search products &amp; guides" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                                    <input type="hidden" name="options[prefix]" value="last">
+                                    <button class="site-search__submit" type="submit" aria-label="Search">
+                                        <svg class="icon icon--24" aria-hidden="true"><use href="#icon-search"></use></svg>
+                                    </button>
+                                </form>
+                                <a class="site-search__link d-none d-lg-flex d-xxl-none" href="/search" aria-label="Search">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-search"></use></svg>
+                                </a>
+                            </div>
+
+                            <div class="mobile-menu__account d-lg-none">
+                                <p class="mobile-menu__label">Your account</p>
+                                <a class="mobile-menu__card" href="#">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-account"></use></svg>
+                                    <span class="mobile-menu__card-text">
+                                        <span class="mobile-menu__card-title">Account</span>
+                                        <span class="mobile-menu__card-desc">Sign in, orders and reorder</span>
+                                    </span>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                </a>
+                                <a class="mobile-menu__card mobile-menu__card--trade" href="#">
+                                    <svg class="icon icon--24" aria-hidden="true"><use href="#icon-trade"></use></svg>
+                                    <span class="mobile-menu__card-text">
+                                        <span class="mobile-menu__card-title">Trade account</span>
+                                        <span class="mobile-menu__card-desc">Trade sign-in and applications</span>
+                                    </span>
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                </a>
+                            </div>
+
+                            <div class="mobile-menu__more d-lg-none">
+                                <p class="mobile-menu__label">More</p>
+                                <ul class="mobile-menu__more-links">
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">About Floorseal</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main id="MainContent">
+            <!--
+                Breadcrumb row (from md): the breadcrumb, with the reviews.io rating badge on the right
+                from lg and under it between md and lg.
+                Shopify: the breadcrumb is built by the theme. The badge is the reviews.io app's widget,
+                which replaces the temporary space below.
+            -->
+            <div class="product-breadcrumb d-none d-md-block">
+                <div class="container-fluid">
+                    <div class="row align-items-center product-breadcrumb__row">
+                        <div class="col-12 col-lg">
+                            <nav aria-label="Breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="collection.html">Cleaners</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Black Spot Remover Plus</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-12 col-lg-auto">
+                            <!-- Temporary space for the reviews.io rating badge -->
+                            <div style="width: 400px; height: 20px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                Buy section: gallery and purchase panel.
+                Shopify: the gallery is product.media (the theme has its own gallery component; this one is
+                Splide, js/custom/product.js). A gallery image can carry a caption, which the theme draws over
+                the bottom of the image (a metaobject of image + heading), so the text is editable and stays
+                off the thumbnails. The images are placeholders that show the size to supply (1500 x 1500).
+                The title, summary and points are product fields and metafields.
+                The rating line is the reviews.io app. The size options are the product's variants: radio buttons
+                in a fieldset, as in Horizon's variant picker, with each size's coverage from a variant metafield.
+                The form posts to /cart/add with the variant id and quantity, as Horizon's product form does.
+                The delivery notes are section settings.
+                Not designed yet: hover states, sold-out sizes.
+            -->
+            <section class="product-buy">
+                <div class="container-fluid">
+                    <div class="row product-buy__row">
+                        <div class="col-md-6">
+                            <div class="product-gallery">
+                                <div class="splide" role="group" aria-label="Product images">
+                                    <div class="splide__track">
+                                        <ul class="splide__list">
+                                        <li class="splide__slide">
+                                            <div class="product-gallery__image">
+                                                <img src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="Black Spot Remover Plus, 5 litre container">
+                                            </div>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <figure class="product-gallery__image">
+                                                <img src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="" loading="lazy">
+                                                <figcaption class="product-gallery__caption">Removes black spot staining &amp; algae quickly</figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <figure class="product-gallery__image">
+                                                <img src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="" loading="lazy">
+                                                <figcaption class="product-gallery__caption">Easy to use simply spray on and leave to work its magic</figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <figure class="product-gallery__image">
+                                                <img src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="" loading="lazy">
+                                                <figcaption class="product-gallery__caption">Removes black spot on all patio and path surfaces</figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <figure class="product-gallery__image">
+                                                <img src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="" loading="lazy">
+                                                <figcaption class="product-gallery__caption">Stunning results, removes all black spot and algae.</figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <figure class="product-gallery__image">
+                                                <img src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="" loading="lazy">
+                                                <figcaption class="product-gallery__caption">No need to pressure wash simply hose off</figcaption>
+                                            </figure>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <div class="product-gallery__image">
+                                                <img src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="" loading="lazy">
+                                            </div>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product-gallery__thumbs d-none d-md-block">
+                                    <ul class="row row-cols-5 g-3">
+                                    <li class="col">
+                                        <button class="product-gallery__thumb" type="button" aria-label="Show image 1 of 7">
+                                            <img src="https://placehold.co/256x256/D9DBE0/6B7380/png" width="256" height="256" alt="" loading="lazy">
+                                        </button>
+                                    </li>
+                                    <li class="col">
+                                        <button class="product-gallery__thumb" type="button" aria-label="Show image 2 of 7">
+                                            <img src="https://placehold.co/256x256/D9DBE0/6B7380/png" width="256" height="256" alt="" loading="lazy">
+                                        </button>
+                                    </li>
+                                    <li class="col">
+                                        <button class="product-gallery__thumb" type="button" aria-label="Show image 3 of 7">
+                                            <img src="https://placehold.co/256x256/D9DBE0/6B7380/png" width="256" height="256" alt="" loading="lazy">
+                                        </button>
+                                    </li>
+                                    <li class="col">
+                                        <button class="product-gallery__thumb" type="button" aria-label="Show image 4 of 7">
+                                            <img src="https://placehold.co/256x256/D9DBE0/6B7380/png" width="256" height="256" alt="" loading="lazy">
+                                        </button>
+                                    </li>
+                                    <li class="col">
+                                        <button class="product-gallery__thumb" type="button" aria-label="Show image 5 of 7">
+                                            <img src="https://placehold.co/256x256/D9DBE0/6B7380/png" width="256" height="256" alt="" loading="lazy">
+                                        </button>
+                                    </li>
+                                    <li class="col">
+                                        <button class="product-gallery__thumb" type="button" aria-label="Show image 6 of 7">
+                                            <img src="https://placehold.co/256x256/D9DBE0/6B7380/png" width="256" height="256" alt="" loading="lazy">
+                                        </button>
+                                    </li>
+                                    <li class="col">
+                                        <button class="product-gallery__thumb" type="button" aria-label="Show image 7 of 7">
+                                            <img src="https://placehold.co/256x256/D9DBE0/6B7380/png" width="256" height="256" alt="" loading="lazy">
+                                        </button>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="product-info">
+                                <h1 class="h2 product-info__title">Black Spot Remover Plus</h1>
+                                <a class="product-info__rating" href="#reviews">
+                                    <span class="product-info__stars" aria-hidden="true">★★★★★</span>
+                                    <span><span class="visually-hidden">Rated</span> 4.9 &nbsp;·&nbsp; Read 300+ reviews</span>
+                                </a>
+                                <p class="product-info__summary">Black Spot Remover Plus is a very powerful black spot remover that specifically removes black spot lichen from patio’s and paving slabs.</p>
+                                <ul class="product-info__points">
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Significantly stronger than normal patio cleaners &amp; other black spot removers
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        An excellent black spot remover for cleaning Indian sandstones, Yorkshire sandstone flags, block pavers and concrete
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Many verified 5 star product reviews from users
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Easy to use, apply &amp; allow to dwell, keep the surface wet with product &amp; rinse off
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Removes black spot lichen, algae, bird droppings, mould, dirt &amp; grime
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Can be used without the need for a pressure washer
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Renovates surfaces you thought were past saving!
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Select from 5 litre, 10 litre &amp; 20 litre containers
+                                    </li>
+                                </ul>
+                                <a class="btn btn-outline-yellow product-info__guide" href="#">
+                                    View the user guide
+                                    <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                </a>
+
+                                <form class="product-form" action="/cart/add" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                                    <input type="hidden" name="form_type" value="product">
+                                    <input type="hidden" name="utf8" value="✓">
+                                    <input type="hidden" name="id" value="">
+
+                                    <fieldset class="product-form__sizes">
+                                        <legend class="product-form__legend">Choose size</legend>
+                                        <div class="row product-form__size-row">
+                                            <div class="col-12 col-xl-4">
+                                                <input class="size-option__input visually-hidden" type="radio" name="Size" id="productSize1" value="5 litre" data-price="£29.95" checked>
+                                                <label class="size-option" for="productSize1">
+                                                    <span class="size-option__name">5 litre</span>
+                                                    <span class="size-option__price">£29.95</span>
+                                                    <span class="size-option__coverage">covers 20–25 m²</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-xl-4">
+                                                <input class="size-option__input visually-hidden" type="radio" name="Size" id="productSize2" value="10 litre" data-price="£54.95">
+                                                <label class="size-option" for="productSize2">
+                                                    <span class="size-option__name">10 litre</span>
+                                                    <span class="size-option__price">£54.95</span>
+                                                    <span class="size-option__coverage">covers 40–50 m²</span>
+                                                </label>
+                                            </div>
+                                            <div class="col-12 col-xl-4">
+                                                <input class="size-option__input visually-hidden" type="radio" name="Size" id="productSize3" value="20 litre" data-price="£79.95">
+                                                <label class="size-option" for="productSize3">
+                                                    <span class="size-option__name">20 litre</span>
+                                                    <span class="size-option__price">£79.95</span>
+                                                    <span class="size-option__coverage">covers 80–100 m²</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <p class="product-form__price">
+                                        <span class="product-form__amount">£29.95</span>
+                                        <span class="product-form__vat">inc. VAT</span>
+                                    </p>
+
+                                    <div class="product-form__actions">
+                                        <div class="quantity-selector">
+                                            <button type="button" name="minus" aria-label="Decrease quantity">–</button>
+                                            <input type="number" name="quantity" value="1" min="1" step="1" inputmode="numeric" aria-label="Quantity">
+                                            <button type="button" name="plus" aria-label="Increase quantity">+</button>
+                                        </div>
+                                        <button class="btn btn-yellow product-form__add" type="submit" name="add">Add to basket</button>
+                                    </div>
+                                </form>
+
+                                <ul class="row product-notes">
+                                    <li class="col-6">
+                                        <svg class="icon" viewBox="0 0 33.7 26.2" aria-hidden="true"><use href="#icon-delivery"></use></svg>
+                                        <p>Free UK mainland delivery<span class="d-none d-xl-inline"><br>1–2 working days</span></p>
+                                    </li>
+                                    <li class="col-6">
+                                        <svg class="icon" viewBox="0 0 29.4 26.6" aria-hidden="true"><use href="#icon-despatch"></use></svg>
+                                        <p>Same-day despatch<br>Order by 1pm Mon–Fri</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Quick facts: three facts about the product, each an icon, a label and a value.
+                Shopify: a theme section fed by product metafields (or blocks), one per fact.
+            -->
+            <section class="quick-facts">
+                <div class="container-fluid">
+                    <div class="quick-facts__panel">
+                        <ul class="row quick-facts__list">
+                            <li class="col-md-4 quick-facts__fact">
+                                <span class="quick-facts__icon"><svg aria-hidden="true"><use href="#icon-fact-coverage"></use></svg></span>
+                                <p class="quick-facts__text">
+                                    <span class="quick-facts__label">Coverage</span>
+                                    <span class="quick-facts__value">~4 m² per litre<br>20 m² per 5 L</span>
+                                </p>
+                            </li>
+                            <li class="col-md-4 quick-facts__fact">
+                                <span class="quick-facts__icon"><svg aria-hidden="true"><use href="#icon-fact-application"></use></svg></span>
+                                <p class="quick-facts__text">
+                                    <span class="quick-facts__label">Application</span>
+                                    <span class="quick-facts__value">Sprayer or<br>watering can</span>
+                                </p>
+                            </li>
+                            <li class="col-md-4 quick-facts__fact">
+                                <span class="quick-facts__icon"><svg aria-hidden="true"><use href="#icon-fact-time"></use></svg></span>
+                                <p class="quick-facts__text">
+                                    <span class="quick-facts__label">Fast acting</span>
+                                    <span class="quick-facts__value">Easy to use,<br>deep cleaning</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Intro: a centred heading and opening paragraph, a "Read more" link that opens the
+                rest of the description, and the two document links.
+                Shopify: the heading and both documents are product metafields; the paragraphs are
+                the product description, with everything after the first paragraph in the collapse.
+            -->
+            <section class="product-intro">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10 col-xl-9 product-intro__inner">
+                            <h2 class="product-intro__title">Powerful, targeted black spot elimination for patios and paving</h2>
+                            <div class="product-intro__text">
+                                <p>Anyone who has tried to remove black spot lichen from a patio or flagstones will know how difficult it is. Black spot does not respond to pressure washing alone because it is deeply ingrained, and bleach simply doesn’t work. Black Spot Remover Plus is made for natural stone, block pavers and concrete patios.</p>
+                                <div class="collapse" id="productIntroMore">
+                                    <!-- Placeholder copy: the rest of the product description goes here -->
+                                    <p>It is significantly stronger than normal patio cleaners and other black spot removers, and is an excellent choice for cleaning Indian sandstones, Yorkshire sandstone flags, block pavers and concrete. As well as black spot lichen it removes algae, bird droppings, mould, dirt and grime.</p>
+                                    <p>It is easy to use: apply and allow to dwell, keep the surface wet with product, then rinse off. It can be used without the need for a pressure washer.</p>
+                                </div>
+                            </div>
+                            <button class="product-intro__more" type="button" data-bs-toggle="collapse" data-bs-target="#productIntroMore" aria-expanded="false" aria-controls="productIntroMore">
+                                <span class="product-intro__more-open">Read more</span>
+                                <span class="product-intro__more-close">Read less</span>
+                                <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+                            </button>
+                            <div class="product-intro__actions">
+                                <a class="btn btn-outline-yellow" href="#">
+                                    View user guide
+                                    <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                </a>
+                                <a class="btn btn-outline-yellow" href="#">
+                                    Download technical data sheet
+                                    <svg class="icon icon--20" aria-hidden="true"><use href="#icon-download"></use></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Video (optional): the product's YouTube video, 16:9.
+                Shopify: shown only when the product has a video (a YouTube URL metafield or an
+                external video in the product media); the id in the src and the title come from it.
+                Uses YouTube's privacy-enhanced domain, as the current site does.
+            -->
+            <section class="product-video">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="product-video__frame">
+                                <iframe src="https://www.youtube-nocookie.com/embed/4u_WruVadN0?rel=0" title="Black Spot Remover Plus" width="1088" height="612" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Suitable for: the surfaces the product can be used on, each a texture photo and a name.
+                A Splide slider (js/custom/sliders.js) with the slides sized by the grid classes,
+                run as a ticker tape: it loops and scrolls slowly to the left on its own.
+                Shopify: a list of surfaces on the product (metaobject references), one slide each.
+            -->
+            <section class="suitable-for">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="suitable-for__title">Suitable for</h2>
+                            <div class="splide surfaces-slider" role="group" aria-label="Suitable surfaces">
+                                <div class="splide__track">
+                                    <ul class="splide__list row">
+                                    <li class="splide__slide col-5 col-sm-4 col-md-3">
+                                        <figure class="surface-tile">
+                                            <div class="surface-tile__image">
+                                                <img src="https://placehold.co/672x840/D9DBE0/6B7380/png" width="672" height="840" alt="" loading="lazy">
+                                            </div>
+                                            <figcaption class="surface-tile__label">Slate</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li class="splide__slide col-5 col-sm-4 col-md-3">
+                                        <figure class="surface-tile">
+                                            <div class="surface-tile__image">
+                                                <img src="https://placehold.co/672x840/D9DBE0/6B7380/png" width="672" height="840" alt="" loading="lazy">
+                                            </div>
+                                            <figcaption class="surface-tile__label">Limestone</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li class="splide__slide col-5 col-sm-4 col-md-3">
+                                        <figure class="surface-tile">
+                                            <div class="surface-tile__image">
+                                                <img src="https://placehold.co/672x840/D9DBE0/6B7380/png" width="672" height="840" alt="" loading="lazy">
+                                            </div>
+                                            <figcaption class="surface-tile__label">Natural stone</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li class="splide__slide col-5 col-sm-4 col-md-3">
+                                        <figure class="surface-tile">
+                                            <div class="surface-tile__image">
+                                                <img src="https://placehold.co/672x840/D9DBE0/6B7380/png" width="672" height="840" alt="" loading="lazy">
+                                            </div>
+                                            <figcaption class="surface-tile__label">Sandstone</figcaption>
+                                        </figure>
+                                    </li>
+                                    <li class="splide__slide col-5 col-sm-4 col-md-3">
+                                        <figure class="surface-tile">
+                                            <div class="surface-tile__image">
+                                                <img src="https://placehold.co/672x840/D9DBE0/6B7380/png" width="672" height="840" alt="" loading="lazy">
+                                            </div>
+                                            <figcaption class="surface-tile__label">Block paving</figcaption>
+                                        </figure>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Product details: text beside an image, alternating sides. Each block is the same
+                widget; the second has the image first on desktop. The image is either a photo or
+                a before and after slider.
+                Below md each block is an accordion row (the label is the button) and the image
+                sits under the text; every row starts closed. From md every block is open.
+                Shopify: one section of repeatable blocks (label, heading, text, points, image or
+                before and after pair, image side).
+            -->
+            <section class="product-details">
+                <div class="container-fluid">
+                    <div class="product-detail details-row">
+                        <button class="details-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#detailWhatCopy, #detailWhatMedia" aria-expanded="false" aria-controls="detailWhatCopy detailWhatMedia">
+                            What it does
+                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                        </button>
+                        <div class="row align-items-center product-detail__row">
+                            <div class="col-md-6 col-lg-5 collapse" id="detailWhatCopy">
+                                <div class="product-detail__copy">
+                                    <p class="overline product-detail__label d-none d-md-block">What it does</p>
+                                    <h2 class="h3 product-detail__title">Trouble with black spots on Indian sandstone?</h2>
+                                    <p class="product-detail__lead">Most cheap patio cleaners are simply too weak to remove black spot lichen — they may have some effect but usually do not remove it. Black Spot Remover Plus does the job correctly with a full-strength product.</p>
+                                    <ul class="product-detail__points">
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Also a patio algae remover: eliminates mould, algae and other organic deposits including bird droppings
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Applied undiluted with a low-pressure sprayer, watering can or straight from the container
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Cleans all garden stonework: walls, coping stones, pavers, slabs, block paving and driveways
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Rinse after treatment; pressure wash to finish for the best results
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        5 litre, 10 litre (2 × 5 L) and economy 20 litre, all with free delivery to most UK mainland addresses
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 offset-lg-1 collapse" id="detailWhatMedia">
+                                <div class="product-detail__media">
+                                    <div class="compare" data-compare>
+                                        <img class="compare__image" src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="After treatment" loading="lazy">
+                                        <div class="compare__before">
+                                            <img class="compare__image" src="https://placehold.co/1500x1500/6B7380/FFFFFF/png" width="1500" height="1500" alt="Before treatment" loading="lazy">
+                                        </div>
+                                        <span class="overline compare__label compare__label--before">Before</span>
+                                        <span class="overline compare__label compare__label--after">After</span>
+                                        <input class="compare__range" type="range" min="0" max="100" value="50" aria-label="Slide to compare the before and after photos">
+                                        <span class="compare__divider" aria-hidden="true">
+                                            <span class="compare__handle">
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+                                                <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-detail details-row">
+                        <button class="details-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#detailWhereCopy, #detailWhereMedia" aria-expanded="false" aria-controls="detailWhereCopy detailWhereMedia">
+                            Where to use it
+                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                        </button>
+                        <div class="row align-items-center product-detail__row">
+                            <div class="col-md-6 col-lg-5 offset-lg-1 collapse" id="detailWhereCopy">
+                                <div class="product-detail__copy">
+                                    <p class="overline product-detail__label d-none d-md-block">Where to use it</p>
+                                    <h2 class="h3 product-detail__title">Works on all natural stone types</h2>
+                                    <p class="product-detail__lead">An excellent black spot lichen remover for all natural stone and concrete patios. It gives fantastic results on difficult organic marks and green algae, and works as a general patio stain remover.</p>
+                                    <ul class="product-detail__points">
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Indian sandstone and Yorkshire sandstone flags, where pressure washing alone has little or no effect
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        External tiles, concrete, block paving and brickwork
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Professional strength: apply undiluted, leave to dwell and let it work
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        Dwell time is set by a small test patch — typically up to one hour; extend or repeat for severe infestations
+                                    </li>
+                                    <li>
+                                        <svg class="icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
+                                        5 litre, 10 litre (2 × 5 L) and economy 20 litre, all with free delivery to most UK mainland addresses
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-first collapse" id="detailWhereMedia">
+                                <div class="product-detail__media">
+                                    <img class="product-detail__image" src="https://placehold.co/1500x1500/D9DBE0/6B7380/png" width="1500" height="1500" alt="" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Product reviews: the Reviews.io widget for this product (Shopify app block).
+                Only the title row is built here; the 320px block stands in for the widget.
+                Below md this section is moved to sit after Aftercare (see _product-details.scss),
+                so the four accordion rows stay together.
+            -->
+            <section class="product-reviews" id="reviews">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="product-reviews__header">
+                                <h2 class="h3 product-reviews__title">Reviews</h2>
+                                <a class="product-reviews__write" href="#">Write a review <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+                            </div>
+                            <div style="height: 320px"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                How to use: an introduction, numbered steps, notes and the two document links.
+                Below md it is an accordion row like the product details above.
+                Shopify: the steps are repeatable blocks; the documents are product metafields.
+            -->
+            <section class="how-to-use">
+                <div class="container-fluid">
+                    <div class="details-row">
+                        <button class="details-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#detailHow" aria-expanded="false" aria-controls="detailHow">
+                            How to use it
+                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                        </button>
+                        <div class="collapse" id="detailHow">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <div class="how-to-use__inner">
+                                        <h2 class="how-to-use__title d-none d-md-block">How to use</h2>
+                                        <p class="how-to-use__intro">Please refer to the Technical Data Sheet for full instructions. Wear appropriate PPE, safety goggles &amp; gloves. Wear suitable overalls or old clothing as this product can discolour natural fibres. Carry out a test in an inconspicuous area. If you find this product is not suitable for use on your project, do not continue to use.</p>
+                                        <ol class="how-to-use__steps">
+                                            <li class="how-to-use__step">
+                                                <span class="how-to-use__number" aria-hidden="true">01</span>
+                                                <p>Lightly pre-wet the area to be treated with clean water &amp; the edges of adjacent lawns/plants beds (which may encounter the solution). Do not spray onto adjacent plants &amp; lawns or allow the product to mist over them. Do not allow this product to enter ponds or encounter aquatic life.</p>
+                                            </li>
+                                            <li class="how-to-use__step">
+                                                <span class="how-to-use__number" aria-hidden="true">02</span>
+                                                <p>Apply undiluted with a sprayer, watering can or direct from the container. Apply in smaller manageable sections when treating large areas. Do not exceed the coverage rates. Please allow for variation in coverage due to porosity &amp; level of infestation.</p>
+                                            </li>
+                                            <li class="how-to-use__step">
+                                                <span class="how-to-use__number" aria-hidden="true">03</span>
+                                                <p>Keep the surface wet by applying more product so the surface is always visibly wet. Lightly agitate with a stiff yard brush. Extend the dwell time for as long as necessary, up to 1 hour +. Do not allow the product to dry on the surface or it ceases to work! Add more product during the dwell time to keep the surface visibly saturated/wet.</p>
+                                            </li>
+                                            <li class="how-to-use__step">
+                                                <span class="how-to-use__number" aria-hidden="true">04</span>
+                                                <p>Rinse away with plenty of clean water and allow to dry. Repeat as required.</p>
+                                            </li>
+                                        </ol>
+                                        <p class="how-to-use__notes">This product can be successfully applied in damp or dry weather conditions. Safe for children, pets &amp; wildlife when dry. Follow up with <a href="#">Floorseal Green Remover Concentrate</a> once or twice per year to maintain the surface and inhibit the return of black spot lichens.</p>
+                                        <div class="how-to-use__actions">
+                                            <a class="btn btn-yellow" href="#">
+                                                Read full user guide
+                                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                            </a>
+                                            <a class="btn btn-outline-yellow how-to-use__download" href="#">
+                                                Download technical data sheet
+                                                <svg class="icon icon--20" aria-hidden="true"><use href="#icon-download"></use></svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Aftercare: a white card over a full-width in-use photo, with a link to the sealers.
+                Below md it is the last accordion row: the photo (200px tall), then the same text,
+                laid out as in the Figma "product details open states" frame.
+                The photo is one image tag: it sits in the row on mobile and is stretched behind
+                the card from md, cropped by CSS both times.
+                Shopify: a section with one image, heading, text, link and product cut-out image.
+            -->
+            <section class="aftercare">
+                <div class="container-fluid">
+                    <div class="details-row details-row--last">
+                        <button class="details-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#detailAftercare" aria-expanded="false" aria-controls="detailAftercare">
+                            Aftercare
+                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                        </button>
+                        <div class="collapse" id="detailAftercare">
+                            <img class="aftercare__photo" src="https://placehold.co/2880x1440/D9DBE0/6B7380/png" width="2880" height="1440" alt="" loading="lazy">
+                            <div class="row">
+                                <div class="col-md-8 col-lg-7 col-xl-6 offset-lg-1">
+                                    <div class="aftercare__card">
+                                        <p class="overline aftercare__label">Aftercare</p>
+                                        <h2 class="display aftercare__title">Keep it clean and seal it</h2>
+                                        <p class="aftercare__text">Once the black spot is gone, stop it coming back and protect the stone.</p>
+                                        <a class="btn btn-outline-yellow aftercare__link" href="#">
+                                            Shop patio sealers
+                                            <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                                        </a>
+                                        <img class="aftercare__products d-none d-md-block" src="https://placehold.co/560x496/D9DBE0/6B7380/png" width="560" height="496" alt="" loading="lazy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                FAQs: questions that open to show their answer. The first six show; "Expand to
+                show all" opens the rest.
+                The questions are from the current site; the answers here are placeholder copy.
+                Shopify: repeatable question and answer blocks (or a metaobject list on the product).
+            -->
+            <section class="faqs">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <h2 class="faqs__title">FAQs</h2>
+                            <div class="faqs__list">
+                                <div class="faq">
+                                    <h3 class="faq__heading">
+                                        <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                                            How do I remove black spot from Indian sandstone?
+                                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                        </button>
+                                    </h3>
+                                    <div class="collapse" id="faq1">
+                                        <div class="faq__answer">
+                                            <p>Lightly pre-wet the area, apply Black Spot Remover Plus undiluted and keep the surface wet while it works, then rinse away with plenty of clean water. The full steps are in How to use above.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq">
+                                    <h3 class="faq__heading">
+                                        <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                                            How long does the product take to work?
+                                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                        </button>
+                                    </h3>
+                                    <div class="collapse" id="faq2">
+                                        <div class="faq__answer">
+                                            <p>Dwell time is set by a small test patch and is typically up to one hour. Extend it, or repeat the treatment, for severe infestations.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq">
+                                    <h3 class="faq__heading">
+                                        <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                                            What sort of coverage should I expect?
+                                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                        </button>
+                                    </h3>
+                                    <div class="collapse" id="faq3">
+                                        <div class="faq__answer">
+                                            <p>Approximately 4 m² per litre, so around 20 m² from a 5 litre container. Allow for variation due to the porosity of the surface and the level of infestation.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq">
+                                    <h3 class="faq__heading">
+                                        <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                                            What are the black spots on my sandstone patio?
+                                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                        </button>
+                                    </h3>
+                                    <div class="collapse" id="faq4">
+                                        <div class="faq__answer">
+                                            <p>Black spot is a lichen that becomes deeply ingrained in the stone, which is why it does not respond to pressure washing alone and why bleach does not work.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq">
+                                    <h3 class="faq__heading">
+                                        <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                                            How do I keep the product wet whilst it works?
+                                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                        </button>
+                                    </h3>
+                                    <div class="collapse" id="faq5">
+                                        <div class="faq__answer">
+                                            <p>Add more product during the dwell time so the surface stays visibly wet. Do not allow it to dry on the surface or it stops working.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="faq">
+                                    <h3 class="faq__heading">
+                                        <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">
+                                            How crucial is dwell time?
+                                            <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                            <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                        </button>
+                                    </h3>
+                                    <div class="collapse" id="faq6">
+                                        <div class="faq__answer">
+                                            <p>Very. The product only works while the surface is wet, so allow enough time and extend it for as long as necessary, up to an hour or more.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapse" id="faqMore">
+                                    <div class="faq">
+                                        <h3 class="faq__heading">
+                                            <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">
+                                                I cannot remove my black spot, what have I done wrong?
+                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                            </button>
+                                        </h3>
+                                        <div class="collapse" id="faq7">
+                                            <div class="faq__answer">
+                                                <p>The usual causes are the product drying out or too short a dwell time. Re-apply, keep the surface saturated, lightly agitate with a stiff yard brush and repeat as required.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="faq">
+                                        <h3 class="faq__heading">
+                                            <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">
+                                                Is Black Spot Remover Plus harmful to bedding plants, shrubs or lawns?
+                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                            </button>
+                                        </h3>
+                                        <div class="collapse" id="faq8">
+                                            <div class="faq__answer">
+                                                <p>Lightly pre-wet the edges of adjacent lawns and beds first. Do not spray onto plants or lawns or allow the product to mist over them, and do not allow it to enter ponds.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="faq">
+                                        <h3 class="faq__heading">
+                                            <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq9" aria-expanded="false" aria-controls="faq9">
+                                                Do you have further information on how to use your product?
+                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                            </button>
+                                        </h3>
+                                        <div class="collapse" id="faq9">
+                                            <div class="faq__answer">
+                                                <p>Yes. Read the full user guide or download the technical data sheet using the links in How to use above.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="faq">
+                                        <h3 class="faq__heading">
+                                            <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq10" aria-expanded="false" aria-controls="faq10">
+                                                I also wish to seal my sandstone after cleaning, which of your sealers would you recommend?
+                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                            </button>
+                                        </h3>
+                                        <div class="collapse" id="faq10">
+                                            <div class="faq__answer">
+                                                <p>Once the surface is clean and dry, seal it with Indian Sandstone Sealer, Natural Stone Sealer Breathe or Sandstone Wet Look Sealer.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="faq">
+                                        <h3 class="faq__heading">
+                                            <button class="faq__toggle" type="button" data-bs-toggle="collapse" data-bs-target="#faq11" aria-expanded="false" aria-controls="faq11">
+                                                How do I prevent the return of black spot and maintain my now clean patio?
+                                                <svg class="icon icon--plus" aria-hidden="true"><use href="#icon-plus"></use></svg>
+                                                <svg class="icon icon--minus" aria-hidden="true"><use href="#icon-minus"></use></svg>
+                                            </button>
+                                        </h3>
+                                        <div class="collapse" id="faq11">
+                                            <div class="faq__answer">
+                                                <p>Follow up with Floorseal Green Remover Concentrate once or twice per year to maintain the surface and inhibit the return of black spot lichens.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-navy faqs__more" type="button" data-bs-toggle="collapse" data-bs-target="#faqMore" aria-expanded="false" aria-controls="faqMore">
+                                <span class="faqs__more-open">Expand to show all</span>
+                                <span class="faqs__more-close">Show fewer</span>
+                                <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                Guides for this product: the same guides slider as the collection page
+                (_guides.scss, js/custom/sliders.js), with the guides related to the product.
+                The first three are from the design; the other two are the guides on the current
+                site that mention this product most. Their descriptions are placeholder copy.
+                Shopify: articles chosen on the product (a metafield list), newest first otherwise.
+            -->
+            <section class="guides">
+                <div class="container-fluid">
+                    <div class="row align-items-start section-header">
+                        <div class="col-lg">
+                            <h2 class="section-header__title">Guides and advice for this product</h2>
+                        </div>
+                        <div class="col-lg-auto">
+                            <a class="section-header__link" href="/blogs/guides">See all guides <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="splide guides-slider" role="group" aria-label="Guides and advice for this product">
+                                <div class="splide__track">
+                                    <ul class="splide__list row">
+                                        <li class="splide__slide col-10 col-sm-6 col-md-5 col-xl-6">
+                                            <article class="guide-card guide-card--wide">
+                                                <div class="guide-card__image">
+                                                    <img src="https://placehold.co/1400x1000/D9DBE0/6B7380/png" width="1400" height="1000" alt="" loading="lazy">
+                                                    <p class="guide-card__tag">Product guide</p>
+                                                </div>
+                                                <div class="guide-card__body">
+                                                    <h3 class="guide-card__title"><a class="guide-card__link" href="/blogs/guides/how-to-use-black-spot-remover-plus">How to use Black Spot Remover Plus</a></h3>
+                                                    <p class="guide-card__text">Step-by-step application, dwell time and test patch advice.</p>
+                                                    <p class="guide-card__more" aria-hidden="true">Read more <svg class="icon icon--14"><use href="#icon-arrow"></use></svg></p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        <li class="splide__slide col-10 col-sm-6 col-md-5 col-xl-4">
+                                            <article class="guide-card">
+                                                <div class="guide-card__image">
+                                                    <img src="https://placehold.co/1400x1000/D9DBE0/6B7380/png" width="1400" height="1000" alt="" loading="lazy">
+                                                    <p class="guide-card__tag">Cleaning guide</p>
+                                                </div>
+                                                <div class="guide-card__body">
+                                                    <h3 class="guide-card__title"><a class="guide-card__link" href="/blogs/guides/how-to-remove-black-spot-from-sandstone">How to remove black spot from sandstone patios and pavers</a></h3>
+                                                    <p class="guide-card__text">What black spot is, why it comes back and the full process.</p>
+                                                    <p class="guide-card__more" aria-hidden="true">Read more <svg class="icon icon--14"><use href="#icon-arrow"></use></svg></p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        <li class="splide__slide col-10 col-sm-6 col-md-5 col-xl-4">
+                                            <article class="guide-card">
+                                                <div class="guide-card__image">
+                                                    <img src="https://placehold.co/1400x1000/D9DBE0/6B7380/png" width="1400" height="1000" alt="" loading="lazy">
+                                                    <p class="guide-card__tag">Cleaning guide</p>
+                                                </div>
+                                                <div class="guide-card__body">
+                                                    <h3 class="guide-card__title"><a class="guide-card__link" href="/pages/help-advice/black-spot">Solve a problem: black spot</a></h3>
+                                                    <p class="guide-card__text">The black spot section of Help &amp; advice: products, surfaces and guides in one place.</p>
+                                                    <p class="guide-card__more" aria-hidden="true">Read more <svg class="icon icon--14"><use href="#icon-arrow"></use></svg></p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        <li class="splide__slide col-10 col-sm-6 col-md-5 col-xl-4">
+                                            <article class="guide-card">
+                                                <div class="guide-card__image">
+                                                    <img src="https://placehold.co/1400x1000/D9DBE0/6B7380/png" width="1400" height="1000" alt="" loading="lazy">
+                                                    <p class="guide-card__tag">Surface guide</p>
+                                                </div>
+                                                <div class="guide-card__body">
+                                                    <h3 class="guide-card__title"><a class="guide-card__link" href="/blogs/guides/how-to-clean-natural-stone-patios">How to clean natural stone patios</a></h3>
+                                                    <p class="guide-card__text">Which cleaner for which stone, test patches, dwell times and rinsing.</p>
+                                                    <p class="guide-card__more" aria-hidden="true">Read more <svg class="icon icon--14"><use href="#icon-arrow"></use></svg></p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                        <li class="splide__slide col-10 col-sm-6 col-md-5 col-xl-4">
+                                            <article class="guide-card">
+                                                <div class="guide-card__image">
+                                                    <img src="https://placehold.co/1400x1000/D9DBE0/6B7380/png" width="1400" height="1000" alt="" loading="lazy">
+                                                    <p class="guide-card__tag">Surface guide</p>
+                                                </div>
+                                                <div class="guide-card__body">
+                                                    <h3 class="guide-card__title"><a class="guide-card__link" href="/blogs/guides/how-to-clean-and-renovate-york-stone-flags-and-pavers">How to clean and renovate York stone flags and pavers</a></h3>
+                                                    <p class="guide-card__text">Bringing weathered York stone back, including black spot and green growth.</p>
+                                                    <p class="guide-card__more" aria-hidden="true">Read more <svg class="icon icon--14"><use href="#icon-arrow"></use></svg></p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+                The complete job: what to buy with this product (three sprayers and a sealer). The same section header
+                and product cards as the collection page, four across from lg and two below.
+                Shopify: products chosen on the product (a metafield list) or complementary
+                products from the Search & Discovery app.
+                "From" prices leave out the sample size: they start at the smallest full-size container.
+            -->
+            <section class="complete-job">
+                <div class="container-fluid">
+                    <div class="row align-items-start section-header">
+                        <div class="col-lg">
+                            <h2 class="section-header__title">The complete job</h2>
+                        </div>
+                        <div class="col-lg-auto">
+                            <a class="section-header__link" href="/collections/accessories">Shop all accessories <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+                        </div>
+                    </div>
+                    <ul class="row product-grid">
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">Budget sprayer option</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/basic-7-pump-up-sprayer">Basic 7 Pump-Up Sprayer</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">£29.99</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">For applying undiluted</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/industrial-7-pump-up-sprayer">Industrial 7 Pump-Up Sprayer</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">£44.99</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">Professional sprayer option</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/ik-multi-9-professional-pump-up-sprayer">IK Multi 9 Professional Pump-Up Sprayer</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">£79.99</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="col-6 col-lg-3">
+                            <article class="product-card">
+                                <div class="product-card__image">
+                                    <img src="https://placehold.co/800x800/D9DBE0/6B7380/png" width="800" height="800" alt="" loading="lazy">
+                                </div>
+                                <div class="product-card__body">
+                                    <p class="product-card__strapline d-none d-lg-block">Seal it once clean</p>
+                                    <h3 class="product-card__title"><a class="product-card__link" href="/products/indian-sandstone-sealer-colour-intensifier">Indian Sandstone Sealer &amp; Colour Intensifier</a></h3>
+                                    <p class="product-card__rating"><span class="product-card__stars" aria-hidden="true">★★★★★</span> <span class="visually-hidden">Rated</span> 4.8 <span class="visually-hidden">out of 5</span></p>
+                                    <div class="product-card__footer">
+                                        <p class="product-card__price">From £28.95</p>
+                                        <span class="product-card__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!--
+                Site-wide reviews ("What customers say"): the same section as the collection page.
+                The heading row, then the reviews.io widget.
+                Shopify: the reviews come from the reviews.io app. Its widget replaces the temporary space below.
+                "Read all reviews" needs a destination (the reviews.io page or a reviews page on the site).
+            -->
+            <section class="reviews">
+                <div class="container-fluid">
+                    <div class="row align-items-start section-header">
+                        <div class="col-lg">
+                            <h2 class="section-header__title">What customers say</h2>
+                        </div>
+                        <div class="col-lg-auto">
+                            <a class="section-header__link" href="#">Read all reviews <svg class="icon icon--14" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+                        </div>
+                    </div>
+                    <!-- Temporary space for the reviews.io widget -->
+                    <div style="height: 320px"></div>
+                </div>
+            </section>
+        </main>
+
+        <!--
+            Footer.
+            Shopify: the three shop links and the three link columns are menus (linklists). The sign-up form is
+            {% form 'customer' %}, which outputs this form tag with its hidden fields; contact[email] is the field
+            name Shopify expects, as in Horizon's email-signup block. Social links come from theme settings.
+            The policy links are shop.policies, or a menu if non-Shopify pages (cookie policy) are needed.
+            Not designed yet: the sign-up success and error messages, and link hover states.
+        -->
+        <footer class="site-footer">
+            <div class="container-fluid site-footer__inner">
+                <div class="row site-footer__top">
+                    <div class="col-12 col-xl-4">
+                        <a class="site-footer__logo" href="/">
+                            <img src="/dist/images/floorseal-logo-tagline-white.svg" width="288" height="56" alt="Floorseal">
+                        </a>
+                    </div>
+                    <div class="col-12 col-xl-7 offset-xl-1">
+                        <ul class="site-footer__shop">
+                            <li><a href="#">Cleaners</a></li>
+                            <li><a href="#">Sealers</a></li>
+                            <li><a href="#">Accessories</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row site-footer__main">
+                    <div class="col-12 col-xl-4">
+                        <div class="site-footer__signup">
+                            <h2 class="site-footer__heading">Advice and offers by email</h2>
+                            <form class="site-footer__form" action="/contact#contact_form" method="post" accept-charset="UTF-8">
+                                <input type="hidden" name="form_type" value="customer">
+                                <input type="hidden" name="utf8" value="✓">
+                                <label class="visually-hidden" for="footerEmail">Email address</label>
+                                <input class="site-footer__input" id="footerEmail" type="email" name="contact[email]" placeholder="Enter your email address" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+                                <button class="site-footer__submit" type="submit" aria-label="Sign up">
+                                    <svg class="icon icon--20" aria-hidden="true"><use href="#icon-arrow-20"></use></svg>
+                                </button>
+                            </form>
+                            <ul class="site-footer__social">
+                                <li><a href="#" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="#icon-facebook"></use></svg></a></li>
+                                <li><a href="#" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a></li>
+                                <li><a href="#" aria-label="YouTube"><svg class="icon" aria-hidden="true"><use href="#icon-youtube"></use></svg></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 offset-xl-1">
+                        <nav class="row site-footer__columns" aria-label="Footer">
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Surfaces</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">Patio &amp; paving</a></li>
+                                    <li><a href="#">Driveways</a></li>
+                                    <li><a href="#">Interior floors &amp; tiles</a></li>
+                                    <li><a href="#">Brick, render &amp; masonry</a></li>
+                                    <li><a href="#">Roofs</a></li>
+                                    <li><a href="#">Wood &amp; decking</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Help &amp; advice</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">How-to guides</a></li>
+                                    <li><a href="#">Upload a photo</a></li>
+                                    <li><a href="#">Technical information</a></li>
+                                    <li><a href="#">Request SDS</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-12 col-md-4 site-footer__column">
+                                <h2 class="site-footer__heading">Company</h2>
+                                <ul class="site-footer__links">
+                                    <li><a href="#">About Floorseal</a></li>
+                                    <li><a href="#">Trade accounts</a></li>
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Complaints</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="site-footer__legal">
+                    <p class="site-footer__copyright">© Floorseal Ltd</p>
+                    <ul class="site-footer__policies">
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Cookie policy</a></li>
+                        <li><a href="#">Terms &amp; conditions</a></li>
+                    </ul>
+                    <p class="site-footer__credit">Website by <a href="https://fettle.agency">fettle.agency</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- JS -->
+        <script src="/dist/scripts/lib.js"></script>
+        <script src="/dist/scripts/script.js"></script>
+    </body>
+</html>

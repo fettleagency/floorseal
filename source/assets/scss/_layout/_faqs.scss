@@ -1,0 +1,114 @@
+// FAQs (Figma "section/faqs"): a centred heading, a list of questions that open to show their
+// answer (Bootstrap Collapse), and a full-width "Expand to show all" button for the rest.
+//
+// Neutral/Grey band, XXXLG padding. The content is ten columns wide on desktop (the design
+// has it at 1168px, between ten and eleven columns).
+
+.faqs {
+  padding: var(--xxxl-space) 0;
+  background-color: $neutral-grey;
+
+  // H2 in capitals, centred, which steps up to 64/72 at xl as the other large headings do
+  &__title {
+    margin: 0 0 24px;
+    color: $brand-navy;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 32px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: 64px;
+      line-height: 72px;
+    }
+  }
+
+  // "Expand to show all": full width, 24px under the list on mobile and 56px from md.
+  // The label is at the left with the arrow at the far end on mobile, centred from md.
+  &__more {
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 24px;
+
+    @include media-breakpoint-up(md) {
+      justify-content: center;
+      margin-top: 56px;
+    }
+
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+
+    &[aria-expanded="false"] &-close,
+    &[aria-expanded="true"] &-open {
+      display: none;
+    }
+  }
+}
+
+// A question: a yellow rule underneath, the question as a button with plus or minus at the end
+.faq {
+  border-bottom: 1px solid $brand-yellow;
+
+  &__heading {
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  // Label S in capitals on mobile (64px tall on one line, 72px on two); Label L from lg (72px)
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 64px;
+    padding: 16px 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      min-height: 72px;
+      padding: 24px 0;
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    &[aria-expanded="false"] .icon--minus,
+    &[aria-expanded="true"] .icon--plus {
+      display: none;
+    }
+  }
+
+  // Body S on mobile, Body from lg
+  &__answer {
+    max-width: 864px;
+    padding-bottom: 24px;
+    color: $brand-navy;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    p + p {
+      margin-top: 16px;
+    }
+  }
+}

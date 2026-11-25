@@ -1,0 +1,887 @@
+// Product page (Figma "Product page – desktop 1440" and "– mobile 390").
+// Sections are added here as they are built. So far: the breadcrumb row, the buy section
+// (gallery and purchase panel) and the quick facts.
+
+// Borders of the size options and quantity box: #C2C2C2 on desktop in Figma (not one of the
+// colour variables), Neutral/Line on mobile
+$product-border-desktop: #C2C2C2;
+
+// ----- Breadcrumb row (from md) -----
+// 16px above the breadcrumb, which sits on the left with the reviews.io rating badge on the
+// right. Between md and lg the badge goes under the breadcrumb, 8px down.
+
+.product-breadcrumb {
+  padding-top: 16px;
+  background-color: #FFF;
+
+  &__row {
+    --bs-gutter-y: 8px;
+
+    @include media-breakpoint-up(lg) {
+      --bs-gutter-y: 0;
+    }
+  }
+}
+
+// ----- Buy section (Figma "section/buy", plus "section/gallery" on mobile) -----
+// Gallery and purchase panel, six columns each from md and stacked below that.
+// Padding: XSM on top, LG underneath, on both designs.
+
+.product-buy {
+  padding: var(--xs-space) 0 var(--lg-space);
+  background-color: #FFF;
+
+  // Stacked: the panel is 16px under the gallery's dots
+  &__row {
+    --bs-gutter-y: 16px;
+  }
+}
+
+// ----- Gallery -----
+// A Splide slider of square images. Below md: swiped, with dots underneath. From md (where
+// the gallery sits beside the panel): the dots are hidden and a grid of thumbnails, five
+// across, picks the image (js/custom/product.js).
+
+.product-gallery {
+  // Square on Neutral/Grey; every image fills it. A packshot's white space is part of the
+  // exported image (Figma Assets page, 1000px frame with the product inset 35px).
+  // (It is a size container, so the caption below can scale with it.)
+  &__image {
+    position: relative;
+    aspect-ratio: 1;
+    margin: 0;
+    overflow: hidden;
+    background-color: $neutral-grey;
+    container-type: inline-size;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Caption (Figma "Gallery slide mock – live text overlay"): a navy band across the bottom
+  // of the image with a yellow rule along its top edge and the text in white, SemiBold.
+  // Drawn for a 640px image: band 192px, rule 8px, text 36/44, 40px in from the sides.
+  // Everything is in cqw (1% of the image's width), so it scales with the image the way text
+  // baked into the photo did. The text stops shrinking at 18px.
+  &__caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    min-height: 31.25cqw; // the 192px band plus its 8px rule
+    padding: 4cqw 6.25cqw;
+    border-top: 1.25cqw solid $brand-yellow;
+    background-color: $brand-navy;
+    color: #FFF;
+    font-size: clamp(18px, 5.625cqw, 36px);
+    font-weight: 600;
+    line-height: 1.2222;
+  }
+
+  // Dots: 8px squares with 2px corners, 8px apart, 16px under the image
+  .splide__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px !important;
+
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+
+  .splide__pagination__page {
+    display: block;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    background-color: $neutral-line;
+
+    &.is-active {
+      background-color: $brand-navy;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+
+  // Thumbnails (from md): a Bootstrap row, five across with 16px gutters
+  &__thumbs {
+    margin-top: 16px;
+
+    .row {
+      margin-bottom: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+  }
+
+  // The thumbnail of the image on show is at full strength; the others are at 50%
+  // (and come up to full strength when hovered or focused)
+  &__thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 4px;
+    background-color: $neutral-grey;
+    opacity: .5;
+    transition: opacity .2s;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.is-active,
+    &:hover,
+    &:focus-visible {
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// ----- Purchase panel -----
+// Everything stacked 24px apart.
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: $brand-navy;
+
+  // The h1, at the H2 sizes (the .h2 class in the markup), in capitals
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  // Stars and "4.9 · Read 300+ reviews": 16px stars, Body S in capitals
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    color: $text-dark;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $text-dark;
+      text-decoration: underline;
+    }
+  }
+
+  &__stars {
+    color: $brand-yellow;
+    font-size: 16px;
+  }
+
+  // Label S (Medium 14/20) on mobile, Label L (Medium 18/24) on desktop
+  &__summary {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+  // Points: Body S with a yellow chevron. 8px apart on mobile, 20px on desktop.
+  &__points {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 20px;
+    list-style: none;
+
+    @include media-breakpoint-up(lg) {
+      gap: 20px;
+      max-width: 580px;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+
+      @include media-breakpoint-up(lg) {
+        gap: 8px;
+      }
+    }
+
+    // The chevron is a 16px icon in a 21 x 22 box
+    .icon {
+      box-sizing: content-box;
+      padding: 3px 3px 3px 2px;
+      color: $brand-yellow;
+    }
+  }
+
+  // "View the user guide": full width with the arrow on the right on mobile, as wide as
+  // its content from md
+  &__guide {
+    justify-content: space-between;
+
+    @include media-breakpoint-up(md) {
+      align-self: flex-start;
+    }
+
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+  }
+}
+
+// ----- Product form: size, price, quantity and Add to basket -----
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__sizes {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  // "Choose size": Label S in capitals, 8px above the options
+  &__legend {
+    float: none;
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+
+  // A Bootstrap row: stacked 8px apart, three across from xl
+  &__size-row {
+    --bs-gutter-y: 8px;
+  }
+
+  // Price: SemiBold 28/32 on mobile, 32/40 from md, with "inc. VAT" in Body S capitals
+  &__price {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+  }
+
+  &__amount {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 32px;
+
+    @include media-breakpoint-up($bp-tablet) {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+
+  &__vat {
+    color: $text-dark;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+
+  // Quantity and Add to basket, 16px apart
+  &__actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  // Add to basket: Button (SemiBold 16/24), filling the rest of the row.
+  // 56px tall on mobile and 80px on desktop.
+  &__add {
+    --bs-btn-font-size: 16px;
+    --bs-btn-font-weight: 600;
+    --bs-btn-line-height: 24px;
+    flex: 1 1 auto;
+
+    @include media-breakpoint-up(lg) {
+      min-height: 80px;
+    }
+  }
+}
+
+// Size option: a radio button (hidden) and its label, drawn as a card.
+// Below xl: full-width rows, name and coverage on the left, price on the right.
+// From xl (three across, as designed at 1440px): name, price, coverage.
+// The chosen size is navy with white text.
+.size-option {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 4px;
+  height: 100%;
+  padding: 16px;
+  border: 1px solid $neutral-line;
+  border-radius: 4px;
+  cursor: pointer;
+
+  @include media-breakpoint-up(xl) {
+    grid-template-columns: 1fr;
+    border-color: $product-border-desktop;
+  }
+
+  // Label (Medium 16/24) in capitals
+  &__name {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+
+  // H5 (SemiBold 16/24) on mobile, on the right; Label L (Medium 18/24) on desktop
+  &__price {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+
+    @include media-breakpoint-up(xl) {
+      grid-row: auto;
+      grid-column: auto;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  // Body S on mobile, Caption on desktop, in capitals
+  &__coverage {
+    color: $text-muted;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(xl) {
+      color: $text-dark;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  &__input:checked + & {
+    border-color: $brand-navy;
+    background-color: $brand-navy;
+    color: #FFF;
+
+    .size-option__coverage {
+      color: #FFF;
+    }
+  }
+
+  &__input:focus-visible + & {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+}
+
+// Quantity: minus, the number and plus in a bordered box.
+// 113 x 56 on mobile and 139 x 80 on desktop.
+.quantity-selector {
+  display: flex;
+  flex: none;
+  align-items: stretch;
+  width: 113px;
+  height: 56px;
+  border: 1px solid $neutral-line;
+  border-radius: 4px;
+
+  @include media-breakpoint-up(lg) {
+    width: 139px;
+    height: 80px;
+    border-color: $product-border-desktop;
+  }
+
+  &:focus-within {
+    border-color: $brand-navy;
+  }
+
+  button {
+    flex: none;
+    width: 40px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+    font-size: 16px;
+    font-weight: 500;
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: -4px;
+    }
+  }
+
+  // H4 (SemiBold 18/24), without the browser's own up and down arrows
+  input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: $brand-navy;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      margin: 0;
+      appearance: none;
+    }
+  }
+}
+
+// ----- Delivery notes -----
+// Two notes, half the panel each, a navy icon with two lines of text in Body S capitals
+// (the same size on every breakpoint; the mobile design has it smaller).
+// Mobile: the icon above the text, 16px between the two notes.
+// Desktop: the icon to the left of the text (16px away), with 24px more space above the row.
+// "1–2 working days" only shows from xl (.d-none .d-xl-inline in the markup).
+
+.product-notes {
+  --bs-gutter-x: 16px;
+  margin-bottom: 0;
+  padding-left: 0;
+  color: $text-dark;
+  font-size: 14px;
+  line-height: 20px;
+  list-style: none;
+  text-transform: uppercase;
+
+  @include media-breakpoint-up(lg) {
+    --bs-gutter-x: #{$grid-gutter-width};
+    padding-top: 24px;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+
+    @include media-breakpoint-up(lg) {
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+
+  // 21px tall on mobile and 26px on desktop, as wide as the drawing needs
+  .icon {
+    width: auto;
+    height: 21px;
+    color: $brand-navy;
+
+    @include media-breakpoint-up(lg) {
+      height: 26px;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// ----- Quick facts (Figma "section/quick facts") -----
+// A Neutral/Grey panel inside the page margins, straight under the buy section (no padding of
+// its own above it), holding three facts.
+// Below md: stacked rows 24px apart, the icon on the left with the label and value beside it.
+// From md: three across, each centred, the icon above the text.
+// Panel padding: 24px on mobile; on desktop LG top and bottom.
+
+.quick-facts {
+  background-color: #FFF;
+
+  &__panel {
+    padding: 24px;
+    background-color: $neutral-grey;
+
+    @include media-breakpoint-up(md) {
+      padding: var(--lg-space) #{$grid-gutter-width * .5};
+    }
+  }
+
+  // A Bootstrap row; the facts are .col-md-4
+  &__list {
+    --bs-gutter-y: 24px;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+
+    @include media-breakpoint-up(md) {
+      --bs-gutter-y: 0;
+    }
+  }
+
+  &__fact {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    color: $brand-navy;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  // Yellow square with a navy icon: 64px on mobile, 100px on desktop.
+  // The icon is drawn in a 100 x 100 box, so it fills the square at any size.
+  &__icon {
+    display: block;
+    flex: none;
+    width: 64px;
+    height: 64px;
+    background-color: $brand-yellow;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    @include media-breakpoint-up(md) {
+      gap: 4px;
+    }
+  }
+
+  // Label caption (Medium 12/16) in capitals
+  &__label {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  // H5 (SemiBold 16/24) on mobile, H4 (SemiBold 18/24) on desktop, in capitals
+  &__value {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+    }
+  }
+}
+
+// ----- Intro -----
+// A centred heading, the opening paragraph of the description, a "Read more" link that opens
+// the rest (Bootstrap Collapse) and the two document links. The section has no bottom padding:
+// the section that follows brings its own space.
+// Figma: stack 16px apart on mobile, 24px on desktop; heading 948px and text 716px wide.
+
+.product-intro {
+  padding-top: var(--xxxl-space);
+  background-color: #FFF;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      gap: 24px;
+    }
+  }
+
+  // H2 in capitals
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    text-transform: uppercase;
+  }
+
+  // Body S on mobile, Body L in navy on desktop
+  &__text {
+    max-width: 716px;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      color: $brand-navy;
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    // One line of space between paragraphs
+    .collapse p,
+    .collapsing p {
+      padding-top: 20px;
+
+      @include media-breakpoint-up(lg) {
+        padding-top: 28px;
+      }
+    }
+  }
+
+  // "Read more": Button S in capitals with a 16px chevron, which turns over when open
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .icon {
+      transition: transform .2s;
+    }
+
+    &[aria-expanded="true"] .icon {
+      transform: rotate(180deg);
+    }
+
+    &[aria-expanded="false"] &-close,
+    &[aria-expanded="true"] &-open {
+      display: none;
+    }
+  }
+
+  // Document links: full width and stacked 12px apart on mobile with the icon at the far end;
+  // side by side at their own width, 16px apart, from md
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+
+    .btn {
+      justify-content: space-between;
+    }
+
+    // The arrow is a 14px glyph in a 20px box, as in Figma
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+
+    @include media-breakpoint-up(md) {
+      flex-flow: row wrap;
+      justify-content: center;
+      gap: 16px;
+      width: auto;
+    }
+  }
+}
+
+// ----- Video (optional) -----
+// The product's YouTube embed at 16:9, ten of the twelve columns on desktop (1088px in the
+// design) and full width below. Like the intro it has no bottom padding.
+
+.product-video {
+  padding-top: var(--lg-space);
+  background-color: #FFF;
+
+  &__frame {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid $neutral-line;
+    border-radius: 4px;
+
+    @include media-breakpoint-up(lg) {
+      border-color: $product-border-desktop;
+    }
+
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  }
+}
+
+// ----- Suitable for -----
+// A strip of surface tiles (texture photo, name underneath) in a Splide slider, set up like the
+// guides slider: the list is a Bootstrap .row, the slides are .col-*, the track's overflow is
+// visible and the section clips it.
+// The strip is a ticker tape: it loops, runs edge to edge across the window and scrolls slowly
+// to the left on its own (js/custom/sliders.js).
+// Mobile (below md): a small label, left aligned. From md: a centred heading.
+// Like the intro and video it has no bottom padding.
+
+.suitable-for {
+  padding-top: var(--xxxl-space);
+  overflow-x: clip;
+  background-color: #FFF;
+
+  // Label S in capitals on mobile. From md an H2 in capitals, which steps up to 64/72 at xl
+  // as the other large section headings do.
+  &__title {
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 32px;
+      color: $brand-navy;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 40px;
+      text-align: center;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 48px;
+      font-size: 40px;
+      line-height: 48px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: 64px;
+      line-height: 72px;
+    }
+  }
+
+  // Tiles are 16px apart on mobile and a grid gutter (32px) apart from md
+  .splide {
+    --surfaces-gutter: 16px;
+    margin-right: calc(var(--surfaces-gutter) / -2);
+    margin-left: calc(var(--surfaces-gutter) / -2);
+
+    @include media-breakpoint-up(md) {
+      --surfaces-gutter: #{$grid-gutter-width};
+    }
+  }
+
+  .splide__track {
+    overflow: visible;
+  }
+
+  .splide__list {
+    --bs-gutter-x: var(--surfaces-gutter);
+    flex-wrap: nowrap;
+  }
+}
+
+// Surface tile: a 4:5 photo with a soft shadow and the surface's name centred underneath
+.surface-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  text-align: center;
+
+  @include media-breakpoint-up(md) {
+    gap: 24px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    gap: 40px;
+  }
+
+  &__image {
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 4px 10px rgba(#000, .25);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Label caption on mobile, Label S from md, Label L from lg; in capitals
+  &__label {
+    color: $brand-navy;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(md) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+}
+
+// ----- The complete job -----
+// Accessories for this product: the shared section header and the collection page's product
+// grid and cards (_section-header.scss, _collection.scss). Neutral/Grey band, XXXLG padding.
+// The header's link is navy here, with the usual yellow arrow.
+
+.complete-job {
+  padding: var(--xxxl-space) 0;
+  background-color: $neutral-grey;
+
+  --section-header-link: #{$brand-navy};
+}
+

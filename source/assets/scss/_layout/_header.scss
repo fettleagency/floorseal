@@ -1,0 +1,311 @@
+// Header: utility bar, then a Bootstrap navbar (menu button, logo, basket and the collapsing menu).
+// The header stays in place while the mobile menu and its sub-menus open underneath it.
+// From lg up the utility bar and logo row follow the Figma desktop header (24px above and below
+// the logo, 20px links, yellow active bar). The search field is in _site-search.scss.
+
+// Rule under the header. Drawn as #E2E2E2 in Figma, which is not one of the
+// colour variables (Neutral/Line is #D9DBE0).
+$header-rule: #E2E2E2;
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+
+  &--12 {
+    width: 12px;
+    height: 12px;
+  }
+
+  &--14 {
+    width: 14px;
+    height: 14px;
+  }
+
+  &--20 {
+    width: 20px;
+    height: 20px;
+  }
+
+  &--24 {
+    width: 24px;
+    height: 24px;
+  }
+
+  &--28 {
+    width: 28.8px;
+    height: 28.8px;
+  }
+}
+
+.site-header {
+  // Header height down to where the open mobile menu starts: utility bar 32 + logo row 72.
+  // (The menu covers the 1px rule under the header and draws its own.)
+  --header-height: 104px;
+
+  background-color: #FFF;
+  border-bottom: 1px solid $header-rule;
+
+  // The desktop rule is inset to the gutters, so it is drawn by the navbar (below)
+  @include media-breakpoint-up(lg) {
+    border-bottom-color: transparent;
+  }
+
+  // Utility bar. Mobile: 32px, the message centred at 12px.
+  // Desktop: 56px, message left at 14px, account link and trade sign-in button right.
+  &__utility {
+    padding: 8px 0;
+    background-color: $brand-navy;
+    color: #FFF;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      height: 56px;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+
+      // The container lays the message and the links out in a row
+      > .container-fluid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        height: 100%;
+      }
+    }
+  }
+
+  &__utility-message {
+    margin: 0;
+  }
+
+  // Account link and trade button, 24px apart, the full height of the bar
+  &__utility-links {
+    align-items: center;
+    align-self: stretch;
+    gap: 24px;
+  }
+
+  &__account {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #FFF;
+    text-decoration: none;
+
+    .icon {
+      width: 15.4px;
+      height: 15.4px;
+      color: $brand-yellow;
+    }
+  }
+
+  // Yellow block, flush with the top and bottom of the bar
+  &__trade {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    padding: 0 24px;
+    background-color: $brand-yellow;
+    color: $brand-navy;
+    line-height: 20px;
+    text-decoration: none;
+  }
+
+  &__account,
+  &__trade {
+    &:focus-visible {
+      outline: 2px solid #FFF;
+      outline-offset: 2px;
+    }
+  }
+
+  &__nav {
+    --bs-navbar-padding-x: 0;
+    --bs-navbar-padding-y: 0;
+    --bs-navbar-color: #{$brand-navy};
+    --bs-navbar-hover-color: #{$brand-navy};
+    --bs-navbar-active-color: #{$brand-navy};
+
+    // Desktop: 40px between logo and links. The row has no height of its own: it is the logo
+    // plus 24px above and below (see &__logo), so it shrinks when the logo does.
+    // The links fill the row's height so the active bar can sit on the bottom edge of the header.
+    @include media-breakpoint-up(lg) {
+      --bs-navbar-nav-link-padding-x: 0;
+
+      // .navbar > .container-fluid is the flex row (Bootstrap sets that up)
+      > .container-fluid {
+        gap: 40px;
+      }
+
+      // Rule under the header, as wide as the content of the container (Neutral/Line)
+      &::after {
+        position: absolute;
+        right: var(--site-edge);
+        bottom: -1px;
+        left: var(--site-edge);
+        height: 1px;
+        background-color: $neutral-line;
+        content: "";
+      }
+
+      .navbar-collapse {
+        align-self: stretch;
+      }
+    }
+
+    // The main menu opens and closes instantly: no Bootstrap height animation.
+    // Only .navbar-collapse is targeted, so the plus/minus groups in the sub-menus still animate.
+    .navbar-collapse.collapsing {
+      transition: none;
+    }
+
+    // Mobile: the open menu sits over the page instead of pushing it down.
+    // It is positioned against the navbar (Bootstrap sets .navbar to position: relative),
+    // so it starts directly under the logo row and scrolls with the page.
+    @include media-breakpoint-down(lg) {
+      .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        z-index: $zindex-dropdown;
+        // Clips the sub-menu panels, which wait off to the right until they slide in
+        overflow: hidden;
+        background-color: #FFF;
+      }
+    }
+  }
+
+  // Menu button, logo, basket. Full width on mobile so the menu wraps underneath it.
+  &__bar {
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    padding: 16px 0;
+
+    // On desktop the logo and basket sit in the navbar row either side of the links
+    @include media-breakpoint-up(lg) {
+      display: contents;
+    }
+  }
+
+  // Desktop: always 24px above and below the logo, which sets the height of the header row
+  // (88px with the 40px logo at lg, 96px with the 48px logo from xl)
+  &__logo {
+    @include media-breakpoint-up(lg) {
+      margin: 24px 0;
+    }
+  }
+
+  // Logo sizes: 208x36 with the mobile menu (below lg), 231x40 on the narrow desktop row
+  // (lg, tablet landscape), 277x48 from xl
+  &__logo img {
+    display: block;
+    width: 208px;
+    height: 36px;
+
+    @include media-breakpoint-up(lg) {
+      width: 231px;
+      height: 40px;
+    }
+
+    // Desktop logo size, from xl where there is room for it beside the links
+    @include media-breakpoint-up(xl) {
+      width: 277px;
+      height: 48px;
+    }
+  }
+}
+
+// Menu button: three 32x4 bars in a 32x26 box. The padding and negative margin
+// give a 44x44 tap area without moving the bars.
+.menu-toggle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: content-box;
+  width: 32px;
+  height: 26px;
+  margin: -9px -6px;
+  padding: 9px 6px;
+  border: 0;
+  background: none;
+
+  &__bar {
+    display: block;
+    height: 4px;
+    border-radius: 2px;
+    background-color: $brand-navy;
+    transition: transform .2s ease, opacity .2s ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  // Menu open: the three bars become an X
+  &[aria-expanded="true"] .menu-toggle__bar {
+    &:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+}
+
+.basket-button {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: $brand-yellow;
+  color: $brand-navy;
+
+  .icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+  }
+
+  // Desktop: last in the row, 16px after the search (the row's own gap is 40px)
+  @include media-breakpoint-up(lg) {
+    order: 1;
+    margin-left: -24px;
+  }
+
+  // 48px with the desktop logo; below xl it stays at 40px alongside the smaller logo
+  @include media-breakpoint-up(xl) {
+    width: 48px;
+    height: 48px;
+
+    .icon {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+}

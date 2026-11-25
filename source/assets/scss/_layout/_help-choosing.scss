@@ -1,0 +1,123 @@
+// "Not sure which cleaner you need?" (Figma "section/help choosing").
+// Mobile (below lg): one dark band the width of the screen: photo, heading, copy and two
+// buttons (full width below md).
+// Desktop: on the grey of the page, a dark panel with the copy (8 columns) beside the photo
+// (4 columns), the same height as each other.
+//
+// Padding: XLG top and bottom on mobile. On desktop there is none on top (the section above
+// supplies the space) and LG underneath.
+
+.help-choosing {
+  padding: var(--xl-space) 0;
+  background-color: $text-dark;
+  color: #FFF;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 0 var(--lg-space);
+    background-color: $neutral-grey;
+  }
+
+  // Stacked on mobile, photo first (.order-first in the markup), 24px apart
+  &__row {
+    --bs-gutter-y: 24px;
+
+    @include media-breakpoint-up(lg) {
+      --bs-gutter-y: 0;
+    }
+  }
+
+  &__panel {
+    @include media-breakpoint-up(lg) {
+      height: 100%;
+      padding: 80px 64px;
+      background-color: $text-dark;
+    }
+  }
+
+  // Mobile: 200px tall with 4px corners. Tablet: half as tall as it is wide (200px is too
+  // squat at that width; there is no tablet design). Desktop: fills its column, as tall as the panel.
+  &__image {
+    img {
+      display: block;
+      width: 100%;
+      height: 200px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    @include media-breakpoint-up($bp-tablet) {
+      img {
+        height: auto;
+        aspect-ratio: 2 / 1;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      position: relative;
+      height: 100%;
+
+      img {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        border-radius: 0;
+        aspect-ratio: auto;
+      }
+    }
+  }
+
+  // An h2 at the H2 sizes (28/32, 32/40, 40/48), in capitals. From xl it steps up to the
+  // H1 size (64/72), as drawn at 1440px, and is no wider than the design's 531px.
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(xl) {
+      max-width: 531px;
+      font-size: 64px;
+      line-height: 72px;
+    }
+  }
+
+  // Body S (14/20) on mobile, Body L (18/28) on desktop, no wider than the design's 640px
+  &__text {
+    margin: 24px 0 0;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 640px;
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+
+  // Mobile (below md): full width, 12px apart, label on the left and icon on the right.
+  // From md: as wide as their content, 24px apart, the camera before its label (the desktop
+  // design; there is no tablet design, and full-width buttons are too long there).
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+
+    .btn {
+      justify-content: space-between;
+    }
+
+    // The arrow is a 14px glyph in a 20px box, as in Figma
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+
+    @include media-breakpoint-up(md) {
+      align-items: flex-start;
+      gap: 24px;
+
+      .icon--24 {
+        order: -1;
+      }
+    }
+  }
+}

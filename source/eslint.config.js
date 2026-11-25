@@ -11,7 +11,8 @@ module.exports = [
             sourceType: 'script',
             globals: {
                 ...globals.browser,
-                bootstrap: 'readonly'
+                bootstrap: 'readonly',
+                Splide: 'readonly'
             }
         }
     }

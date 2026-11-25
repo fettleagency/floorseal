@@ -1,79 +1,172 @@
-h1 {
+// Type scale, from the Figma style guide (Typography table). Sizes are font-size / line-height.
+// Mobile first; the Tablet column starts at $bp-tablet and the Desktop column at $bp-desktop
+// (set in _configs/_variables.scss). Only H1, H2, H3 and Display change between breakpoints.
+//
+//                    Mobile    Tablet    Desktop
+//   H1               40/48     48/56     64/72     SemiBold
+//   H2               28/32     32/40     40/48     SemiBold
+//   H3               24/32     28/32     32/40     SemiBold
+//   H4               18/24                         SemiBold
+//   H5               16/24                         SemiBold
+//   Display          28/32     32/40     40/48     SemiBold, caps
+//   Body L           18/28                         Regular
+//   Body             16/24                         Regular
+//   Body S           14/20                         Regular
+//   Caption          12/16                         Regular
+//   Label L          18/24                         Medium
+//   Label            16/24                         Medium
+//   Label S          14/20                         Medium
+//   Label caption    12/16                         Medium
+//   Button           16/24                         SemiBold   (for the button styles)
+//   Button S         14/20                         SemiBold   (for the button styles)
+//   Overline         12/16                         SemiBold, caps, 8% letter spacing
 
+// ----- Headings -----
+// The .h1 to .h5 classes give the same size to any element.
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+.display {
+  font-weight: 600;
 }
 
-h2 {
+h1,
+.h1 {
+  font-size: 40px;
+  line-height: 48px;
 
+  @include media-breakpoint-up($bp-tablet) {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  @include media-breakpoint-up($bp-desktop) {
+    font-size: 64px;
+    line-height: 72px;
+  }
 }
 
-h3 {
+h2,
+.h2,
+.display {
+  font-size: 28px;
+  line-height: 32px;
 
+  @include media-breakpoint-up($bp-tablet) {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  @include media-breakpoint-up($bp-desktop) {
+    font-size: 40px;
+    line-height: 48px;
+  }
 }
 
-h4 {
+// Display: the H2 sizes, in capitals
+.display {
+  text-transform: uppercase;
+}
 
+h3,
+.h3 {
+  font-size: 24px;
+  line-height: 32px;
+
+  @include media-breakpoint-up($bp-tablet) {
+    font-size: 28px;
+  }
+
+  @include media-breakpoint-up($bp-desktop) {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+h4,
+.h4 {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+h5,
+.h5 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+// ----- Body -----
+
+body {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.body-large {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.body-small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.caption {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+// ----- Labels (Medium) -----
+
+.label-large,
+.label,
+.label-small,
+.label-caption {
+  font-weight: 500;
+}
+
+.label-large {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.label {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.label-small {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.label-caption {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+// ----- Overline -----
+
+.overline {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  line-height: 16px;
+  text-transform: uppercase;
 }
 
 p {
 
   &:last-child {
     margin-bottom: 0;
-  }
-}
-
-.small-margin {
-
-  @include media-breakpoint-up(sm) {
-
-  }
-
-  @include media-breakpoint-up(md) {
-
-  }
-
-  @include media-breakpoint-up(lg) {
-
-  }
-
-  @include media-breakpoint-up(xl) {
-
-  }
-}
-
-.medium-margin {
-
-  @include media-breakpoint-up(sm) {
-
-  }
-
-  @include media-breakpoint-up(md) {
-
-  }
-
-  @include media-breakpoint-up(lg) {
-
-  }
-
-  @include media-breakpoint-up(xl) {
-
-  }
-}
-
-.large-margin {
-
-  @include media-breakpoint-up(sm) {
-
-  }
-
-  @include media-breakpoint-up(md) {
-
-  }
-
-  @include media-breakpoint-up(lg) {
-
-  }
-
-  @include media-breakpoint-up(xl) {
-
   }
 }

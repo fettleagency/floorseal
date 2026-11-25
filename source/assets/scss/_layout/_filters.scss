@@ -1,0 +1,428 @@
+// Collection filters (Figma "Filter dropdown – Surface open", "Mobile filter panel – open 390"
+// and "Collection page – filtered state").
+//
+// One form, built from standard Bootstrap parts:
+// - .collection-filters__panel is an .offcanvas-lg. Below lg it is a panel that slides in from
+//   the right, opened by the Filter button. From lg up Bootstrap shows its contents in place,
+//   so the filters sit in the toolbar.
+// - .filter-group is a Bootstrap .dropdown (data-bs-display="static", so no Popper). On desktop
+//   it is a dropdown under its button. In the mobile panel the button becomes a heading row and
+//   the menu opens underneath it, in the flow of the panel.
+// - Inside the Surface filter, each surface with sub-surfaces is a Bootstrap collapse, with
+//   data-bs-parent so only one is open at a time.
+// The checkbox uses the Horizon theme's class names (.checkbox, .checkbox__input, .checkbox__label).
+// The script is js/custom/collection-filters.js.
+
+// Plus when closed, minus when open
+.filter-group__toggle,
+.filter-option__toggle {
+  &[aria-expanded="true"] .icon--plus,
+  &[aria-expanded="false"] .icon--minus {
+    display: none;
+  }
+}
+
+// A button with something ticked: yellow with navy text, and it keeps that colour while pressed or open
+@mixin filter-button-active {
+  --bs-btn-color: #{$brand-navy};
+  --bs-btn-bg: #{$brand-yellow};
+  --bs-btn-border-color: #{$brand-yellow};
+  --bs-btn-hover-color: #{$brand-navy};
+  --bs-btn-hover-bg: #{shade-color($brand-yellow, 15%)};
+  --bs-btn-hover-border-color: #{shade-color($brand-yellow, 15%)};
+  --bs-btn-active-color: #{$brand-navy};
+  --bs-btn-active-bg: #{$brand-yellow};
+  --bs-btn-active-border-color: #{$brand-yellow};
+}
+
+// ----- Panel -----
+
+.collection-filters {
+  // The mobile Filter button, with a filter applied ("Filter · 2"). Not in the designs; it
+  // follows the rule for the desktop buttons.
+  &__open.is-active {
+    @include filter-button-active;
+  }
+
+  // Mobile: 342px wide at 390px, leaving a 48px strip of the dimmed page on the left
+  &__panel {
+    @include media-breakpoint-down(lg) {
+      --bs-offcanvas-width: min(342px, calc(100% - 48px));
+      --bs-offcanvas-padding-x: 24px;
+      --bs-offcanvas-padding-y: 0;
+      --bs-offcanvas-border-width: 0;
+      --bs-offcanvas-bg: #FFF;
+      box-shadow: -8px 0 24px rgba(#000, .2);
+    }
+  }
+
+  // Panel header (mobile only; Bootstrap hides .offcanvas-header from lg up)
+  &__header {
+    flex: none;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  // H5 (SemiBold 16/24) in capitals
+  &__title {
+    color: $brand-navy;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+
+  &__close {
+    display: flex;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+
+  // Desktop: the filters in a row, 16px apart. Mobile: stacked, the body scrolls.
+  &__body {
+    @include media-breakpoint-up(lg) {
+      gap: 16px;
+    }
+
+    @include media-breakpoint-down(lg) {
+      overscroll-behavior-y: contain;
+    }
+  }
+
+  // Panel footer (mobile only): stays put while the body scrolls
+  &__footer {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    box-shadow: 0 -4px 12px rgba(#000, .08);
+
+    // Label on the left, arrow on the right
+    .btn {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .filter-clear {
+      min-height: 44px;
+    }
+  }
+}
+
+// ----- Filter (dropdown on desktop, group in the mobile panel) -----
+
+.filter-group {
+  // Mobile: a yellow rule above every group and under the last one
+  @include media-breakpoint-down(lg) {
+    border-top: 1px solid $brand-yellow;
+
+    &:last-child {
+      border-bottom: 1px solid $brand-yellow;
+    }
+  }
+
+  &__toggle {
+    // Mobile: a heading row, H4 (SemiBold 18/24) in capitals, with plus or minus on the right
+    @include media-breakpoint-down(lg) {
+      --bs-btn-padding-x: 0;
+      --bs-btn-padding-y: 0;
+      --bs-btn-font-size: 18px;
+      --bs-btn-font-weight: 600;
+      --bs-btn-line-height: 24px;
+      --bs-btn-border-width: 0;
+      --bs-btn-border-radius: 0;
+      --bs-btn-color: #{$brand-navy};
+      --bs-btn-bg: transparent;
+      --bs-btn-hover-color: #{$brand-navy};
+      --bs-btn-hover-bg: transparent;
+      --bs-btn-active-color: #{$brand-navy};
+      --bs-btn-active-bg: transparent;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    // Desktop: the button keeps its colour while its dropdown is open (Bootstrap would darken it).
+    // A filter with something ticked is yellow and shows how many ("Surface · 1").
+    @include media-breakpoint-up(lg) {
+      --bs-btn-active-bg: #{$brand-navy};
+      --bs-btn-active-border-color: #{$brand-navy};
+
+      &.is-active {
+        @include filter-button-active;
+      }
+    }
+
+    // The count is for the desktop button only; the mobile heading is just the filter's name
+    @include media-breakpoint-down(lg) {
+      [data-filter-count] {
+        display: none;
+      }
+    }
+  }
+
+  // The list of options and, on desktop, a rule and footer under it
+  &__menu {
+    --bs-dropdown-font-size: 16px;
+    --bs-dropdown-color: #{$text-dark};
+    line-height: 24px;
+
+    // Mobile: in the flow of the panel, under its heading row
+    @include media-breakpoint-down(lg) {
+      --bs-dropdown-spacer: 0;
+      --bs-dropdown-padding-x: 0;
+      --bs-dropdown-padding-y: 0;
+      --bs-dropdown-border-width: 0;
+      --bs-dropdown-border-radius: 0;
+      position: static;
+      width: 100%;
+      padding-bottom: 16px;
+    }
+
+    // Desktop: a 368px panel, 8px under the button
+    @include media-breakpoint-up(lg) {
+      --bs-dropdown-spacer: 8px;
+      --bs-dropdown-padding-x: 24px;
+      --bs-dropdown-padding-y: 24px;
+      --bs-dropdown-border-color: #{$neutral-line};
+      --bs-dropdown-border-radius: 4px;
+      width: 368px;
+      box-shadow: 0 8px 24px rgba($brand-navy, .12);
+
+      &.show {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+  }
+
+  &__options {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__rule {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid $neutral-line;
+    opacity: 1;
+  }
+
+  // Desktop only: Clear on the left, the button on the right
+  &__footer {
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// ----- Options -----
+// Mobile: rows 48px tall for a surface and 40px for a sub-surface, indented 36px.
+// Desktop: 24px lines 11px apart (a 35px step, as drawn), sub-surfaces indented 32px.
+
+.filter-option {
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 40px;
+
+    @include media-breakpoint-up(lg) {
+      min-height: 0;
+    }
+  }
+
+  &--parent > &__row {
+    min-height: 48px;
+
+    @include media-breakpoint-up(lg) {
+      min-height: 0;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    & + & {
+      margin-top: 11px;
+    }
+  }
+
+  // Product count: Body S, Text/Muted
+  &__count {
+    flex: none;
+    color: $text-muted;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  // Plus / minus button on a surface that has sub-surfaces
+  &__toggle {
+    display: flex;
+    flex: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+
+    // A 44px tap area around the 16px icon
+    position: relative;
+
+    &::after {
+      position: absolute;
+      inset: -14px;
+      content: "";
+    }
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+
+  &__children {
+    margin: 0;
+    padding: 0 0 0 36px;
+    list-style: none;
+
+    @include media-breakpoint-up(lg) {
+      padding-left: 32px;
+
+      // 11px above the first sub-surface; padding, so the collapse animates it too
+      > :first-child {
+        padding-top: 11px;
+      }
+    }
+  }
+}
+
+// ----- Checkbox -----
+// 16px box with 4px corners, 16px from its label. Ticked: navy with a white tick, and the
+// label goes Medium and navy. Surfaces (the first level) are always Medium and navy.
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+
+  &__input {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    border: 1px solid $neutral-line;
+    border-radius: 4px;
+    appearance: none;
+    background: #FFF center / 12px 12px no-repeat;
+
+    &:checked,
+    &:indeterminate {
+      border-color: $brand-navy;
+      background-color: $brand-navy;
+    }
+
+    &:checked {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23FFF' stroke-width='2.5' d='m2.5 6 2.5 2.5 4.5-5'/%3E%3C/svg%3E");
+    }
+
+    // Some, but not all, of a surface's sub-surfaces are ticked
+    &:indeterminate {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23FFF' stroke-width='2.5' d='M3 6h6'/%3E%3C/svg%3E");
+    }
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+
+  &__label {
+    color: $text-dark;
+    cursor: pointer;
+  }
+}
+
+.checkbox__input:checked + .checkbox__label,
+.filter-option--parent > .filter-option__row .checkbox__label {
+  color: $brand-navy;
+  font-weight: 500;
+}
+
+// ----- Text buttons and chips -----
+
+// "Clear" and "Clear all": Label S (Medium 14/20) in capitals, navy
+.filter-clear {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: $brand-navy;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+}
+
+// Applied filters: a row of chips and "Clear all", 12px apart, under the toolbar
+// (24px above and below on both designs: on desktop that is 8px less than the listing's gap)
+.collection-listing__applied {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+
+  @include media-breakpoint-up(lg) {
+    margin: -8px 0;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// Chip: the filter's name and a cross; the whole chip is the link that removes the filter.
+// White here, so it shows on the grey of the listing (it is Neutral/Grey in the design,
+// the same as the background it sits on).
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px 8px 12px;
+  border-radius: 4px;
+  background-color: #FFF;
+  color: $brand-navy;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+
+  &:hover {
+    color: $brand-navy;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+}

@@ -1,8 +1,8 @@
 body {
-  font-family: sans-serif;
+  font-family: $rubik;
   font-weight: normal;
   font-style: normal;
-  background-color: #2e2e2e;
+  background-color: $brand-navy;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,44 +13,98 @@ body {
   background-color: #FFF;
 }
 
-.container-fluid {
-  padding-left: 24px;
-  padding-right: 24px;
-
-  @include media-breakpoint-up(sm) {
-
-  }
-
-  @include media-breakpoint-up(md) {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+// Page container and grid.
+// The desktop designs sit on a 12-column grid with a 32px gutter ($grid-gutter-width) and 64px
+// margins at 1440px. Every section wraps its content in .container-fluid, which supplies the
+// page margin, and uses .row and .col-* inside it for anything laid out in columns.
+// The content stops growing at $site-max-width (1440px), so the container stops at that plus
+// its two margins (1568px) and is centred from there up; the section around it still runs the
+// full width, so backgrounds reach the edges of the window.
+// Add .container-fluid--full for content that should keep growing with the window.
+// On mobile the margin is 24px. Where a row needs a different gutter (two-up cards are 16px
+// apart on mobile), set --bs-gutter-x and --bs-gutter-y on the row, as .product-grid does.
+// Bootstrap's own .g-* classes step from 16px to 24px to 48px, so they can't give 32px.
+:root {
+  --site-gutter: 24px;
 
   @include media-breakpoint-up(lg) {
-    padding-left: 40px;
-    padding-right: 40px;
-    max-width: 1380px; //1440px
+    --site-gutter: 40px;
   }
 
   @include media-breakpoint-up(xl) {
+    --site-gutter: 64px;
+  }
 
+  // Distance from the edge of a full-width box to the page content: the gutter, or half of
+  // whatever is left over beside the content once the box is wider than the container's maximum.
+  // For the few things that sit outside a .container-fluid but line up with it (the rule under
+  // the header, the strip at the bottom of the menu panels). Only use it on a property whose
+  // percentages are measured against a full-width box, e.g. left/right or padding.
+  --site-edge: max(var(--site-gutter), calc(50% - #{$site-max-width * .5}));
+}
+
+.container-fluid {
+  max-width: $site-container-max-width;
+  padding-right: var(--site-gutter);
+  padding-left: var(--site-gutter);
+
+  // Opt out of the maximum width
+  &--full {
+    max-width: none;
   }
 }
 
+// Spacing matrix, from the Figma style guide (Spacing table and the "Spacing" variable collection).
+//
+//   Style guide   Variable          Mobile   Tablet   Desktop
+//   XXXLG         --xxxl-space        64       96       112
+//   XXLG          --xxl-space         56       80       104
+//   XLG           --xl-space          40       56        80
+//   LG            --lg-space          32       48        56
+//   MD            --md-space          32       40        48
+//   SM            --sm-space          24       32        40
+//   XSM           --xs-space          16       24        32
+//   XXSM          --xxs-space         12       16        24
+//   XXXSM         --xxxs-space         8       12        16
+//   XXXXSM        --xxxxs-space        4        4         8
+//
+// Use them for the top and bottom padding of sections and widgets, and for element margins that
+// follow the scale. Each edge takes its own step, so a section's top and bottom can differ:
+//
+//   .my-section { padding-top: var(--lg-space); padding-bottom: var(--xxxl-space); }
+//
+// In Figma each section's top and bottom padding is bound to one of these steps, so read the
+// two steps off the section in the design (they vary from section to section).
+//
+// A section normally uses the same step on every breakpoint, and the variable does the resizing.
+// In the rare case where the mobile and desktop designs use different steps for the same edge,
+// switch the variable at the breakpoint:
+//
+//   .my-section {
+//     padding-bottom: var(--lg-space);
+//
+//     @include media-breakpoint-up($bp-desktop) {
+//       padding-bottom: var(--xxxl-space);
+//     }
+//   }
+//
+// Padding and gaps inside components (cards, rows, buttons) keep their own values.
 :root {
+  --xxxxs-space: 4px;
   --xxxs-space: 8px;
-  --xxs-space: 16px;
-  --xs-space: 24px;
+  --xxs-space: 12px;
+  --xs-space: 16px;
   --sm-space: 24px;
   --md-space: 32px;
-  --lg-space: 40px;
+  --lg-space: 32px;
   --xl-space: 40px;
-  --xxl-space: 48px;
-  --xxxl-space: 56px;
+  --xxl-space: 56px;
+  --xxxl-space: 64px;
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up($bp-tablet) {
   :root {
+    --xxxxs-space: 4px;
     --xxxs-space: 12px;
     --xxs-space: 16px;
     --xs-space: 24px;
@@ -58,13 +112,14 @@ body {
     --md-space: 40px;
     --lg-space: 48px;
     --xl-space: 56px;
-    --xxl-space: 72px;
-    --xxxl-space: 80px;
+    --xxl-space: 80px;
+    --xxxl-space: 96px;
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up($bp-desktop) {
   :root {
+    --xxxxs-space: 8px;
     --xxxs-space: 16px;
     --xxs-space: 24px;
     --xs-space: 32px;
@@ -72,14 +127,7 @@ body {
     --md-space: 48px;
     --lg-space: 56px;
     --xl-space: 80px;
-    --xxl-space: 112px;
-    --xxxl-space: 120px;
-  }
-}
-
-@include media-breakpoint-up(xl) {
-
-  :root {
-
+    --xxl-space: 104px;
+    --xxxl-space: 112px;
   }
 }

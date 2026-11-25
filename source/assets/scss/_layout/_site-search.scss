@@ -1,0 +1,138 @@
+// Site search: one form, three looks.
+// - Mobile (below lg): full width at the top of the menu.
+// - Desktop (xxl up, as designed at 1440): a 304px field between the links and the basket.
+// - lg to xxl: there isn't room for the field beside the links, so the form is hidden and a
+//   button the size of the basket links to the search page. This range isn't in the design.
+//
+// .site-search is the layout wrapper, .site-search__form is the field itself. In Shopify the
+// wrapper can be swapped for the theme's predictive search element without touching these styles.
+
+// Desktop values from Figma that aren't colour variables (mobile uses Neutral/Line and navy)
+$search-border-desktop: #C2C2C2;
+$search-icon-desktop: #1C1B1F;
+
+.site-search {
+  flex: none;
+
+  // Mobile: 24px to the first link, not the 32px between the other blocks of the menu
+  @include media-breakpoint-down(lg) {
+    margin-bottom: -8px;
+  }
+
+  // Desktop: pushed to the right of the links, vertically centred in the header row
+  @include media-breakpoint-up(lg) {
+    position: relative;
+    align-self: center;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: 48px;
+    height: 48px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    flex: 0 1 304px;
+    width: auto;
+    min-width: 200px;
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid $neutral-line;
+    border-radius: 4px;
+    background-color: #FFF;
+
+    &:focus-within {
+      border-color: $brand-navy;
+    }
+
+    @include media-breakpoint-up(lg) {
+      border-color: $search-border-desktop;
+    }
+  }
+
+  &__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: $brand-navy;
+    // 16px, not the 14px in the design: iOS Safari zooms the page when an input under 16px is focused
+    font-size: 16px;
+    line-height: 24px;
+
+    // If the placeholder ever doesn't fit (the field can narrow just above 1400px), end it with an ellipsis
+    text-overflow: ellipsis;
+
+    &::placeholder {
+      color: $text-muted;
+      font-size: 14px;
+    }
+
+    // Hide the browser's own clear button, the theme can add its own
+    &::-webkit-search-cancel-button {
+      appearance: none;
+    }
+  }
+
+  &__submit {
+    display: flex;
+    flex: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+
+    @include media-breakpoint-up(lg) {
+      color: $search-icon-desktop;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+
+  // The magnifier is an 18px glyph drawn 2px in from the top left of its 24px box.
+  // On desktop it sits on the field's right padding edge and is centred vertically. The negative
+  // margins make the icon take up only the glyph's 18px, which leaves the input the full
+  // width it has in Figma (otherwise the placeholder is clipped by a pixel or two).
+  @include media-breakpoint-up(xxl) {
+    &__submit .icon {
+      position: relative;
+      top: 1px;
+      margin: 0 -4px 0 -2px;
+    }
+  }
+
+  // lg to xxl: a square button, same border as the field, linking to the search page.
+  // (.d-none .d-lg-flex .d-xxl-none in the markup show it only in that range.)
+  &__link {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid $search-border-desktop;
+    border-radius: 4px;
+    background-color: #FFF;
+    color: $search-icon-desktop;
+
+    .icon {
+      transform: translate(1px, 1px); // centre the glyph in the square
+    }
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+}

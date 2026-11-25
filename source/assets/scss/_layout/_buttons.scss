@@ -1,0 +1,63 @@
+// Buttons: Bootstrap's .btn, set to the Floorseal standard.
+// 56px tall, Label S (Medium 14/20) in capitals, 24px of side padding inside the border,
+// 4px corners. An icon inside a button sits 8px from the label.
+//
+//   .btn-navy             navy with white text (the collection filter buttons)
+//   .btn-yellow           yellow with navy text ("Show 27 products")
+//   .btn-white            white with navy text, for dark backgrounds ("Upload a photo")
+//   .btn-outline-yellow   2px yellow outline with navy text ("Show more products")
+//
+// Hover and active colours are Bootstrap's (derived from the colour), as none are designed yet.
+
+.btn {
+  --bs-btn-padding-x: 24px;
+  --bs-btn-padding-y: 14px;
+  --bs-btn-font-size: 14px;
+  --bs-btn-font-weight: 500;
+  --bs-btn-line-height: 20px;
+  --bs-btn-border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+  text-transform: uppercase;
+
+  // A chevron pointing down. The glyph is 14px wide in a 22px box in the design.
+  .icon--down {
+    margin: 0 3px;
+    transform: rotate(90deg);
+  }
+}
+
+.btn-navy {
+  @include button-variant($brand-navy, $brand-navy);
+}
+
+.btn-yellow {
+  @include button-variant(
+    $brand-yellow,
+    $brand-yellow,
+    $color: $brand-navy,
+    $hover-color: $brand-navy,
+    $active-color: $brand-navy,
+    $disabled-color: $brand-navy
+  );
+}
+
+.btn-white {
+  @include button-variant(
+    #FFF,
+    #FFF,
+    $color: $brand-navy,
+    $hover-color: $brand-navy,
+    $active-color: $brand-navy,
+    $disabled-color: $brand-navy
+  );
+}
+
+.btn-outline-yellow {
+  @include button-outline-variant($brand-yellow, $brand-navy);
+  --bs-btn-color: #{$brand-navy};
+  --bs-btn-border-width: 2px;
+}

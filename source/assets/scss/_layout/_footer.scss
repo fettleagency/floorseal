@@ -1,0 +1,299 @@
+// Footer, from the Figma footer/mobile and footer/desktop components.
+// - Below lg (while the header is in its mobile state): the mobile design, one column,
+//   everything stacked 32px apart. From md (768px) the three link lists sit side by side.
+// - lg to xl (992 to 1199px, not in the design): still the mobile sizes, with the sign-up
+//   capped at its desktop width.
+// - From xl: the desktop design, two rows on the page grid so the shop buttons line up with
+//   the link columns.
+// Top and bottom padding is the XLG step of the spacing matrix, as bound in Figma.
+//
+// Layout is Bootstrap's grid (the column classes are in the markup):
+//   .container-fluid.site-footer__inner
+//     .row.site-footer__top    logo (4 columns) | shop links (7, one column in from the logo)
+//     .row.site-footer__main   sign-up (4)      | .row.site-footer__columns, three link columns
+//     .site-footer__legal
+
+.site-footer {
+  padding: var(--xl-space) 0;
+  background-color: $brand-navy;
+  color: #FFF;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+
+  // The two rows and the legal line, 32px apart (56px on desktop)
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include media-breakpoint-up(xl) {
+      gap: 56px;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid #FFF;
+      outline-offset: 2px;
+    }
+  }
+
+  // ----- Rows -----
+  // Below xl the two columns of a row stack, 32px apart (the row's vertical gutter).
+
+  &__top,
+  &__main {
+    --bs-gutter-y: 32px;
+
+    @include media-breakpoint-up(xl) {
+      --bs-gutter-y: 0;
+    }
+  }
+
+  // ----- Logo with tagline: 247x48 mobile, 288x56 desktop -----
+
+  &__logo {
+    display: block;
+    width: fit-content;
+
+    img {
+      display: block;
+      width: 247px;
+      height: 48px;
+
+      @include media-breakpoint-up(xl) {
+        width: 288px;
+        height: 56px;
+      }
+    }
+  }
+
+  // ----- Shop links -----
+  // Mobile: 34px chips with a 1px yellow border. Desktop: 56px buttons with a 2px white border.
+
+  &__shop {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    @include media-breakpoint-up(xl) {
+      gap: 24px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      height: 34px;
+      padding: 0 12px;
+      border: 1px solid $brand-yellow;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 16px;
+
+      @include media-breakpoint-up(xl) {
+        height: 56px;
+        padding: 0 24px;
+        border: 2px solid #FFF;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+      }
+    }
+  }
+
+  // ----- Headings (sign-up and link columns): yellow, Medium 14/20 -----
+
+  &__heading {
+    margin: 0;
+    color: $brand-yellow;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  // ----- Email sign-up -----
+
+  &__signup {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include media-breakpoint-up(lg) {
+      width: 100%;
+      max-width: 393px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      gap: 16px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 52px;
+    padding: 0 16px;
+    border-radius: 4px;
+    background-color: #FFF;
+
+    &:focus-within {
+      outline: 2px solid $brand-yellow;
+      outline-offset: 2px;
+    }
+  }
+
+  &__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: $text-dark;
+    // 16px typed text (the design only shows the 14px placeholder): stops iOS Safari zooming in
+    font-size: 16px;
+    line-height: 20px;
+    text-overflow: ellipsis;
+    text-transform: none;
+
+    &::placeholder {
+      color: $text-dark;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
+
+  &__submit {
+    display: flex;
+    flex: none;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: $brand-navy;
+
+    &:focus-visible {
+      outline: 2px solid $brand-navy;
+      outline-offset: 2px;
+    }
+  }
+
+  // ----- Social links: 40px squares with 16px icons on mobile, 48px with 24px icons on desktop -----
+
+  &__social {
+    display: flex;
+    gap: 16px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      background-color: $brand-yellow;
+      color: $brand-navy;
+
+      @include media-breakpoint-up(xl) {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    .icon {
+      @include media-breakpoint-up(xl) {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  // ----- Link columns -----
+  // A nested row. Mobile: stacked 24px apart. From md: three across (.col-md-4 each).
+
+  &__columns {
+    --bs-gutter-y: 24px;
+
+    @include media-breakpoint-up(md) {
+      --bs-gutter-y: 0;
+    }
+  }
+
+  &__links {
+    li {
+      margin-top: 8px;
+    }
+
+    // At 1200px the longest link is 2px wider than its column, so it's kept on one line
+    // (it runs into the 32px gutter) rather than breaking onto two.
+    @include media-breakpoint-up(xl) {
+      a {
+        white-space: nowrap;
+      }
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // ----- Legal line: Regular 12/16 -----
+  // Mobile: three lines 8px apart. Desktop: copyright and policies on one line, credit on the right.
+
+  &__legal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+    line-height: 16px;
+
+    @include media-breakpoint-up(xl) {
+      flex-direction: row;
+      gap: 0;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__policies {
+    display: flex;
+    flex-wrap: wrap;
+
+    // A dot between items, with two spaces either side as in the design, and on desktop
+    // before the first item too (after the copyright)
+    li + li::before {
+      content: "  ·  ";
+      white-space: pre;
+    }
+
+    @include media-breakpoint-up(xl) {
+      li:first-child::before {
+        content: "  ·  ";
+        white-space: pre;
+      }
+    }
+  }
+
+  &__credit {
+    @include media-breakpoint-up(xl) {
+      margin-left: auto;
+    }
+  }
+}

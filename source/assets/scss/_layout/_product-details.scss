@@ -1,0 +1,631 @@
+// Product details (Figma "section/trouble with black spot", "section/all natural stone" and,
+// on mobile, "section/product details"): blocks of text beside an image, alternating sides.
+//
+// Desktop: the image is six columns and the text five, with one empty column between them
+// (the design has the text slightly off the grid; here it is on it). 112px between blocks.
+// Mobile (below md): an accordion. Each block is a row with a yellow rule above it; the label
+// is the button, and the heading, text, points and image open underneath.
+//
+// The same accordion carries on through "How to use" and "Aftercare" further down this file.
+// On desktop the product reviews sit between "Where to use it" and "How to use"; on mobile
+// the four rows stay together and the reviews come after them (see "Mobile order" below).
+
+// ----- Accordion row (shared) -----
+// .details-row: a yellow rule above each row below md (and below the last one).
+// .details-toggle: the row's button, mobile only (it has .d-md-none in the markup).
+// From md every row is open, whatever state the accordion was left in.
+
+.details-row {
+  border-top: 1px solid $brand-yellow;
+
+  &--last {
+    border-bottom: 1px solid $brand-yellow;
+  }
+
+  @include media-breakpoint-up(md) {
+    border: 0;
+
+    .collapse:not(.show) {
+      display: block;
+    }
+
+    .collapsing {
+      height: auto !important; // over the inline height Bootstrap sets while it animates
+      transition: none;
+    }
+  }
+}
+
+// Label S in capitals, 64px tall, plus or minus at the end
+.details-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 22px 0;
+  border: 0;
+  background: none;
+  color: $brand-navy;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  text-transform: uppercase;
+
+  &[aria-expanded="false"] .icon--minus,
+  &[aria-expanded="true"] .icon--plus {
+    display: none;
+  }
+}
+
+// ----- Mobile order -----
+// The page is written in desktop order: details, reviews, how to use, aftercare, then the
+// rest. main is a flex column, so below md the reviews can be given a later position than the
+// two sections written after them, without the widget being output twice.
+// (In Shopify these classes go on each section's wrapper.)
+
+#MainContent {
+  display: flex;
+  flex-direction: column;
+}
+
+@include media-breakpoint-down(md) {
+  .product-reviews {
+    order: 1;
+  }
+
+  // Everything written after the reviews goes behind them...
+  .product-reviews ~ * {
+    order: 2;
+  }
+
+  // ...except these two, which stay ahead
+  .product-reviews ~ .how-to-use,
+  .product-reviews ~ .aftercare {
+    order: 0;
+  }
+}
+
+// ----- Text and image blocks -----
+// Padding: XXXLG top and bottom; no bottom padding on mobile, where the accordion carries on.
+
+.product-details {
+  padding: var(--xxxl-space) 0 0;
+  background-color: #FFF;
+
+  @include media-breakpoint-up(md) {
+    padding-bottom: var(--xxxl-space);
+  }
+}
+
+.product-detail {
+  @include media-breakpoint-up(md) {
+    & + & {
+      margin-top: var(--xxxl-space);
+    }
+  }
+
+  // Overline (desktop only), in yellow
+  &__label {
+    margin: 0 0 -16px; // 8px above the heading inside the 24px stack
+    color: $brand-yellow;
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  // H3 in capitals
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    text-transform: uppercase;
+  }
+
+  // Body S on mobile; Label (Medium 16/24) in navy from md
+  &__lead {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(md) {
+      color: $brand-navy;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  }
+
+  // Points: Body S in navy with a yellow chevron. 12px apart on mobile, 20px from md.
+  &__points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    color: $brand-navy;
+    font-size: 14px;
+    line-height: 20px;
+    list-style: none;
+
+    @include media-breakpoint-up(md) {
+      gap: 20px;
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    // The chevron is a 16px icon in a 21 x 22 box
+    .icon {
+      box-sizing: content-box;
+      padding: 3px 3px 3px 2px;
+      color: $brand-yellow;
+    }
+  }
+
+  // The image is 24px under the points on mobile, with 24px below it before the next rule
+  &__media {
+    padding: 24px 0;
+
+    @include media-breakpoint-up(md) {
+      padding: 0;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+}
+
+// ----- Before and after slider -----
+// Two square photos, one over the other. The "before" photo is clipped at the divider, which
+// follows --compare-position (0% to 100%, set by js/custom/product.js). The control is a
+// range input laid invisibly over the whole image, so it works with a mouse, touch and the
+// keyboard. Divider 3px and handle 40px on mobile; 4px and 48px from lg.
+
+.compare {
+  --compare-position: 50%;
+  --compare-divider: 3px;
+  --compare-handle: 40px;
+  --compare-inset: 16px;
+
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+
+  @include media-breakpoint-up(lg) {
+    --compare-divider: 4px;
+    --compare-handle: 48px;
+    --compare-inset: 24px;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__before {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 calc(100% - var(--compare-position)) 0 0);
+  }
+
+  // "Before" and "After": the same size as the guide card's category tag (Overline, 6px by
+  // 12px padding, 16px in from the corner on mobile and 24px on desktop), in navy on white
+  &__label {
+    position: absolute;
+    top: var(--compare-inset);
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: #FFF;
+    color: $brand-navy;
+
+    &--before {
+      left: var(--compare-inset);
+    }
+
+    &--after {
+      right: var(--compare-inset);
+    }
+  }
+
+  &__divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--compare-position);
+    width: var(--compare-divider);
+    margin-left: calc(var(--compare-divider) / -2);
+    background-color: #FFF;
+    pointer-events: none;
+  }
+
+  // White circle with a chevron pointing each way
+  &__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: var(--compare-handle);
+    height: var(--compare-handle);
+    border-radius: 50%;
+    background-color: #FFF;
+    box-shadow: 0 2px 8px rgba(#000, .25);
+    color: $brand-navy;
+    transform: translate(-50%, -50%);
+
+    .icon:first-child {
+      transform: rotate(90deg);
+    }
+
+    .icon:last-child {
+      transform: rotate(-90deg);
+    }
+  }
+
+  // The range input: invisible, over the whole image. Its thumb is as narrow as the divider
+  // so the divider sits under the pointer. Vertical swipes still scroll the page.
+  &__range {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    touch-action: pan-y;
+    appearance: none;
+
+    &::-webkit-slider-thumb {
+      width: var(--compare-divider);
+      height: 100vh;
+      appearance: none;
+    }
+
+    &::-moz-range-thumb {
+      width: var(--compare-divider);
+      height: 100vh;
+      border: 0;
+    }
+
+    &:focus-visible + .compare__divider .compare__handle {
+      outline: 2px solid $brand-yellow;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// ----- Product reviews -----
+// Desktop: a Neutral/Grey band, XXXLG padding, content eight columns wide (864px in the design).
+// Mobile: white with no top padding, because it follows the accordion's own bottom padding.
+// Title row: "Reviews" (H3) with "Write a review" (Label S) at the far end, 32px above the widget.
+
+.product-reviews {
+  padding-bottom: var(--xxxl-space);
+  background-color: #FFF;
+
+  @include media-breakpoint-up(md) {
+    padding-top: var(--xxxl-space);
+    background-color: $neutral-grey;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    text-transform: uppercase;
+  }
+
+  &__write {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $text-dark;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-decoration: none;
+
+    &:hover {
+      color: $text-dark;
+      text-decoration: underline;
+    }
+  }
+}
+
+// ----- How to use -----
+// Desktop (Figma "section/how to use"): a navy band, XXXLG padding, content ten columns wide.
+// Heading, introduction, numbered steps on white with a yellow number tab, notes in capitals
+// and the two document links at the right.
+// Mobile: an accordion row on white; the steps sit on Neutral/Grey and the links stack.
+
+.how-to-use {
+  background-color: #FFF;
+
+  @include media-breakpoint-up(md) {
+    padding: var(--xxxl-space) 0;
+    background-color: $brand-navy;
+    color: #FFF;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 24px;
+
+    @include media-breakpoint-up(md) {
+      padding-bottom: 0;
+    }
+  }
+
+  // H2 in capitals, which steps up to 64/72 at xl as the other large section headings do
+  &__title {
+    margin: 0 0 24px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 64px;
+      line-height: 72px;
+    }
+  }
+
+  // Body S on mobile; Label (Medium 16/24) from md
+  &__intro {
+    margin: 0 0 24px;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 32px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 0 24px;
+    padding: 0;
+    list-style: none;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 32px;
+    }
+  }
+
+  // A step: 60px yellow tab with the number, then the text (Body S in navy)
+  &__step {
+    display: flex;
+    gap: 16px;
+    padding-right: 16px;
+    background-color: $neutral-grey;
+    color: $brand-navy;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(md) {
+      gap: 24px;
+      padding-right: 24px;
+      background-color: #FFF;
+    }
+
+    p {
+      margin: 0;
+      padding: 20px 0;
+    }
+  }
+
+  &__number {
+    flex: 0 0 60px;
+    padding: 20px 8px 0;
+    background-color: $brand-yellow;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  // Body S in capitals; the link keeps its underline
+  &__notes {
+    max-width: 900px;
+    margin: 0 0 24px;
+    color: $brand-navy;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(md) {
+      color: #FFF;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+
+  // Links: full width and stacked 12px apart on mobile with the icon at the far end; at the
+  // right, 16px apart, from md
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .btn {
+      justify-content: space-between;
+    }
+
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+
+    @include media-breakpoint-up(md) {
+      flex-flow: row wrap;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+  }
+
+  // On the navy band the outline button is white, filling white on hover
+  &__download {
+    @include media-breakpoint-up(md) {
+      --bs-btn-color: #FFF;
+      --bs-btn-border-color: #FFF;
+      --bs-btn-hover-color: #{$brand-navy};
+      --bs-btn-hover-bg: #FFF;
+      --bs-btn-hover-border-color: #FFF;
+      --bs-btn-active-color: #{$brand-navy};
+      --bs-btn-active-bg: #FFF;
+      --bs-btn-active-border-color: #FFF;
+    }
+  }
+}
+
+// ----- Aftercare -----
+// Desktop (Figma "section/aftercare"): a full-width in-use photo with a white card over its
+// left side: overline, heading, text, a link and a cut-out of the products at the card's
+// bottom right. The card starts on the second column, as "How to use" does.
+// Mobile (Figma "product details open states"): the last accordion row. The photo, 200px
+// tall, then overline, heading, text and a full-width link, all 24px apart.
+
+.aftercare {
+  position: relative;
+  padding-bottom: var(--xxxl-space);
+  background-color: #FFF;
+
+  @include media-breakpoint-up(md) {
+    padding: var(--xxxl-space) 0;
+  }
+
+  // The photo: one image for both layouts, cropped by object-fit.
+  // Mobile: at the top of the open row, 200px tall, 24px above the text.
+  // From md: stretched over the whole section, behind the card. Nothing between it and the
+  // section is positioned, so the section is what it fills; the card comes later in the
+  // markup and is positioned, so it sits on top.
+  &__photo {
+    display: block;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    object-fit: cover;
+
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      margin: 0;
+      border-radius: 0;
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding-bottom: 24px;
+
+    // The card's padding is the LG spacing step on every side: 48px on tablet, 56px on
+    // desktop (drawn as 56px top and bottom, 64px at the sides; no step is 64px on desktop)
+    @include media-breakpoint-up(md) {
+      min-height: 416px;
+      padding: var(--lg-space);
+      background-color: #FFF;
+    }
+
+    @include media-breakpoint-up(lg) {
+      min-height: 496px;
+    }
+  }
+
+  // Overline in yellow: 24px above the heading on mobile, 8px from md
+  &__label {
+    margin: 0;
+    color: $brand-yellow;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: -16px; // 8px above the heading inside the 24px stack
+    }
+  }
+
+  // Display (the H2 sizes, in capitals)
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+
+    @include media-breakpoint-up(md) {
+      max-width: 352px;
+    }
+  }
+
+  // Body S on mobile; Label (Medium 16/24) in navy from md, kept narrow beside the cut-out
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(md) {
+      max-width: 224px;
+      color: $brand-navy;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+  }
+
+  &__link {
+    justify-content: space-between;
+    width: 100%;
+
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
+  }
+
+  // Product cut-out: about 270 x 240 in a 640px card. It breaks out of the card, hanging 16px
+  // over the right edge, and sits 8px lower than the card's padding.
+  &__products {
+    position: absolute;
+    right: -16px;
+    bottom: calc(var(--lg-space) - 8px);
+    width: 42%;
+    height: auto;
+    aspect-ratio: 280 / 248;
+    object-fit: contain;
+  }
+}
+

@@ -1,4 +1,6 @@
 // ########## Config Import ########## //
+@import "_configs/colours";
+@import "_configs/fonts";
 @import "_configs/variables";
 @import "_configs/mixins";
 
@@ -6,10 +8,23 @@
 $bootstrap-sass-asset-helper: true;
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "_configs/reset";
+@import "../../node_modules/@splidejs/splide/dist/css/splide-core.min.css";
 
 // ########## Layout Import ########## //
-@import "_layout/colours";
 @import "_layout/typography";
 @import "_layout/header";
+@import "_layout/mobile-menu";
+@import "_layout/site-search";
 @import "_layout/main";
+@import "_layout/buttons";
+@import "_layout/breadcrumb";
+@import "_layout/collection";
+@import "_layout/filters";
+@import "_layout/help-choosing";
+@import "_layout/section-header";
+@import "_layout/guides";
+@import "_layout/reviews";
+@import "_layout/product";
+@import "_layout/product-details";
+@import "_layout/faqs";
 @import "_layout/footer";

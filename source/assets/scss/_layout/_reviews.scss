@@ -1,0 +1,8 @@
+// Reviews (Figma "section/reviews"). Only the section and its header are built here: the
+// reviews themselves come from the reviews.io Shopify app, whose widget replaces the
+// temporary space in the markup. White, XXXLG padding top and bottom.
+
+.reviews {
+  padding: var(--xxxl-space) 0;
+  background-color: #FFF;
+}

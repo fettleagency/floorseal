@@ -1,0 +1,213 @@
+// Guides slider (Figma "section/related content" and "section/related guides") and the guide card.
+//
+// The slider is Splide (js/custom/sliders.js), set up the way Fettle uses it elsewhere:
+// - .splide__list is also a Bootstrap .row and each .splide__slide is a .col-*, so the slides
+//   are sized by the grid (the classes are in the markup). Splide runs with autoWidth, which
+//   leaves the widths to that CSS.
+// - The track's overflow is visible, so the slides run off the right-hand edge of the window
+//   and the section clips them there.
+// There are no arrows or dots in the design: the cards are dragged or swiped.
+//
+// Padding: XXXLG top and bottom on both designs. The cards are 24px under the heading on
+// mobile and 56px on desktop.
+
+.guides {
+  padding: var(--xxxl-space) 0;
+  overflow-x: clip;
+  background-color: $brand-yellow;
+  color: $brand-navy;
+
+  // The header's link is navy with a white arrow here, and the cards are 56px under it on desktop
+  --section-header-link: #{$brand-navy};
+  --section-header-arrow: #FFF;
+
+  .section-header {
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 56px;
+    }
+  }
+
+  // Splide sets the list's margin to 0, which removes the row's negative side margins, so
+  // the slider itself is pulled out by half a gutter to line the first card up with the heading.
+  // Cards are 16px apart on mobile and 32px on desktop.
+  .splide {
+    --guides-gutter: 16px;
+    margin-right: calc(var(--guides-gutter) / -2);
+    margin-left: calc(var(--guides-gutter) / -2);
+
+    @include media-breakpoint-up(lg) {
+      --guides-gutter: #{$grid-gutter-width};
+    }
+  }
+
+  .splide__track {
+    overflow: visible;
+  }
+
+  .splide__list {
+    --bs-gutter-x: var(--guides-gutter);
+    flex-wrap: nowrap;
+  }
+}
+
+// ----- Guide card -----
+// Mobile (below lg): photo on top (180px tall), navy body underneath.
+// Desktop: the photo fills the 507px card and the body is a navy panel, 90% opaque, across
+// the bottom of it. The tag is always navy with white text.
+
+.guide-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: $brand-navy;
+  color: #FFF;
+
+  @include media-breakpoint-up(lg) {
+    justify-content: flex-end;
+    height: 507px;
+  }
+
+  &__image {
+    flex: none;
+    height: 180px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      inset: 0;
+      height: auto;
+    }
+  }
+
+  // Tag: Overline (SemiBold 12/16, capitals, 8% letter spacing), 16px in from the top left
+  // of the photo on mobile and 24px on desktop
+  &__tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    margin: 0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: $brand-navy;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    line-height: 16px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      top: 24px;
+      left: 24px;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+
+    @include media-breakpoint-up(lg) {
+      position: relative;
+      flex: none;
+      gap: 18px;
+      // 214px as drawn, or the height of the tallest panel in the slider when a longer
+      // title makes one grow (set by js/custom/sliders.js), so the panels always line up
+      min-height: max(214px, var(--guide-body-height, 0px));
+      background-color: rgba($brand-navy, .9);
+    }
+  }
+
+  // Title: H5 (16/24) on mobile, H4 (18/24) on desktop, in capitals.
+  // On the wide first card (.guide-card--wide, six columns from xl) the title and text keep
+  // to about two thirds of the card, as drawn. On the other cards they use the full width,
+  // so they wrap onto as few lines as possible.
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+    }
+  }
+
+  &--wide &__title {
+    @include media-breakpoint-up(xl) {
+      max-width: 70%;
+    }
+  }
+
+  &--wide &__text {
+    @include media-breakpoint-up(xl) {
+      max-width: 66%;
+    }
+  }
+
+  // The link in the title covers the whole card
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+    }
+
+    &:hover {
+      color: inherit;
+    }
+
+    &:focus-visible {
+      outline: 0;
+
+      &::after {
+        outline: 2px solid #FFF;
+        outline-offset: -4px;
+      }
+    }
+  }
+
+  // Body S (14/20)
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  // "Read more": Label S with a yellow arrow, at the bottom of the card; on the left on
+  // mobile (never less than 40px under the text) and on the right on desktop
+  &__more {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-transform: uppercase;
+
+    .icon {
+      color: $brand-yellow;
+    }
+
+    @include media-breakpoint-up(lg) {
+      justify-content: flex-end;
+      padding-top: 22px;
+    }
+  }
+}

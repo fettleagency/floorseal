@@ -1,0 +1,51 @@
+// Section header: a section's heading with a "see all" link, used by the guides and reviews
+// sections. A Bootstrap .row (the columns are in the markup): the link sits 8px under the
+// heading on mobile and on the right, level with the top of the heading, from lg.
+// 24px above the section's content on mobile and 32px on desktop.
+//
+// The link is Text/Dark with a yellow arrow. A section on a coloured background changes them
+// with --section-header-link and --section-header-arrow.
+
+.section-header {
+  --bs-gutter-y: 8px;
+  margin-bottom: 24px;
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 32px;
+  }
+
+  // An h2 at the H2 sizes, navy, in capitals
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    text-transform: uppercase;
+  }
+
+  // Label S (Medium 14/20) in capitals, with an arrow
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    color: var(--section-header-link, #{$text-dark});
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    .icon {
+      color: var(--section-header-arrow, #{$brand-yellow});
+    }
+
+    &:hover {
+      color: var(--section-header-link, #{$text-dark});
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentcolor;
+      outline-offset: 2px;
+    }
+  }
+}

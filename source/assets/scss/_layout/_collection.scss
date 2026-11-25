@@ -1,0 +1,342 @@
+// Collection page (Figma "Collection page – desktop 1440" and "– mobile 390").
+// Sections are added here as they are built. So far: the hero and the listing.
+
+// ----- Hero (Figma "section/collection header") -----
+// Mobile (below lg, while the header is in its mobile state): solid navy, title and description.
+// Desktop (lg up): the collection image behind a navy gradient, with the breadcrumb above the title.
+//
+// Top padding is 40px on both designs (SM on desktop; on mobile it is a plain 40px, and no one
+// step of the spacing matrix is 40px at both ends). Bottom padding is XXXLG on both.
+
+.collection-hero {
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: var(--xxxl-space);
+  background-color: $brand-navy;
+  color: #FFF;
+
+  // Image and gradient fill the section, behind the content.
+  // (.d-none .d-lg-block in the markup show them on desktop only.)
+  &__media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // Navy on the left, under the text, fading out to the right edge. In Figma the gradient is
+    // solid to 32% of the width along the top edge and 47% along the bottom, and clear just
+    // past the right edge; these values give that at 1440px.
+    &::after {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(62deg, $brand-navy 41%, rgba($brand-navy, 0) 103%);
+      content: "";
+    }
+  }
+
+  // Content sits above the image
+  > .container-fluid {
+    position: relative;
+  }
+
+  // Neutral/Line on the navy, 64px above the title
+  .breadcrumb {
+    --bs-breadcrumb-margin-bottom: 64px;
+    color: $neutral-line;
+  }
+
+  // Type follows the type scale (_typography.scss), not the sizes drawn in the Figma hero.
+  // Title: H1, from the h1 styles (40/48, 48/56, 64/72), in capitals.
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  // Mobile: Body (16/24). Desktop: Body L (18/28), no wider than the 539px it is in the design.
+  &__description {
+    margin-top: 16px;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 539px;
+      margin-top: 24px;
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+}
+
+// ----- Listing (Figma "section/listing") -----
+// Toolbar (filter buttons and the product count), the product grid, then "show more".
+// The three are 24px apart on mobile and 32px on desktop.
+//
+// Top padding: SM on mobile. On desktop there is none: a rule runs along the top of the
+// section and the toolbar starts 32px under it. Bottom padding is XXXLG on both.
+
+.collection-listing {
+  padding-top: var(--sm-space);
+  padding-bottom: var(--xxxl-space);
+  background-color: $neutral-grey;
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 0;
+  }
+
+  > .container-fluid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include media-breakpoint-up(lg) {
+      gap: 32px;
+    }
+  }
+
+  // Desktop only (.d-none .d-lg-block in the markup)
+  &__rule {
+    height: 1px;
+    margin: 0;
+    border: 0;
+    background-color: $neutral-line;
+    opacity: 1;
+  }
+
+  // Filter buttons on the left, 16px apart, and the count on the right
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  // Body S, Text/Muted; in capitals on desktop
+  &__count,
+  &__showing {
+    margin: 0;
+    color: $text-muted;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      text-transform: uppercase;
+    }
+  }
+
+  &__count {
+    margin-left: auto;
+  }
+
+  // "Showing 12 of 27 products", a progress bar and the button, centred and 16px apart
+  &__more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    // Full width on mobile, 240px from md
+    .btn {
+      width: 100%;
+
+      @include media-breakpoint-up(md) {
+        width: 240px;
+      }
+    }
+  }
+
+  // Bootstrap's progress bar: 240 x 4, Neutral/Line with a navy bar
+  &__progress {
+    --bs-progress-height: 4px;
+    --bs-progress-bg: #{$neutral-line};
+    --bs-progress-bar-bg: #{$brand-navy};
+    --bs-progress-border-radius: 2px;
+    width: 240px;
+
+    .progress-bar {
+      border-radius: 2px;
+    }
+  }
+}
+
+// ----- Product grid and card -----
+// Used by the collection listing; the same card will be used wherever products are listed.
+// The class names follow the Horizon theme's (.product-grid, .product-card, .product-card__link).
+
+// A Bootstrap .row: 16px gutters on mobile, 32px on desktop, across and down.
+// Columns are in the markup: two across, three from md, four from xl.
+.product-grid {
+  --bs-gutter-x: 16px;
+  --bs-gutter-y: 16px;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+
+  @include media-breakpoint-up(lg) {
+    --bs-gutter-x: #{$grid-gutter-width};
+    --bs-gutter-y: #{$grid-gutter-width};
+  }
+}
+
+// White card: square image, then name, rating and price, with the price row at the bottom
+// so the cards in a row line up whatever the length of the name.
+// Mobile (below lg): compact, no strapline. Desktop: more padding, strapline above the name.
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 4px;
+  background-color: #FFF;
+
+  // Packshot: fills the square. The white space around the product is part of the exported
+  // image (Figma Assets page, 1000px frame with the product inset 35px), not padding here.
+  &__image {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0; // follows the card's top corners
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 12px 16px;
+
+    @include media-breakpoint-up(lg) {
+      padding: 16px 24px;
+    }
+  }
+
+  // Strapline: Overline (SemiBold 12/16, capitals, 8% letter spacing), Text/Dark
+  &__strapline {
+    margin: 0;
+    color: $text-dark;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  // Name: H5 (16/24) on mobile, H4 (18/24) on desktop, in capitals
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+    }
+  }
+
+  // The link in the name covers the whole card
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      content: "";
+    }
+
+    &:focus-visible {
+      outline: 0;
+
+      &::after {
+        outline: 2px solid $brand-navy;
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  // Rating: Caption (12/16), yellow stars and score
+  &__rating {
+    margin: 0;
+    color: $brand-yellow;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &__stars {
+    margin-right: 4px;
+  }
+
+  // Price and arrow, pushed to the bottom of the card, never less than 19px under the
+  // rating on mobile and 23px on desktop (the 8px gap plus this padding)
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 11px;
+
+    @include media-breakpoint-up(lg) {
+      gap: 16px;
+      padding-top: 15px;
+    }
+  }
+
+  // Price: Label S (Medium 14/20) on mobile; Body (16/24) in capitals on desktop
+  &__price {
+    margin: 0;
+    color: $brand-navy;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      text-transform: uppercase;
+    }
+  }
+
+  // Yellow square with an arrow: 40px with a 10px arrow on mobile, 56px with 14px on desktop
+  &__arrow {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: $brand-yellow;
+    color: $brand-navy;
+
+    .icon {
+      width: 10px;
+      height: 10px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 56px;
+      height: 56px;
+
+      .icon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

@@ -42,6 +42,9 @@ npm run build    # one-off build
 - No jQuery: `lib.js` is Bootstrap's bundle (Popper included), so write custom JS as plain JavaScript.
 - Source maps are written next to `main.css` and `script.js`, so dev tools show the original
   SCSS and JS files. Set `maps` to `false` in `gulpfile.js` before building into the theme.
+- Rubik (400, 400 italic, 500, 600) is self-hosted from the `@fontsource/rubik` package. The `@font-face`
+  rules are in `source/assets/scss/_configs/_fonts.scss` and the files are copied by the gulp
+  `fonts` task. Use it in SCSS with `font-family: $rubik;`.
 - To add a JS library, `npm i <name>` and add its path to `paths.libs` in `gulpfile.js`.
 - Built and tested on Node 26 (`source/.nvmrc`, so `nvm use` picks it up).
 - Sass is pinned at 1.77.5 on purpose: newer versions print hundreds of deprecation

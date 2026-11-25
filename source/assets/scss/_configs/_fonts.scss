@@ -1,0 +1,25 @@
+// Rubik (Google Font), self-hosted from the @fontsource/rubik package.
+// Weights match the Figma text styles: 400 Body, 500 Label, 600 Headings and Buttons.
+// 400 also has an italic for emphasis in body copy.
+// The gulp `fonts` task copies the files into dist/fonts. $font-path is relative
+// to the compiled CSS, change it to "" when building into the theme's flat assets folder.
+$font-path: "../fonts/" !default;
+$rubik: "Rubik", sans-serif;
+
+@each $weight in (400, 500, 600) {
+  @font-face {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: $weight;
+    font-display: swap;
+    src: url("#{$font-path}rubik-latin-#{$weight}-normal.woff2") format("woff2");
+  }
+}
+
+@font-face {
+  font-family: "Rubik";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("#{$font-path}rubik-latin-400-italic.woff2") format("woff2");
+}

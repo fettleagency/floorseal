@@ -30,15 +30,23 @@ let bases = {
         // Order matters. A library listed here must be installed (npm i <name>),
         // the build fails if one is missing. The Bootstrap bundle includes Popper.
         libs: [
-            'node_modules/bootstrap/dist/js/bootstrap.bundle.js'
-            // 'node_modules/@splidejs/splide/dist/js/splide.js',
-            // 'node_modules/@splidejs/splide-extension-auto-scroll/dist/js/splide-extension-auto-scroll.js',
+            'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
+            'node_modules/@splidejs/splide/dist/js/splide.js',
+            'node_modules/@splidejs/splide-extension-auto-scroll/dist/js/splide-extension-auto-scroll.js',
             // 'node_modules/numeral/min/numeral.min.js'
         ],
         styles: [
             'scss/screen.scss'
         ],
-        fonts: ['fonts/**/*.*'],
+        // Font files: anything in assets/fonts, plus the weights we use from npm packages.
+        // If you add a weight here, add it to scss/_configs/_fonts.scss too.
+        fonts: [
+            'assets/fonts/**/*.*',
+            'node_modules/@fontsource/rubik/files/rubik-latin-400-normal.woff2',
+            'node_modules/@fontsource/rubik/files/rubik-latin-400-italic.woff2',
+            'node_modules/@fontsource/rubik/files/rubik-latin-500-normal.woff2',
+            'node_modules/@fontsource/rubik/files/rubik-latin-600-normal.woff2'
+        ],
         images: ['images/**/*.*', '!images/**/index.html']
     };
 
@@ -91,7 +99,7 @@ gulp.task('images', function() {
 
 // Fonts copy
 gulp.task('fonts', function() {
-    return gulp.src(paths.fonts, { cwd: bases.app, encoding: false })
+    return gulp.src(paths.fonts, { encoding: false })
         .pipe(dest(bases.dist + out.fonts));
 });
 
