@@ -1,0 +1,156 @@
+// Forms (Figma "Request SDS – desktop 1440").
+// The site's text field, select and textarea, a field's label, and the layout of a page with
+// a form beside a note (the Request SDS page; the same parts suit a contact form).
+
+// The box every control shares: 56px tall, white with a 1px Neutral/Line border and 4px
+// corners, 16px side padding, Body (16/24). The text is Text/Muted, as drawn, for the
+// placeholder and for what is typed or chosen.
+@mixin control-box {
+  height: 56px;
+  padding: 0 16px;
+  border: 1px solid $neutral-line;
+  border-radius: 4px;
+  background-color: #FFF;
+  color: $text-muted;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+// A select's navy chevron, 16px from the right (Bootstrap's .form-select draws its arrow
+// from --bs-form-select-bg-img)
+@mixin select-chevron {
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 8'%3E%3Cpath fill='%23002856' d='M0 1.28 1.28 0 7 5.44 12.72 0 14 1.28 7 8 0 1.28Z'/%3E%3C/svg%3E");
+  padding-right: 48px;
+  background-position: right 16px center;
+  background-size: 14px 8px;
+}
+
+// ----- Field -----
+// A label above its control, 8px apart. The label is Label XS (Medium 12/16) in Text/Muted
+// capitals. The controls are Bootstrap's .form-control and .form-select.
+// Focus: the border goes navy, with no glow (Bootstrap adds a blue border and glow).
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__label {
+    margin: 0;
+    color: $text-muted;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  .form-control,
+  .form-select {
+    @include control-box;
+
+    &::placeholder {
+      color: $text-muted;
+      opacity: 1;
+    }
+
+    &:focus {
+      border-color: $brand-navy;
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+
+  .form-select {
+    @include select-chevron;
+
+    option,
+    optgroup {
+      color: $text-dark;
+    }
+  }
+
+  // 120px tall, with the text starting 16px down
+  textarea.form-control {
+    height: 120px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    resize: vertical;
+  }
+}
+
+// ----- Page with a form -----
+// Under the page hero: the form in eight columns and a note in four from lg, stacked 32px
+// apart below (the columns are in the markup). On white, straight under the hero: no padding
+// on top, XXXLG underneath.
+.page-form {
+  padding-bottom: var(--xxxl-space);
+  background-color: #FFF;
+
+  &__row {
+    --bs-gutter-y: 32px;
+  }
+
+  // Fields: 24px apart across and down, two across from md
+  &__fields {
+    --bs-gutter-x: 24px;
+    --bs-gutter-y: 24px;
+  }
+
+  // The line above the button: Body S in Text/Muted, 24px under the fields
+  &__note {
+    margin: 24px 0 0;
+    color: $text-muted;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  // Full width on mobile
+  &__submit {
+    width: 100%;
+    margin-top: 24px;
+
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
+  }
+
+  // Shown in place of the form once it has been sent
+  &__sent {
+    margin: 0;
+    color: $brand-navy;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+  }
+}
+
+// ----- Note card -----
+// A Neutral/Grey panel with 4px corners beside the form: heading (H4, navy capitals), a line
+// of text (Body S) and a link, 16px apart. 24px padding on mobile, 32px from lg.
+.note-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 4px;
+  background-color: $neutral-grey;
+
+  --section-header-link: #{$brand-navy};
+
+  @include media-breakpoint-up(lg) {
+    padding: 32px;
+  }
+
+  &__title {
+    margin: 0;
+    color: $brand-navy;
+    font-size: 18px;
+    line-height: 24px;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

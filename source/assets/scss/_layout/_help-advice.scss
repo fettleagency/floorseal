@@ -328,20 +328,11 @@
     }
   }
 
-  // Bootstrap's .form-select, 56px tall: white with a Neutral/Line border, Body in Text/Muted
-  // and a navy chevron 16px from the right
+  // Bootstrap's .form-select as the site's select (_forms.scss): 56px tall, white with a
+  // Neutral/Line border, Body in Text/Muted and a navy chevron 16px from the right
   &__select {
-    --bs-form-select-bg-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 8'%3E%3Cpath fill='%23002856' d='M0 1.28 1.28 0 7 5.44 12.72 0 14 1.28 7 8 0 1.28Z'/%3E%3C/svg%3E");
-    height: 56px;
-    padding: 0 48px 0 16px;
-    border: 1px solid $neutral-line;
-    border-radius: 4px;
-    background-color: #FFF;
-    background-position: right 16px center;
-    background-size: 14px 8px;
-    color: $text-muted;
-    font-size: 16px;
-    line-height: 24px;
+    @include control-box;
+    @include select-chevron;
 
     // No focus style when it is clicked or open (Bootstrap adds a blue border and glow).
     // Reached with the Tab key it gets the white outline other controls have on navy. A clicked
