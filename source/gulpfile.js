@@ -120,6 +120,9 @@ gulp.task('browserSyncInit', function() {
     browserSync.init({
         port: 8081,
         open: false,
+        // Don't mirror scrolling, clicks and form input between connected browsers.
+        // Pages still reload when files change.
+        ghostMode: false,
         server: {
             baseDir: ['assets/static', '.']
         }

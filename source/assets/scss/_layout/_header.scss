@@ -280,6 +280,14 @@ $header-rule: #E2E2E2;
   border-radius: 4px;
   background-color: $brand-yellow;
   color: $brand-navy;
+  transition: background-color $hover-duration ease-in-out, color $hover-duration ease-in-out;
+
+  // Hover: navy with a white icon
+  &:hover,
+  &:focus-visible {
+    background-color: $brand-navy;
+    color: #FFF;
+  }
 
   .icon {
     display: block;

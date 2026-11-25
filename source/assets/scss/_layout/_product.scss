@@ -63,25 +63,61 @@ $product-border-desktop: #C2C2C2;
   }
 
   // Caption (Figma "Gallery slide mock – live text overlay"): a navy band across the bottom
-  // of the image with a yellow rule along its top edge and the text in white, SemiBold.
-  // Drawn for a 640px image: band 192px, rule 8px, text 36/44, 40px in from the sides.
-  // Everything is in cqw (1% of the image's width), so it scales with the image the way text
-  // baked into the photo did. The text stops shrinking at 18px.
+  // of the image with a yellow rule along its top edge and the text in white.
+  // The text uses the type scale, not a size of its own: the H3 sizes (24/32, 28/32, 32/40),
+  // dropping to H4 (18/24) where the image is small. The steps follow how wide the image is
+  // at each breakpoint, which does not simply grow with the window: it is at its narrowest
+  // on phones and again at md, where it first sits beside the buy panel.
+  //
+  //   Window        Image          Text
+  //   below sm      up to 527px    H4 18/24
+  //   sm            528 to 719px   28/32
+  //   md            337 to 448px   H4 18/24
+  //   lg            433 to 536px   24/32
+  //   xl            513 to 612px   28/32
+  //   xxl           613 to 704px   32/40
+  //
+  // The band is as tall as its text plus its padding (24px, 32px or 40px top and bottom, in
+  // step with the text), which keeps it at about a quarter of the image's height.
   &__caption {
     position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
-    display: flex;
-    align-items: center;
-    min-height: 31.25cqw; // the 192px band plus its 8px rule
-    padding: 4cqw 6.25cqw;
-    border-top: 1.25cqw solid $brand-yellow;
+    padding: 24px;
+    border-top: 4px solid $brand-yellow;
     background-color: $brand-navy;
     color: #FFF;
-    font-size: clamp(18px, 5.625cqw, 36px);
+    font-size: 18px;
     font-weight: 600;
-    line-height: 1.2222;
+    line-height: 24px;
+
+    @include media-breakpoint-only(sm) {
+      padding: 32px;
+      border-top-width: 8px;
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-right: 32px;
+      padding-left: 32px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding: 32px;
+      border-top-width: 8px;
+      font-size: 28px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      font-size: 32px;
+      line-height: 40px;
+    }
   }
 
   // Dots: 8px squares with 2px corners, 8px apart, 16px under the image
@@ -212,7 +248,8 @@ $product-border-desktop: #C2C2C2;
     }
   }
 
-  // Points: Body S with a yellow chevron. 8px apart on mobile, 20px on desktop.
+  // Points with a yellow chevron: Body S, 8px apart on mobile; Body (16/24), 16px apart on
+  // desktop (a size up from the frames, which the client found small).
   &__points {
     display: flex;
     flex-direction: column;
@@ -224,8 +261,10 @@ $product-border-desktop: #C2C2C2;
     list-style: none;
 
     @include media-breakpoint-up(lg) {
-      gap: 20px;
+      gap: 16px;
       max-width: 580px;
+      font-size: 16px;
+      line-height: 24px;
     }
 
     li {
@@ -238,11 +277,17 @@ $product-border-desktop: #C2C2C2;
       }
     }
 
-    // The chevron is a 16px icon in a 21 x 22 box
+    // The chevron is a 16px icon in a 21 x 22 box, 24px tall on desktop to stay centred on
+    // the first line
     .icon {
       box-sizing: content-box;
       padding: 3px 3px 3px 2px;
       color: $brand-yellow;
+
+      @include media-breakpoint-up(lg) {
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
     }
   }
 
@@ -325,10 +370,12 @@ $product-border-desktop: #C2C2C2;
 
   // Add to basket: Button (SemiBold 16/24), filling the rest of the row.
   // 56px tall on mobile and 80px on desktop.
+  // Hover: navy with white text
   &__add {
     --bs-btn-font-size: 16px;
     --bs-btn-font-weight: 600;
     --bs-btn-line-height: 24px;
+    @include btn-hover($brand-navy, #FFF);
     flex: 1 1 auto;
 
     @include media-breakpoint-up(lg) {
@@ -877,8 +924,10 @@ $product-border-desktop: #C2C2C2;
 // Accessories for this product: the shared section header and the collection page's product
 // grid and cards (_section-header.scss, _collection.scss). Neutral/Grey band, XXXLG padding.
 // The header's link is navy here, with the usual yellow arrow.
+// "Products used in this guide" on the how-to guide page (.guide-products) is the same band.
 
-.complete-job {
+.complete-job,
+.guide-products {
   padding: var(--xxxl-space) 0;
   background-color: $neutral-grey;
 

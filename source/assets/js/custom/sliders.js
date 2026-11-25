@@ -8,35 +8,22 @@
 
         var sliders = [
             {
-                // Guides: dragged by hand. On desktop every card's navy panel is made as tall
-                // as the tallest one, so a guide with a longer title does not sit out of line.
+                // Guides: dragged by hand. (The cards' navy panels are kept the same height
+                // by guide-cards.js.)
                 selector: '.splide.guides-slider',
                 options: {
                     autoWidth: true,
                     pagination: false,
                     arrows: false
-                },
-                ready: function (el, splide) {
-                    var equalise = function () {
-                        var tallest = 0;
-
-                        el.style.removeProperty('--guide-body-height');
-                        el.querySelectorAll('.guide-card__body').forEach(function (body) {
-                            tallest = Math.max(tallest, body.offsetHeight);
-                        });
-                        el.style.setProperty('--guide-body-height', tallest + 'px');
-                    };
-
-                    splide.on('resized', equalise);
-                    document.fonts.ready.then(equalise);
-                    equalise();
                 }
             },
             {
                 // Surfaces ("Suitable for"): a ticker tape. The strip loops and scrolls slowly
-                // to the left on its own (Splide's AutoScroll extension), pausing while it is
-                // hovered or focused. It can still be dragged. With reduced motion switched on
-                // it stays still until dragged.
+                // to the left on its own (Splide's AutoScroll extension). It does not pause on
+                // hover: scrolling the page puts the pointer over the strip, which stopped it
+                // (and a tap on a touch screen left it stopped). It can still be dragged and
+                // carries on when let go. With reduced motion switched on it stays still until
+                // dragged.
                 selector: '.splide.surfaces-slider',
                 extensions: true,
                 options: {
@@ -48,7 +35,7 @@
                     autoScroll: {
                         speed: 0.5, // pixels per frame, about 30px a second
                         autoStart: !reducedMotion,
-                        pauseOnHover: true,
+                        pauseOnHover: false,
                         pauseOnFocus: true
                     }
                 }

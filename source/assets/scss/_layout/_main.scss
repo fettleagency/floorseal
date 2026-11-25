@@ -7,6 +7,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+// Links change colour over the standard hover time
+a {
+  transition: color $hover-duration ease-in-out;
+}
+
 ::selection {
   color: #2e2e2e;
   text-shadow: none;

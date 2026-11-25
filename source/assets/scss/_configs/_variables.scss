@@ -15,3 +15,15 @@ $site-container-max-width: $site-max-width + 2 * 64px;
 // Below $bp-tablet is the Mobile column.
 $bp-tablet: md;
 $bp-desktop: lg;
+
+// Hover and focus colour changes all take 0.2s, including Bootstrap's own (buttons, nav
+// links, form fields), which default to 0.15s.
+$hover-duration: .2s;
+$btn-transition: color $hover-duration ease-in-out, background-color $hover-duration ease-in-out, border-color $hover-duration ease-in-out, box-shadow $hover-duration ease-in-out;
+$nav-link-transition: color $hover-duration ease-in-out, background-color $hover-duration ease-in-out, border-color $hover-duration ease-in-out;
+$input-transition: border-color $hover-duration ease-in-out, box-shadow $hover-duration ease-in-out;
+$form-switch-transition: background-position $hover-duration ease-in-out;
+$form-range-thumb-transition: background-color $hover-duration ease-in-out, border-color $hover-duration ease-in-out, box-shadow $hover-duration ease-in-out;
+$pagination-transition: color $hover-duration ease-in-out, background-color $hover-duration ease-in-out, border-color $hover-duration ease-in-out, box-shadow $hover-duration ease-in-out;
+$navbar-toggler-transition: box-shadow $hover-duration ease-in-out;
+$carousel-control-transition: opacity $hover-duration ease;

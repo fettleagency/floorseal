@@ -72,6 +72,22 @@
       color: inherit;
     }
   }
+
+  // Yellow version, on the how-to guides archive (Figma "How-to guides page"): the same hero
+  // with navy text on Brand/Yellow, and the image fading in from yellow. Solid yellow on mobile.
+  &--yellow {
+    background-color: $brand-yellow;
+    color: $brand-navy;
+
+    .collection-hero__media::after {
+      background-image: linear-gradient(62deg, $brand-yellow 41%, rgba($brand-yellow, 0) 103%);
+    }
+
+    .collection-hero__title,
+    .breadcrumb {
+      color: $brand-navy;
+    }
+  }
 }
 
 // ----- Listing (Figma "section/listing") -----
@@ -97,6 +113,16 @@
 
     @include media-breakpoint-up(lg) {
       gap: 32px;
+    }
+  }
+
+  // White version, on the how-to guides archive: it sits under the yellow hero, so there is
+  // no rule along the top and the toolbar keeps its SM space above it on desktop too.
+  &--white {
+    background-color: #FFF;
+
+    @include media-breakpoint-up(lg) {
+      padding-top: var(--sm-space);
     }
   }
 
@@ -323,6 +349,7 @@
     border-radius: 4px;
     background-color: $brand-yellow;
     color: $brand-navy;
+    transition: background-color $hover-duration ease-in-out, color $hover-duration ease-in-out;
 
     .icon {
       width: 10px;
@@ -338,5 +365,13 @@
         height: 14px;
       }
     }
+  }
+
+  // The whole card is the link, so hovering or focusing anywhere on it turns the arrow
+  // button navy with a white arrow
+  &:hover &__arrow,
+  &:focus-within &__arrow {
+    background-color: $brand-navy;
+    color: #FFF;
   }
 }

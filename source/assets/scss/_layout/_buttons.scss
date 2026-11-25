@@ -7,7 +7,20 @@
 //   .btn-white            white with navy text, for dark backgrounds ("Upload a photo")
 //   .btn-outline-yellow   2px yellow outline with navy text ("Show more products")
 //
-// Hover and active colours are Bootstrap's (derived from the colour), as none are designed yet.
+// Hover and active colours are Bootstrap's (derived from the colour) unless a button says
+// otherwise with the btn-hover mixin below: "Add to basket" goes navy, "Expand to show all"
+// goes yellow, "Read full user guide" goes white on its navy band. Anything that turns yellow
+// has navy text. Every colour change takes 0.2s ($btn-transition in _configs/_variables.scss).
+
+// Sets a button's hover, focus and pressed colours
+@mixin btn-hover($background, $color) {
+  --bs-btn-hover-color: #{$color};
+  --bs-btn-hover-bg: #{$background};
+  --bs-btn-hover-border-color: #{$background};
+  --bs-btn-active-color: #{$color};
+  --bs-btn-active-bg: #{$background};
+  --bs-btn-active-border-color: #{$background};
+}
 
 .btn {
   --bs-btn-padding-x: 24px;

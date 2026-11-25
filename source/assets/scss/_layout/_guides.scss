@@ -54,9 +54,11 @@
 // Mobile (below lg): photo on top (180px tall), navy body underneath.
 // Desktop: the photo fills the 507px card and the body is a navy panel, 90% opaque, across
 // the bottom of it. The tag is always navy with white text.
+// The card itself is the link (<a class="guide-card">), so all of it is clickable.
 
 .guide-card {
   position: relative;
+  isolation: isolate; // keeps the photo's negative z-index (desktop) inside the card
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -64,6 +66,17 @@
   border-radius: 4px;
   background-color: $brand-navy;
   color: #FFF;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: #FFF;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #FFF;
+    outline-offset: -4px;
+  }
 
   @include media-breakpoint-up(lg) {
     justify-content: flex-end;
@@ -81,9 +94,11 @@
       object-fit: cover;
     }
 
+    // Behind the panel
     @include media-breakpoint-up(lg) {
       position: absolute;
       inset: 0;
+      z-index: -1;
       height: auto;
     }
   }
@@ -118,7 +133,6 @@
     padding: 24px;
 
     @include media-breakpoint-up(lg) {
-      position: relative;
       flex: none;
       gap: 18px;
       // 214px as drawn, or the height of the tallest panel in the slider when a longer
@@ -156,31 +170,6 @@
     }
   }
 
-  // The link in the title covers the whole card
-  &__link {
-    color: inherit;
-    text-decoration: none;
-
-    &::after {
-      position: absolute;
-      inset: 0;
-      content: "";
-    }
-
-    &:hover {
-      color: inherit;
-    }
-
-    &:focus-visible {
-      outline: 0;
-
-      &::after {
-        outline: 2px solid #FFF;
-        outline-offset: -4px;
-      }
-    }
-  }
-
   // Body S (14/20)
   &__text {
     margin: 0;
@@ -200,6 +189,7 @@
     font-weight: 500;
     line-height: 20px;
     text-transform: uppercase;
+    transition: color $hover-duration ease-in-out;
 
     .icon {
       color: $brand-yellow;
@@ -209,5 +199,26 @@
       justify-content: flex-end;
       padding-top: 22px;
     }
+  }
+
+  // Hovering or focusing the card turns "Read more" yellow
+  &:hover &__more,
+  &:focus-visible &__more {
+    color: $brand-yellow;
+  }
+}
+
+// ----- Guide grid (how-to guides archive) -----
+// The same card in a Bootstrap .row instead of the slider: one across on mobile, two from md
+// (columns are in the markup). 24px between rows on mobile, 32px on desktop.
+// js/custom/guide-cards.js keeps the navy panels the same height, as it does in the slider.
+.guide-grid {
+  --bs-gutter-y: 24px;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+
+  @include media-breakpoint-up(lg) {
+    --bs-gutter-y: #{$grid-gutter-width};
   }
 }

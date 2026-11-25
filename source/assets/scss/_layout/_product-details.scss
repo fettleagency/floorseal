@@ -125,7 +125,8 @@
     text-transform: uppercase;
   }
 
-  // Body S on mobile; Label (Medium 16/24) in navy from md
+  // Body S on mobile; Body L (18/28) in Medium and navy from md. A size up from the frames,
+  // which the client found small.
   &__lead {
     margin: 0;
     font-size: 14px;
@@ -133,13 +134,14 @@
 
     @include media-breakpoint-up(md) {
       color: $brand-navy;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 500;
-      line-height: 24px;
+      line-height: 28px;
     }
   }
 
-  // Points: Body S in navy with a yellow chevron. 12px apart on mobile, 20px from md.
+  // Points in navy with a yellow chevron: Body S, 12px apart on mobile; Body (16/24), 16px
+  // apart from md (a size up from the frames, as above).
   &__points {
     display: flex;
     flex-direction: column;
@@ -152,7 +154,9 @@
     list-style: none;
 
     @include media-breakpoint-up(md) {
-      gap: 20px;
+      gap: 16px;
+      font-size: 16px;
+      line-height: 24px;
     }
 
     li {
@@ -161,11 +165,17 @@
       gap: 8px;
     }
 
-    // The chevron is a 16px icon in a 21 x 22 box
+    // The chevron is a 16px icon in a 21 x 22 box, 24px tall from md to stay centred on the
+    // first line
     .icon {
       box-sizing: content-box;
       padding: 3px 3px 3px 2px;
       color: $brand-yellow;
+
+      @include media-breakpoint-up(md) {
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
     }
   }
 
@@ -422,7 +432,8 @@
     }
   }
 
-  // A step: 60px yellow tab with the number, then the text (Body S in navy)
+  // A step: 60px yellow tab with the number, then the text in navy (Body S on mobile, Body
+  // from md, a size up from the frames)
   &__step {
     display: flex;
     gap: 16px;
@@ -436,6 +447,8 @@
       gap: 24px;
       padding-right: 24px;
       background-color: #FFF;
+      font-size: 16px;
+      line-height: 24px;
     }
 
     p {
@@ -452,7 +465,8 @@
     text-align: center;
   }
 
-  // Body S in capitals; the link keeps its underline
+  // In capitals, Body S on mobile and Body from md (a size up from the frames); the link
+  // keeps its underline
   &__notes {
     max-width: 900px;
     margin: 0 0 24px;
@@ -463,6 +477,8 @@
 
     @include media-breakpoint-up(md) {
       color: #FFF;
+      font-size: 16px;
+      line-height: 24px;
     }
 
     a {
@@ -490,6 +506,16 @@
       flex-flow: row wrap;
       justify-content: flex-end;
       gap: 16px;
+    }
+  }
+
+  // "Read full user guide" (yellow): on hover it goes navy with white text on mobile, where
+  // it is on white, and white with navy text from md, where it is on the navy band.
+  &__actions .btn-yellow {
+    @include btn-hover($brand-navy, #FFF);
+
+    @include media-breakpoint-up(md) {
+      @include btn-hover(#FFF, $brand-navy);
     }
   }
 
