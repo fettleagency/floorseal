@@ -162,6 +162,50 @@
       outline-offset: 2px;
     }
   }
+
+  // Centred version, on the surface pages (Figma "section/common problems"): XLG above and
+  // below, a centred heading, the tiles in the middle ten columns from xl (.col-xl-10 in the
+  // markup), and a button under them. Heading, tiles and button are 24px apart on mobile and
+  // 40px on desktop.
+  &--centred {
+    padding-top: var(--xl-space);
+    padding-bottom: var(--xl-space);
+
+    .section-header {
+      text-align: center;
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  // The button under the tiles: full width on mobile, with its arrow at the far end;
+  // centred at its own width from md
+  &__action {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 40px;
+    }
+
+    .btn {
+      justify-content: space-between;
+      width: 100%;
+
+      @include media-breakpoint-up(md) {
+        width: auto;
+      }
+    }
+
+    // The arrow is a 14px glyph in a 20px box, as in Figma
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+  }
 }
 
 // A smaller problem link, the size of the guide card's category tag: SemiBold 12/16 with

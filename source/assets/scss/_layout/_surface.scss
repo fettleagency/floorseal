@@ -1,0 +1,392 @@
+// Surface page (Figma "Surface page – desktop 1440" and "– mobile 390"; the sub-surface mock
+// "Surface page – Indian sandstone 1440" is the same page without "Choose your surface").
+// New here: the hero, the sub-surface tiles, the step sections and "More about".
+// The rest is shared: problem tiles (_help-advice.scss, .problems--centred), the guides slider,
+// help choosing and reviews.
+
+// ----- Hero (Figma "Frame 88" on desktop, "section/surface header" on mobile) -----
+// Each surface has its own colour, set on the section in the markup:
+//   --surface-colour   behind the text (#756C61 for Patio & paving)
+//   --surface-tint     behind the photo: 20% of #7C7266 on white in Figma, which is #E5E3E0
+// Without them the hero is navy with a Neutral/Grey photo panel.
+//
+// Mobile (below lg): the colour panel only. 40px above the title and XXXLG below, as on the
+// collection hero; title and description on the left.
+// Desktop (lg up): the two colours each take half of the window, right to its edges, but the
+// content stays in the site container and on the grid, so it stops growing with the window
+// like every other section. The two halves mirror each other: the text in the first five
+// columns, centred both ways, and the photo in the last five, with an empty column either
+// side of the middle so neither sits against the divide. No breadcrumb for now (the frame has
+// none). The photo has XLG (80px) above and below up to xl and XXLG (104px; 100px in the
+// frame) from xl. (In the frame the photo is 520px wide, centred in its half; five columns
+// are 528px at 1440.)
+
+.surface-hero {
+  --surface-hero-colour: var(--surface-colour, #{$brand-navy});
+  --surface-hero-tint: var(--surface-tint, #{$neutral-grey});
+  background-color: var(--surface-hero-colour);
+  color: #FFF;
+
+  // The colours meet in the middle of the window, which is the middle of the container
+  @include media-breakpoint-up(lg) {
+    background-image: linear-gradient(to right, var(--surface-hero-colour) 50%, var(--surface-hero-tint) 50%);
+  }
+
+  &__panel {
+    padding: 40px 0 var(--xxxl-space);
+
+    // The text is centred in its columns, with at least XLG (80px) above and below it: the
+    // same as the photo has up to xl, where the text is the taller of the two halves.
+    // (The frame has 40px and 48px, which only shows when the text sets the height.)
+    @include media-breakpoint-up(lg) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: var(--xl-space) 0;
+      text-align: center;
+    }
+  }
+
+  // Type follows the type scale, as on the collection hero.
+  // Title: H1 (40/48, 48/56, 64/72) in capitals, no wider than the 569px it is in the design.
+  // (The frame breaks "Patio & paving" over two lines by hand; here it wraps only if it has to.)
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 569px;
+    }
+  }
+
+  // Mobile: Body (16/24), 16px under the title. Desktop: Body L (18/28) in Medium, 24px under
+  // the title and no wider than 400px.
+  &__description {
+    margin-top: 16px;
+
+    @include media-breakpoint-up(lg) {
+      max-width: 400px;
+      margin-top: 24px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 28px;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+
+  // Three points, 24px apart and 40px under the description: a tick over a line or two of
+  // Body S, each 96px wide. Desktop only (.d-none .d-lg-flex in the markup).
+  &__points {
+    gap: 24px;
+    justify-content: center;
+    margin: 40px 0 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 20px;
+    list-style: none;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: 96px;
+    }
+  }
+
+  // A white box with a yellow tick, 20px
+  &__tick {
+    --icon-tick: #{$brand-yellow};
+    width: 20px;
+    height: 20px;
+  }
+
+  // The photo (.d-none .d-lg-block on its column): it fills its five columns, keeps the
+  // 520 by 453 shape it has in the design and is centred top to bottom.
+  &__media {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: var(--xl-space) 0;
+
+    @include media-breakpoint-up(xl) {
+      padding: var(--xxl-space) 0;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 520 / 453;
+      object-fit: cover;
+    }
+  }
+}
+
+// ----- Choose your surface (Figma "section/sub-surfaces") -----
+// White. LG above and XXXLG below; the section header's own margin puts the tiles 24px / 32px
+// under the heading.
+
+.sub-surfaces {
+  padding-top: var(--lg-space);
+  padding-bottom: var(--xxxl-space);
+  background-color: #FFF;
+}
+
+// A Bootstrap .row: 16px gutters on mobile, 32px on desktop, across and down (as .product-grid).
+// Columns are in the markup: two across, three from md, four from xl.
+.surface-grid {
+  --bs-gutter-x: 16px;
+  --bs-gutter-y: 16px;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+
+  @include media-breakpoint-up(lg) {
+    --bs-gutter-x: #{$grid-gutter-width};
+    --bs-gutter-y: #{$grid-gutter-width};
+  }
+}
+
+// Surface card: one link. (.surface-tile is the product page's "Suitable for" tile, a
+// different thing.) A photo with 4px corners (163 by 200 on mobile, 304 by 360 on
+// desktop), then the name and the product count, 8px apart with 16px above and below.
+// Not designed: the hover state. The name underlines.
+.surface-card {
+  display: block;
+  color: $brand-navy;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: $brand-navy;
+
+    .surface-card__title {
+      text-decoration: underline;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $brand-navy;
+    outline-offset: 2px;
+  }
+
+  &__image {
+    overflow: hidden;
+    border-radius: 4px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 163 / 200;
+      object-fit: cover;
+
+      @include media-breakpoint-up(lg) {
+        aspect-ratio: 304 / 360;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+  }
+
+  // Label (Medium 16/24) on mobile and Label L (18/24) from lg, in capitals with 8% letter spacing
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 18px;
+    }
+  }
+
+  // Body S in Text/Muted, in capitals
+  &__count {
+    margin: 0;
+    color: $text-muted;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+  }
+
+  // "Not sure what you have?": the last tile, from xl only (.d-none .d-xl-block on its column).
+  // Not a link itself: a photo the height of the other tiles, darkened (two 20% black layers
+  // in Figma, 36% together), with a heading and a button at the bottom, 32px in from the edges
+  // (16px up to xxl, where the tile is too narrow for the button otherwise).
+  &--help {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 24px;
+    height: 100%;
+    padding: 16px;
+    overflow: hidden;
+    border: 1px solid $neutral-line;
+    border-radius: 4px;
+    color: #FFF;
+    isolation: isolate;
+
+    // The tile itself has no hover state (the card's turns the text navy): only its button changes
+    &:hover {
+      color: #FFF;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      padding: 32px;
+    }
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-color: rgba(#000, .36);
+      content: "";
+    }
+
+    // On the dark photo the yellow button goes white on hover
+    .btn-yellow {
+      @include btn-hover(#FFF, $brand-navy);
+    }
+
+    // The arrow is a 14px glyph in a 20px box, as in Figma
+    .icon--14 {
+      box-sizing: content-box;
+      padding: 3px;
+    }
+  }
+
+  &__photo {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // SemiBold 24/32 (H3 on mobile; 24/28 in the frame) in capitals
+  &__heading {
+    margin: 0;
+    font-size: 24px;
+    line-height: 32px;
+    text-transform: uppercase;
+  }
+}
+
+// ----- Step sections (Figma "section/step 1 clean" and "section/step 2 seal") -----
+// Step 1 is on Neutral/Grey and step 2 on navy (.surface-step--navy). LG above, XXXLG below.
+// Header: a step label, the heading and a line of text in 8 columns, with "View all" on the
+// right, level with the bottom of the text (desktop). Then the product cards.
+// On mobile "View all" moves under the cards, so it is in the markup twice.
+// A sub-surface page (sub-surface.html) has no "View all": its steps list every product.
+//
+// Label, heading and text are 16px apart on mobile and 24px on desktop; the cards are 16px /
+// 32px under the header, and the mobile link 16px under the cards.
+
+.surface-step {
+  // "View all" is navy here, with the usual yellow arrow
+  --section-header-link: #{$brand-navy};
+  padding-top: var(--lg-space);
+  padding-bottom: var(--xxxl-space);
+  background-color: $neutral-grey;
+
+  .section-header {
+    margin-bottom: 16px;
+
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 32px;
+    }
+  }
+
+  .section-header__text {
+    margin-top: 16px;
+
+    @include media-breakpoint-up(lg) {
+      margin-top: 24px;
+    }
+  }
+
+  // "Step 1": Overline, white on navy, 40px tall with 4px corners
+  &__label {
+    width: fit-content;
+    margin: 0 0 16px;
+    padding: 12px 16px;
+    border-radius: 4px;
+    background-color: $brand-navy;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    line-height: 16px;
+    text-transform: uppercase;
+
+    @include media-breakpoint-up(lg) {
+      margin-bottom: 24px;
+    }
+  }
+
+  // "View all" under the cards (mobile only: .d-lg-none in the markup)
+  &__more {
+    margin-top: 16px;
+  }
+
+  // On navy: white heading, text and link (with a white arrow), and a yellow label with navy text
+  &--navy {
+    --section-header-link: #FFF;
+    --section-header-arrow: #FFF;
+    --section-header-text: #FFF;
+    background-color: $brand-navy;
+
+    .section-header__title {
+      color: #FFF;
+    }
+
+    .surface-step__label {
+      background-color: $brand-yellow;
+      color: $brand-navy;
+    }
+  }
+}
+
+// ----- More information (Figma "section/more information") -----
+// Neutral/Grey (#F5F7FA in the frame; Neutral/Grey here so it runs into "help choosing" below
+// without a seam). XXXLG above and XLG below.
+// A heading the full width, then two columns of rich text (.rte), stacked 24px apart on mobile.
+// The text is Body (16/24) on desktop too, not the Body L that .rte has on the guide and text
+// pages, with 16px between a sub-heading and its paragraphs.
+
+.more-info {
+  padding-top: var(--xxxl-space);
+  padding-bottom: var(--xl-space);
+  background-color: $neutral-grey;
+
+  &__columns {
+    --bs-gutter-y: 24px;
+  }
+
+  .rte {
+    --body-gap: 16px;
+    --block-gap: 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
